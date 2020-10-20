@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>IMAGEN ACERIMALLAS</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-padding">
+    <!-- Login form -->
+    <ion-item id="correo" color="light">
+      <ion-input placeholder="Correo Electrónico" type="email" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item id="contrasena" color="light">
+      <!--type="{{type}}"-->
+      <ion-input placeholder="Contraseña" type="{{showPass ? 'text' : 'password'}}" required></ion-input>
+      <ion-button type="button" clear color="light" item-right (click)="seePassword()">
+        <ion-icon style="zoom:1.5;" name="{{changeEye ? 'eye-outline' : 'eye-off-outline'}}"></ion-icon>
+      </ion-button>
+    </ion-item>
+    <ion-text class="ion-text-right" [routerLink]="['/forgot-password']" style="color: #D5158A;" (click)="forgotPass()">
+      ¿Olvidaste tu contraseña?
+    </ion-text>
+    <br>
+    <ion-button expand="block" [routerLink]="['/tabs/home']" tappable (click)="login()">
+      <ion-text>INICIAR SESIÓN</ion-text>
+    </ion-button>
+    <br/>
+    <ion-button expand="block" color="light" tappable (click)="loginFacebook()">
+      <ion-text text-center>
+        Ingresar con &nbsp;
+      </ion-text>
+      <ion-icon style="zoom:1.5;" name="logo-facebook"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>
+
+<ion-footer class="ion-padding ion-no-border ion-text-center">
+  <ion-text tappable>
+    ¿Nuevo Usuario? 
+    <strong [routerLink]="['/signup']" (click)="register()">
+      ¡Regístrate aquí!
+    </strong>
+  </ion-text>
+</ion-footer>

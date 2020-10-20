@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button [routerLink]="['/']">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="ion-text-center">CREAR CUENTA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div id="user-photo" class="ion-text-center">
+    <ion-icon name="person-circle-outline" style="zoom: 10.0;"></ion-icon>
+  </div>
+  <div class="ion-padding">
+    <!-- Login form -->
+    <ion-item id="names" color="light">
+      <ion-input placeholder="Nombres" type="text" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item id="last-name" color="light">
+      <ion-input placeholder="Apellidos" type="text" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item id="cellphone" color="light">
+      <ion-input placeholder="Teléfono" type="number" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item id="email" color="light">
+      <ion-input placeholder="Correo Electrónico" type="email" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item id="password" color="light">
+      <ion-input placeholder="Contraseña" type="paswword" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item id="confirm-password" color="light">
+      <ion-input placeholder="Confirmar Contraseña" type="password" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-button expand="block" tappable (click)="createAccount()">
+      <ion-text>CREAR CUENTA</ion-text>
+    </ion-button>
+  </div>
+</ion-content>
