@@ -17,7 +17,7 @@ router.get('/administradores/all',esAutenticado, renderAdministradoresForm);  //
 router.get('/administrador',esAutenticado, renderAdministradorForm);     // aun no vale, pero es para agregar uno nuevo
 
 //agregar
-router.post('/administrador/add',esAutenticado, createAdministrador);      //este si vale
+router.post('/administrador/add', createAdministrador);      //este si vale
 router.post('/administrador/add2',esAutenticado, createAdministrador2);    //este si vale
 
 //editar

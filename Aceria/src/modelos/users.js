@@ -11,6 +11,7 @@ const UsuarioSchema = new Schema({
     nombre: String,
     apellido: String,
     direccion: String,
+    telefono: Number,
     email: {
         type: String,
         required: true

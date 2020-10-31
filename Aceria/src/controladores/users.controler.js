@@ -20,6 +20,7 @@ usersCtrl.createNewUser = async (req, res) => {
     new_usuario.cuenta = cuenta;
     new_usuario.contrasena = password;
     new_usuario.direccion = direccion;
+    new_usuario.telefono = 0;
     new_usuario.email = email;
     new_usuario.categoria = categoria;
     new_usuario.estado = estado;
