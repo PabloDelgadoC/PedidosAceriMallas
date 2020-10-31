@@ -11,37 +11,42 @@
 
 <ion-content class="ion-padding">
   <div id="user-photo" class="ion-text-center">
-    <ion-icon name="person-circle-outline" style="zoom: 10.0;"></ion-icon>
+    <ion-icon name="person-circle-outline" style="zoom: 10.0;" (click)='addPhoto();'></ion-icon>
   </div>
   <div class="ion-padding">
     <!-- Login form -->
-    <ion-item id="names" color="light">
-      <ion-input placeholder="Nombres" type="text" required></ion-input>
+    <ion-item color="light">
+      <ion-input id="names" placeholder="Nombres" type="text" required></ion-input>
     </ion-item>
     <br/>
     <br/>
-    <ion-item id="last-name" color="light">
-      <ion-input placeholder="Apellidos" type="text" required></ion-input>
+    <ion-item color="light">
+      <ion-input id="last-name" placeholder="Apellidos" type="text" required></ion-input>
     </ion-item>
     <br/>
     <br/>
-    <ion-item id="cellphone" color="light">
-      <ion-input placeholder="Teléfono" type="number" required></ion-input>
+    <ion-item color="light">
+      <ion-input id="cellphone" placeholder="Teléfono" type="number" required></ion-input>
     </ion-item>
     <br/>
     <br/>
-    <ion-item id="email" color="light">
-      <ion-input placeholder="Correo Electrónico" type="email" required></ion-input>
+    <ion-item color="light">
+      <ion-input id="address" placeholder="Dirección" type="text" required></ion-input>
     </ion-item>
     <br/>
     <br/>
-    <ion-item id="password" color="light">
-      <ion-input placeholder="Contraseña" type="paswword" required></ion-input>
+    <ion-item color="light">
+      <ion-input id="email" placeholder="Correo Electrónico" type="email" required></ion-input>
     </ion-item>
     <br/>
     <br/>
-    <ion-item id="confirm-password" color="light">
-      <ion-input placeholder="Confirmar Contraseña" type="password" required></ion-input>
+    <ion-item color="light">
+      <ion-input id="password" placeholder="Contraseña" type="password" required></ion-input>
+    </ion-item>
+    <br/>
+    <br/>
+    <ion-item color="light">
+      <ion-input id="confirm-password" placeholder="Confirmar Contraseña" type="password" required></ion-input>
     </ion-item>
     <br/>
     <br/>

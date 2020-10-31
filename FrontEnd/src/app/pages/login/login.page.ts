@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Services } from '../../services/services';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ export class LoginPage implements OnInit {
   public changeEye: boolean = true;
   public showPass: boolean = false;
 
-  constructor() { }
+  constructor( private service: Services) { }
 
   ngOnInit() {
   }
