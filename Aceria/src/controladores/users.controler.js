@@ -52,6 +52,29 @@ usersCtrl.eliminarUser = async (req, res) => {
     res.redirect('/usuarios/all');
 };
 
+//USERS MOVIL
+usersCtrl.createUSerMovil = async (req, res) => {
+    const {nombre,apellido,telefono,password,direccion,email} = req.body;
+    const new_usuario = new user();
+    new_usuario.nombre = nombre;
+    new_usuario.apellido = apellido;
+    new_usuario.cuenta = nombre + ' ' + apellido;
+    new_usuario.telefono = telefono,
+    new_usuario.contrasena = password;
+    new_usuario.direccion = direccion;
+    new_usuario.email = email;
+    new_usuario.categoria = 'Persona Natural';
+    new_usuario.estado = 'activo';
+    new_usuario.img = '';
+
+    await new_usuario.save();
+
+    res.status(200).send({
+        STATUS: 'OK',
+        MESSAGE: 'Usuario creado exitosamente'
+    });
+};
+
 
 
 module.exports = usersCtrl;
