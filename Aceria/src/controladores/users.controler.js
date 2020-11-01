@@ -54,25 +54,37 @@ usersCtrl.eliminarUser = async (req, res) => {
 
 //USERS MOVIL
 usersCtrl.createUSerMovil = async (req, res) => {
-    const {nombre,apellido,telefono,password,direccion,email} = req.body;
-    const new_usuario = new user();
-    new_usuario.nombre = nombre;
-    new_usuario.apellido = apellido;
-    new_usuario.cuenta = nombre + ' ' + apellido;
-    new_usuario.telefono = telefono,
-    new_usuario.contrasena = password;
-    new_usuario.direccion = direccion;
-    new_usuario.email = email;
-    new_usuario.categoria = 'Persona Natural';
-    new_usuario.estado = 'activo';
-    new_usuario.img = '';
+    const {nombre,apellido,telefono,contrasena,direccion,email} = req.body;
+    const new_user = new user();
+    new_user.nombre = nombre;
+    new_user.apellido = apellido;
+    new_user.cuenta = nombre + ' ' + apellido;
+    new_user.telefono = telefono;
+    new_user.contrasena = contrasena;
+    new_user.direccion = direccion;
+    new_user.email = email;
+    new_user.categoria = 'Persona Natural';
+    new_user.estado = 'activo';
+    new_user.img = '';
+    console.log(new_user);
 
-    await new_usuario.save();
+    await new_user.save( (error, user) => {
+        if(error) return res.status(500).send({
+            ERROR: error,
+            MESSAGE: 'ERROR TO SAVE USER',
+        });
 
-    res.status(200).send({
-        STATUS: 'OK',
-        MESSAGE: 'Usuario creado exitosamente'
+        if(!user) return res.status(404).send({
+            MESSAGE: 'DO NOT SAVE THE USER',
+        });
+
+        return res.status(200).send({
+            STATUS: 'OK',
+            MESSAGE: 'Usuario creado exitosamente',
+            USER: user
+        });
     });
+    
 };
 
 

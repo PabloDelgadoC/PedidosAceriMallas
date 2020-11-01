@@ -6,6 +6,9 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
 const multer = require('multer');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 
 
 //inicializador
@@ -33,7 +36,8 @@ app.engine('.hbs',exhand({
 app.set('view engine','.hbs')
 
 //middlewares
-app.use(express.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(method_override('_method'));
 app.use(session({
     secret: 'secret',
@@ -47,6 +51,8 @@ app.use(multer({
     storage,
     dest: path.join(__dirname,'public/uploads')
 }).single('img'));
+app.use(cors());
+app.use(logger('dev'));
 
 
 

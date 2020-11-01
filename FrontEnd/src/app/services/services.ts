@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class Services {
 
   constructor( private http: HttpClient ) { }
 
-  public signIn(url, data) {
+  public signUpPost(url, data) {
     return this.http.post(url, data, {headers: this.headers});
   }
 
