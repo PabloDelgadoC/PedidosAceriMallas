@@ -18,4 +18,8 @@ export class Services {
   public logIn(url) {
     return this.http.get(url);
   }
+
+  public passwordPatch(url, data) {
+    return this.http.patch(url, data, {headers: this.headers});
+  }
 }

@@ -9,6 +9,7 @@ const {
     modificarUser,
     eliminarUser,
     createUSerMovil,
+    forgotPassword,
 } =require('../controladores/users.controler');
 
 const { esAutenticado } = require('../helper/autenticador');
@@ -29,5 +30,6 @@ router.delete('/usuario/delete/:id',esAutenticado, eliminarUser);
 
 //USERS MOVIL ROUTES
 router.post('/signup', createUSerMovil);
+router.patch('/forgot-password', forgotPassword);
 
 module.exports = router;

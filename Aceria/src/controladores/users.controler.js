@@ -1,6 +1,7 @@
 const usersCtrl = {}
 
 const user = require('../modelos/users');
+const nodemailer = require('nodemailer');
 
 usersCtrl.renderUsuariosForms = async (req, res) => {
     const usuarios = await user.find().lean();
@@ -85,6 +86,83 @@ usersCtrl.createUSerMovil = async (req, res) => {
         });
     });
     
+};
+
+usersCtrl.forgotPassword = async (req, res) => {
+    const email = req.body.email;
+    
+    await user.findOne({email: email}).exec( async (error, user) => {
+        if(error) return res.status(500).send({
+            ERROR: error,
+            MESSAGE: 'ERROR TO UPDATE USER',
+        });
+
+        if(!user) return res.status(404).send({
+            MESSAGE: 'DO NOT UPDATE THE USER',
+        });
+
+        let random = parseInt(Math.random()*1000);
+        user.contrasena = user.nombre.slice(2) + random.toString() + user.apellido.slice(2);
+
+        await user.save((error, user) => {
+            if(error) return res.status(500).send({
+                ERROR: error,
+                MESSAGE: 'ERROR TO SAVE USER',
+            });
+    
+            if(!user) return res.status(404).send({
+                MESSAGE: 'DO NOT SAVE THE USER',
+            });
+        });
+
+        const output = `
+            <h2>Ha solicitado cambio de contraseña</h2>
+            <p>Por el cual su nueva contraseña es:</p>
+            <ul>  
+                <li>Email: ${email}</li>
+                <li>Contraseña: ${user.contrasena}
+            </ul>
+            <h4>Recuerde no compartir con nadie su contraseña</h4>
+            <h5>Puede cambiar su contraseña en su perfil después de iniciar sesión</h5>
+        `;
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'dawap2020@gmail.com', // generated ethereal user
+                pass: 'allan123AP'  // generated ethereal password
+            },
+            tls:{
+            rejectUnauthorized:false
+            }
+        });
+        // setup email data with unicode symbols
+        let mailOptions = {
+            from: '"Acerimallas" <dawap2020@gmail.com>', // sender address
+            to: email, // list of receivers
+            subject: 'Recuperacion de Contraseña', // Subject line
+            text: 'Contactáme', // plain text body
+            html: output // html body
+        };
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);   
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+            res.send(output);
+        });
+
+        return res.status(200).send({
+            STATUS: 'OK',
+            MESSAGE: 'Se ha enviado la contraseña al correo',
+            USER: user
+        });
+    });
 };
 
 

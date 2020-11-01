@@ -3,6 +3,7 @@ import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 import { Services } from '../../services/services';
+import { Constanst } from '../../constants/constanst';
 
 @Component({
   selector: 'app-signup',
@@ -10,8 +11,6 @@ import { Services } from '../../services/services';
   styleUrls: ['./signup.page.scss']
 })
 export class SignupPage implements OnInit {
-
-  public url: string = 'http://localhost:4000';
 
   constructor( 
     private _service: Services,
@@ -32,14 +31,14 @@ export class SignupPage implements OnInit {
       contrasena: (document.getElementById('contrasena') as HTMLInputElement).value,
     };
     console.log(user);
-    this._service.signUpPost(this.url+'/signup', user)
+    this._service.signUpPost(Constanst.URL+'/signup', user)
       .subscribe( async (res:any) => {
         console.log('SERVER RESPOND: ', res);
         var toast = null;
         if(res.STATUS === 'OK') {
           toast = await this.toastController.create({
             message: res.MESSAGE,
-            duration: 2500,
+            duration: 3000,
             position: 'top',
             cssClass: 'dark-trans'
           });
@@ -47,7 +46,7 @@ export class SignupPage implements OnInit {
         }else {
           toast = await this.toastController.create({
             message: 'No se ha podido crear el usuario, intente mas tarde',
-            duration: 2500,
+            duration: 3000,
             position: 'top',
             cssClass: 'dark-trans'
           });

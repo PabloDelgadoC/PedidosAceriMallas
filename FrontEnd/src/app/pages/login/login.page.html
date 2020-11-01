@@ -11,7 +11,6 @@
       <ion-input placeholder="Correo Electrónico" type="email" required></ion-input>
     </ion-item>
     <br/>
-    <br/>
     <ion-item id="contrasena" color="light">
       <!--type="{{type}}"-->
       <ion-input placeholder="Contraseña" type="{{showPass ? 'text' : 'password'}}" required></ion-input>
@@ -19,10 +18,13 @@
         <ion-icon style="zoom:1.5;" name="{{changeEye ? 'eye-outline' : 'eye-off-outline'}}"></ion-icon>
       </ion-button>
     </ion-item>
-    <ion-text class="ion-text-right" [routerLink]="['/forgot-password']" style="color: #D5158A;" (click)="forgotPass()">
+    <ion-text [routerLink]="['/forgot-password']" style="color: #D5158A;" (click)="forgotPass()">
       ¿Olvidaste tu contraseña?
     </ion-text>
     <br>
+    <br/>
+    <br/>
+    <br/>
     <ion-button expand="block" [routerLink]="['/tabs/home']" tappable (click)="login()">
       <ion-text>INICIAR SESIÓN</ion-text>
     </ion-button>
@@ -33,6 +35,14 @@
       </ion-text>
       <ion-icon style="zoom:1.5;" name="logo-facebook"></ion-icon>
     </ion-button>
+    <br/>
+    <br/>
+    <br/>
+    <div class="ion-padding ion-text-center">
+      <ion-text [routerLink]="['/tabs/home']" style="color: #D5158A;">
+        ¡Omitir Inicio de Sesión!
+      </ion-text>
+    </div>
   </div>
 </ion-content>
 
