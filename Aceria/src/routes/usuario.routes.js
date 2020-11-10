@@ -8,8 +8,9 @@ const {
     obtenerUserxId,
     modificarUser,
     eliminarUser,
-    createUSerMovil,
+    createUserMovil,
     forgotPassword,
+    logIn,
 } =require('../controladores/users.controler');
 
 const { esAutenticado } = require('../helper/autenticador');
@@ -29,7 +30,8 @@ router.put('/usuario2/edit/:id',esAutenticado, modificarUser);
 router.delete('/usuario/delete/:id',esAutenticado, eliminarUser);  
 
 //USERS MOVIL ROUTES
-router.post('/signup', createUSerMovil);
+router.post('/signup', createUserMovil);
 router.patch('/forgot-password', forgotPassword);
+router.post('/api/login', logIn);
 
 module.exports = router;

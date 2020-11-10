@@ -2,6 +2,9 @@ const usersCtrl = {}
 
 const user = require('../modelos/users');
 const nodemailer = require('nodemailer');
+const  jwt  =  require('jsonwebtoken');
+
+const SECRET_KEY = "secretkey";
 
 usersCtrl.renderUsuariosForms = async (req, res) => {
     const usuarios = await user.find().lean();
@@ -54,7 +57,7 @@ usersCtrl.eliminarUser = async (req, res) => {
 };
 
 //USERS MOVIL
-usersCtrl.createUSerMovil = async (req, res) => {
+usersCtrl.createUserMovil = async (req, res) => {
     const {nombre,apellido,telefono,contrasena,direccion,email} = req.body;
     const new_user = new user();
     new_user.nombre = nombre;
@@ -79,10 +82,17 @@ usersCtrl.createUSerMovil = async (req, res) => {
             MESSAGE: 'DO NOT SAVE THE USER',
         });
 
+        const  expiresIn  =  24  *  60  *  60;
+        const  accessToken  =  jwt.sign({ id:  user.id }, SECRET_KEY, {
+            expiresIn:  expiresIn
+        });
+
         return res.status(200).send({
             STATUS: 'OK',
             MESSAGE: 'Usuario creado exitosamente',
-            USER: user
+            USER: user,
+            TOKEN: accessToken,
+            EXPIRE: expiresIn
         });
     });
     
@@ -165,6 +175,52 @@ usersCtrl.forgotPassword = async (req, res) => {
     });
 };
 
+usersCtrl.logIn = async (req, res) => {
+    const {email,contrasena} = req.body;
+    console.log(email);
+    //if(email) {
+        console.log('Entro al email');
+        await user.findOne({email: email}).exec( (error, user) => {
+            if(error) return res.status(500).send({
+                ERROR: error,
+                MESSAGE: 'ERROR TO LOG IN',
+            });
+    
+            if(!user) return res.status(404).send({
+                MESSAGE: 'DO NOT LOG IN THE USER',
+            });
+    
+            if(contrasena !== user.contrasena) {
+                return res.status(200).send({
+                    STATUS: 'PASSWORD',
+                    MESSAGE: 'Contraseña incorrecta',
+                    USER: user
+                });
+            }
+            else {
+                const  expiresIn  =  24  *  60  *  60;
+                const  accessToken  =  jwt.sign({ id:  user.id }, SECRET_KEY, {
+                    expiresIn:  expiresIn
+                });
+        
+                return res.status(200).send({
+                    STATUS: 'OK',
+                    MESSAGE: 'Inicio de sesión exitoso',
+                    USER: user,
+                    TOKEN: accessToken,
+                    EXPIRE: expiresIn
+                });
+            }
+        });
+    /*}
+    else {
+        return res.status(200).send({
+            STATUS: 'EMAIL',
+            MESSAGE: 'El correo no está registrado'
+        });
+    }*/
+    
+}
 
 
 module.exports = usersCtrl;

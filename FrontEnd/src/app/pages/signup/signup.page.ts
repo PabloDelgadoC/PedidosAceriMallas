@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { Storage } from  '@ionic/storage';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 import { Services } from '../../services/services';
 import { Constanst } from '../../constants/constanst';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-signup',
@@ -12,17 +15,20 @@ import { Constanst } from '../../constants/constanst';
 })
 export class SignupPage implements OnInit {
 
+  public authSubject = new BehaviorSubject(false);
+  
   constructor( 
     private _service: Services,
     private toastController: ToastController,
     private router: Router,
+    private storage: Storage,
     ) { }
 
   public ngOnInit(): void {
   }
 
   public createAccount(): void {
-    const user:any = {
+    const user: User = {
       nombre: (document.getElementById('names') as HTMLInputElement).value,
       apellido: (document.getElementById('last-name') as HTMLInputElement).value,
       telefono: (document.getElementById('cellphone') as HTMLInputElement).value,
@@ -30,12 +36,15 @@ export class SignupPage implements OnInit {
       direccion: (document.getElementById('address') as HTMLInputElement).value,
       contrasena: (document.getElementById('contrasena') as HTMLInputElement).value,
     };
-    console.log(user);
+    console.log("USER TO SIGN UP",user);
     this._service.signUpPost(Constanst.URL+'/signup', user)
       .subscribe( async (res:any) => {
         console.log('SERVER RESPOND: ', res);
         var toast = null;
         if(res.STATUS === 'OK') {
+          await localStorage.setItem("ACCESS_TOKEN", res.TOKEN);
+          await localStorage.setItem("EXPIRES_IN", res.EXPIRE);
+          this.authSubject.next(true);
           toast = await this.toastController.create({
             message: res.MESSAGE,
             duration: 3000,
@@ -57,7 +66,6 @@ export class SignupPage implements OnInit {
       (err) => {
         console.log('ERROR TO CREATE NEW USER/DID NOT ARRIVE SERVER RESPOND: ', err);
       });
-
   }
 
   public addPhoto(): void {
