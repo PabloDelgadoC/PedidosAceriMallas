@@ -7,10 +7,11 @@ const {
     createNewProduct,
     obtenerProductxId,
     modificarProductoxId,
-    eliminarProducto
+    eliminarProducto,
+    getProducts,
 } =require('../controladores/producto.controler');
 
-const { esAutenticado } = require('../helper/autenticador');
+const { esAutenticado, verifyToken } = require('../helper/autenticador');
 
 //renderizar las pantallas
 router.get('/productos/all',esAutenticado, renderProductsForm);  
@@ -26,4 +27,6 @@ router.put('/producto2/edit/:id',esAutenticado, modificarProductoxId);
 //eleminar
 router.delete('/producto/delete/:id',esAutenticado,  eliminarProducto);  
 
+//USERS MOVIL ROUTES
+router.get('/api/products', verifyToken, getProducts);
 module.exports = router;

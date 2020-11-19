@@ -52,6 +52,13 @@ productCtrl.eliminarProducto = async (req, res) => {
     res.redirect('/productos/all');
 };
 
-
+productCtrl.getProducts = async (req, res) => {
+    const products = await product.find();
+    return res.status(200).send({
+        STATUS: 'OK',
+        MESSAGE: 'Show products',
+        PRODUCTS: products
+    });
+};
 
 module.exports = productCtrl;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import { Storage } from  '@ionic/storage';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { Services } from '../../services/services';
@@ -21,7 +20,6 @@ export class SignupPage implements OnInit {
     private _service: Services,
     private toastController: ToastController,
     private router: Router,
-    private storage: Storage,
     ) { }
 
   public ngOnInit(): void {
@@ -37,13 +35,12 @@ export class SignupPage implements OnInit {
       contrasena: (document.getElementById('contrasena') as HTMLInputElement).value,
     };
     console.log("USER TO SIGN UP",user);
-    this._service.signUpPost(Constanst.URL+'/signup', user)
+    this._service.signUpPost(Constanst.URL+'/api/signup', user)
       .subscribe( async (res:any) => {
         console.log('SERVER RESPOND: ', res);
         var toast = null;
         if(res.STATUS === 'OK') {
           await localStorage.setItem("ACCESS_TOKEN", res.TOKEN);
-          await localStorage.setItem("EXPIRES_IN", res.EXPIRE);
           this.authSubject.next(true);
           toast = await this.toastController.create({
             message: res.MESSAGE,

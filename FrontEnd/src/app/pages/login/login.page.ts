@@ -47,7 +47,6 @@ export class LoginPage implements OnInit {
         console.log('SERVER RESPOND: ', res);
         if(res.STATUS === 'OK') {
           await localStorage.setItem("ACCESS_TOKEN", res.TOKEN);
-          await localStorage.setItem("EXPIRES_IN", res.EXPIRE);
           this.authSubject.next(true);
           this.router.navigate(['tabs/home']);
         }

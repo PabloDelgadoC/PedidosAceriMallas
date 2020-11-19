@@ -2,9 +2,8 @@ const usersCtrl = {}
 
 const user = require('../modelos/users');
 const nodemailer = require('nodemailer');
-const  jwt  =  require('jsonwebtoken');
-
-const SECRET_KEY = "secretkey";
+const bcrypt = require('bcryptjs');
+const { Token } = require('../helper/token');
 
 usersCtrl.renderUsuariosForms = async (req, res) => {
     const usuarios = await user.find().lean();
@@ -64,7 +63,7 @@ usersCtrl.createUserMovil = async (req, res) => {
     new_user.apellido = apellido;
     new_user.cuenta = nombre + ' ' + apellido;
     new_user.telefono = telefono;
-    new_user.contrasena = contrasena;
+    new_user.contrasena = bcrypt.hashSync(contrasena,10);
     new_user.direccion = direccion;
     new_user.email = email;
     new_user.categoria = 'Persona Natural';
@@ -82,17 +81,15 @@ usersCtrl.createUserMovil = async (req, res) => {
             MESSAGE: 'DO NOT SAVE THE USER',
         });
 
-        const  expiresIn  =  24  *  60  *  60;
-        const  accessToken  =  jwt.sign({ id:  user.id }, SECRET_KEY, {
-            expiresIn:  expiresIn
+        const  userToken = Token.getJwtToken({
+            _id: user._id
         });
 
         return res.status(200).send({
             STATUS: 'OK',
             MESSAGE: 'Usuario creado exitosamente',
             USER: user,
-            TOKEN: accessToken,
-            EXPIRE: expiresIn
+            TOKEN: userToken
         });
     });
     
@@ -177,8 +174,7 @@ usersCtrl.forgotPassword = async (req, res) => {
 
 usersCtrl.logIn = async (req, res) => {
     const {email,contrasena} = req.body;
-    console.log(email);
-    //if(email) {
+    if(email) {
         console.log('Entro al email');
         await user.findOne({email: email}).exec( (error, user) => {
             if(error) return res.status(500).send({
@@ -190,7 +186,7 @@ usersCtrl.logIn = async (req, res) => {
                 MESSAGE: 'DO NOT LOG IN THE USER',
             });
     
-            if(contrasena !== user.contrasena) {
+            if( user.comparePassword( contrasena) ) {
                 return res.status(200).send({
                     STATUS: 'PASSWORD',
                     MESSAGE: 'Contraseña incorrecta',
@@ -198,27 +194,25 @@ usersCtrl.logIn = async (req, res) => {
                 });
             }
             else {
-                const  expiresIn  =  24  *  60  *  60;
-                const  accessToken  =  jwt.sign({ id:  user.id }, SECRET_KEY, {
-                    expiresIn:  expiresIn
-                });
+                const  userToken = Token.getJwtToken({
+                    _id: user._id
+                });;
         
                 return res.status(200).send({
                     STATUS: 'OK',
                     MESSAGE: 'Inicio de sesión exitoso',
                     USER: user,
-                    TOKEN: accessToken,
-                    EXPIRE: expiresIn
+                    TOKEN: userToken
                 });
             }
         });
-    /*}
+    }
     else {
         return res.status(200).send({
             STATUS: 'EMAIL',
             MESSAGE: 'El correo no está registrado'
         });
-    }*/
+    }
     
 }
 

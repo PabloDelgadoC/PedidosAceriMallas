@@ -27,4 +27,28 @@
         </ion-segment>
     </ion-toolbar>
 
+    <div class="container">
+        <div class="row" *ngIf="products != null; else wait">
+            <ion-card class="col" *ngFor="let product of products">
+                <img src="{{product.img}}" alt="{{product.img}}"/>
+                <ion-card-header>
+                  <ion-card-title style="width: 88%; margin-left: 0px;">{{product.nombre}}</ion-card-title>
+                  <ion-text style="float: right;">{{product.precio}}</ion-text>
+                </ion-card-header>
+              
+                <ion-card-content>
+                  {{product.descripcion}}
+                </ion-card-content>
+              </ion-card>
+        </div>
+    </div>
+
+    <ng-template #wait>
+        <div class="text-center">
+            <div class="spinner-border" role="status">
+              <span class="sr-only">Cargando...</span>
+            </div>
+          </div>
+    </ng-template>
+
 </ion-content>

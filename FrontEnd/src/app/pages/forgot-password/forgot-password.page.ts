@@ -25,7 +25,7 @@ export class ForgotPasswordPage implements OnInit {
     const email: any = {
       email: (document.getElementById('email') as HTMLInputElement).value
     };
-    this._service.passwordPatch(Constanst.URL+'/forgot-password', email)
+    this._service.passwordPatch(Constanst.URL+'/api/forgot-password', email)
       .subscribe(async (res:any) => {
         console.log('SERVER RESPOND: ', res);
         var toast = null;

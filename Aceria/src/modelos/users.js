@@ -1,4 +1,5 @@
 const {Schema, model} = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const UsuarioSchema = new Schema({
 
@@ -14,10 +15,19 @@ const UsuarioSchema = new Schema({
     telefono: String,
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     categoria: String,
     estado: String
+});
+
+UsuarioSchema.method('comparePassword', function(pass) {
+    if( bcrypt.compareSync(pass, this.contrasena)) {
+        return true;
+    } else {
+        return false;
+    }
 });
 
 module.exports = model('Usuarios',UsuarioSchema);

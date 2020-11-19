@@ -26,4 +26,8 @@ export class Services {
   public passwordPatch(url, data): Observable<any> {
     return this.http.patch(url, data, {headers: this.headers});
   }
+
+  public getProducts(url: string) {
+    return this.http.get(url);
+  }
 }

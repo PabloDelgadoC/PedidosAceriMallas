@@ -30,8 +30,8 @@ router.put('/usuario2/edit/:id',esAutenticado, modificarUser);
 router.delete('/usuario/delete/:id',esAutenticado, eliminarUser);  
 
 //USERS MOVIL ROUTES
-router.post('/signup', createUserMovil);
-router.patch('/forgot-password', forgotPassword);
+router.post('/api/signup', createUserMovil);
+router.patch('/api/forgot-password', forgotPassword);
 router.post('/api/login', logIn);
 
 module.exports = router;
