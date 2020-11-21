@@ -44,6 +44,7 @@ UserCtrl.createUser = async (req,res) => {
 
         }else {
             const new_user=new user();
+            
             /*
             new_oper.nombre = nombre;
             new_oper.apellido = apellido;
@@ -78,12 +79,10 @@ UserCtrl.rendereditUser = async (req,res) => {
 
 
 UserCtrl.editUser = async (req,res) => {
-    /*
-    const operador = req.body;
-
-    await oper.findByIdAndUpdate(req.params.id, operador );
-    req.flash('success_updated','Operador actualizado');
-    res.redirect('/operador/all');*/
+    const usuario = req.body;
+    await user.findByIdAndUpdate(req.params.id, usuario );
+    req.flash('success_updated','Usuario actualizado');
+    res.redirect('/usuario/all');
 
 };
 
