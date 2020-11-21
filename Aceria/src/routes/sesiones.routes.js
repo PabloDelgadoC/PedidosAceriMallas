@@ -21,9 +21,9 @@ router.get('/recuperar', renderRecover);
 router.post('/recoverpass', RecoberPass);
 
 
-router.get('/registrop',renderRegistro);
-router.get('/menu', Autenticado,  renderMenu );
+router.get('/registrop', renderRegistro);
+router.get('/menu', Autenticado, renderMenu);
 
-router.get('/LogOut', logOut );
+router.get('/LogOut',logOut);
 
 module.exports = router;
