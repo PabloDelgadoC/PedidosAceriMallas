@@ -1,35 +1,34 @@
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const localStrategy = require('passport-local').Strategy;
 
-const Admin = require('../modelos/usuario');
+const admin = require('../modelos/administrador');
 
-passport.use(new LocalStrategy({
+passport.use(new localStrategy({
     usernameField: 'email'
-}, async (email, contrasena, done) => {
+}, async (email,password,done) =>{
 
-    //revisa si son correctas
-    const user = await Admin.findOne({email})
-    if(!user){
-        return done(null, false, {message: 'Usuario No existe'});
-    }else{
+    //match Email del administrador
+    const administrador = await admin.findOne({email}).lean();
 
-        //revisa si existe la contrasena
-         if(user.contrasena == contrasena){
-            return done(null,user);
-        }else{
-            return done(null,false,{message: 'Contrasena Incorrecta'});
+    if(!administrador){
+        return done(null, false, {message: 'No se ha encontrado una Sesion Valida'});
+    }else {
+        //match de la contrasena
+        if(administrador.contrasena == password){
+            return done(null, administrador);
+        }else {
+            return done(null, false, {message: 'Contraseña es Incorrecta'});
         }
-      
-    }
 
+    }
 }));
 
-passport.serializeUser((user, done) => {
-    done (null, user.id);
+passport.serializeUser((administrador,done) => {
+    done (null, administrador._id);
 });
 
-passport.deserializeUser((id,done) => {
-    Admin.findById(id,(err,user) => {
-        done(err,user);
+passport.deserializeUser((_id,done) => {
+    admin.findById(_id,(err,administrador) => {
+        done(err,administrador);
     });
 });

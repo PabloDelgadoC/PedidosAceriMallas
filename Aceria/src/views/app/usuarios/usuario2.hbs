@@ -1,153 +1,93 @@
-<!-- 
-========================================
-==============  top  ===================
-========================================
-  -->
-
-  <div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-      <div class="container"> 
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="/dashboard">Administrador Navery</a>
-  
-        <div class="nav-collapse">
-          <ul class="nav pull-right">
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                              class="icon-cog"></i> Cuenta <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:;">Configuraciones</a></li>
-                <li><a href="javascript:;">Ayuda</a></li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
-                              class="icon-user"></i> Navery.com <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="javascript:;">Perfil</a></li>
-                <li><a href="/logOut">Cerrar Sesión</a></li>
-              </ul>
-            </li>
-          </ul>
-          <form class="navbar-search pull-right">
-            <input type="text" class="search-query" placeholder="Search">
-          </form>
-        </div>
-        <!--/.nav-collapse --> 
-      </div>
-      <!-- /container --> 
-    </div>
-    <!-- /navbar-inner --> 
-  </div>
-
-
-<!-- 
-=======================================
-============  Navigation  =============
-=======================================
-  -->
-<div class="subnavbar">
-    <div class="subnavbar-inner">
-      <div class="container">
-        <ul class="mainnav">
-          <li><a href="/dashboard"><i class="icon-dashboard"></i><span>Dashboard</span> </a> </li>
-          <li><a href="/reports"><i class="icon-list-alt"></i><span>Reportes</span> </a> </li>
-          <li class="active"><a href="/app"><i class="icon-facetime-video"></i><span>App</span> </a></li>
-          <li><a href="/ventas"><i class="icon-credit-card"></i><span>Ventas</span> </a></li>
-          <li></li>
-        </ul>
-      </div>
-      <!-- /container --> 
-    </div>
-    <!-- /subnavbar-inner --> 
-  </div>
-
-<!-- 
-=======================================
-==============  MAIN ==================
-=======================================
-  -->
-
-
+{{>top}}
+{{>sidebar}}
 <div class="main">
-    <div class="container">
-        <div class="row">
-            <div class="span3">
-                <div id="barralateral">
-          <ul>
-                <li><a href="/productos/all"><i class="icon-shopping-cart"></i><span> Productos </span><i class="icon-caret-right"></i></a></li>
-                <li><a href="/publicaciones/all"><i class="icon-picture"></i><span> Publicaciones </span><i class="icon-caret-right"></i></a></li>
-                <li><a href="/combos/all"><i class="icon-gift"></i><span> Combos </span><i class="icon-caret-right"></i></a></li>
-                <li><a href="/administradores/all"><i class="icon-user"></i><span> Administradores </span><i class="icon-caret-right"></i></a></li>
-                <li><a href="/usuarios/all"><i class="icon-group"></i><span> Usuarios </span><i class="icon-caret-right"></i></a></li>
-            </ul>
-                </div> <!-- /barra lateral -->
-            </div>
-            <div class="span9">
-                <h2>Usuarios</h2>
-                <form action="/usuario2/edit/{{usuario._id}}?_method=PUT" method="POST">
-                <input type="hidden" name="_method" value="PUT">
-                       <div class="span4">
-                        <p>Nombres: &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" id="nombre" name="nombre" value="{{usuario.nombre}}" placeholder="Nombres"/>
-                        </p>
+    <div class="busqueda_parte">
+        <a href="/administradores/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">U S U A R I O S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Registrar Usuarios</h5>
+        <br>
+        <br>
+        <form action="/administrador/edit/{{administrador._id}}?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Nombre:</label>
+                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="{{administrador.nombre}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Apellido:</label>
+                        <input class="redondeado derecha" type="text" id="apellido" name="apellido" value="{{administrador.apellido}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Correo:</label>
+                        <input class="redondeado derecha" type="email" id="email" name="email" value="{{administrador.email}}" />
+                    </div>
 
-                        <p>Apellidos: &nbsp;&nbsp;&nbsp;&nbsp;
-                            <input type="text" id="apellido" name="apellido" value="{{usuario.apellido}}" placeholder="Apellidos"/>
-                        </p>
+                    <div class="separador">
+                        <label>Usuario:</label>
+                        <input class="redondeado derecha" type="text" id="cuenta" name="cuenta" value="{{administrador.cuenta}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Contraseña:</label>
+                        <input class="redondeado derecha" type="password" id="contrasena" name="contrasena" value="{{administrador.contrasena}}" />
+                    </div>
+                </div>
 
-                        <p>Cuenta: &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                            <input type="text" id="cuenta" name="cuenta" value="{{usuario.cuenta}}" placeholder="Cuenta"/>
-                        </p>
+                <div class="spanp">
 
-                        <p>Password: &nbsp;  &nbsp;&nbsp; &nbsp;&nbsp;
-                            <input type="password" id="contrasena" name="contrasena" value="{{usuario.contrasena}}" placeholder="Password"/>
-                        </p>
-
-                        <p>Direccion:
-                            <input type="text" id="direccion" name="direccion" value="{{usuario.direccion}}" placeholder="Direccion"/>
-                        </p>
-
-                        <p>Email: &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;
-                             <input type="text" id="email" name="email" value="{{usuario.email}}" placeholder="Email"/>
-                        </p>
-
-                        <p>Categoria:  &nbsp;
-                            <select name="categoria" id="categoria">
-                                <option value="">-- Categoria -- </option>
-                                <option value="natural">Persona Natural</option>
-                                <option value="comercial">Local Comercial</option>
-                            </select>
-                        </p>
-
-                        <p>
-                            <label for="estado">Estado:</label>
-                            <label class="switch">
-                                <input type="checkbox" id="estado" name="estado" value="activo">
+                    <div class="separador">
+                        <label>Imagen:</label>
+                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                    </div>
+                    
+                    <div class="separador">
+                        <label>Permisos:</label>
+                        <br>
+                        <div class="spans">
+                             <div class="separador">
+                            <label for="db">Base de Datos:</label>
+                            <label class="switch derecha">
+                                {{#if administrador.db}}
+                                    <input type="checkbox" id="db" name="db" value="S" checked>
+                                {{else}}
+                                    <input type="checkbox" id="db" name="db" value="S">
+                                {{/if}}
                                 <span class="slider round"></span>
                             </label>
-                        </p>
+                        </div>
 
-                        <p>Imagen: 
-                            <input type="file" id="img" name="img" accept=".png, .jpeg .jpg" src="{{usuario.img}}">
-                        </p>
+                        <div class="separador" >
+                            <label for="creacion">Administrador:</label>
+                            <label class="switch derecha">
+                                {{#if administrador.creacion}}
+                                    <input type="checkbox" id="creacion" name="creacion" value="S" checked>
+                                {{else}}
+                                    <input type="checkbox" id="creacion" name="creacion" value="S">
+                                {{/if}}
+                                    
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
 
-                        <button class="button btn btn-primary btn-large">Registrar</button>
+                        <div class="separador">
+                            <label for="supervision">Supervisor:</label>
+                            <label class="switch derecha">
+                                {{#if administrador.supervision}}
+                                    <input type="checkbox" id="supervision" name="supervision" value="S" checked>
+                                {{else}}
+                                    <input type="checkbox" id="supervision" name="supervision" value="S">
+                                {{/if}}
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
 
+                        </div>
                     </div>
-                    <div class="span4">
-                        <p>Aqui se debe mostrar la imagen seleccionada</p>
-                    </div>  
-                </form>
-
+                    <button class="button btn btn_personalizado">REGISTRAR</button>
+                </div>
 
             </div>
-
-        </div>
+        </form>
     </div>
-
-</div> <!-- /container -->
-
-</div> <!-- /main -->
+</div>

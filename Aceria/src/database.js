@@ -1,18 +1,13 @@
 const mongoose = require('mongoose');
 
-const URI = process.env.URI;
-const HOST = process.env.HOST;
-const DATABASE = process.env.DATABASE;
+const {HOST, DATABASE} = process.env;
+const URI = `mongodb://${HOST}/${DATABASE}`; 
 
-const MONGODB_URI = `${URI}://${HOST}:27017/${DATABASE}`;
-
-mongoose.Promise = global.Promise;
-mongoose.connect(MONGODB_URI,{
-
+mongoose.connect(URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useFindAndModify: false,
     useCreateIndex: true
-
 })
-.then(db => console.log('Database esta conectado'))
+.then(db => console.log('Base de datos esta conectado'))
 .catch(err => console.log(err));

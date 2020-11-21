@@ -1,101 +1,154 @@
 const adminCtrl = {};
-const admin = require('../modelos/usuario');
 
-adminCtrl.renderAdministradoresForm = async (req, res) => {
+const admin=require('../modelos/administrador');
+
+adminCtrl.renderAdministradoresForm = async (req,res) => {
     const administradores = await admin.find().lean();
-    res.render('app/admins/administradores',{administradores});
+    res.render('app/administradores/administradores',{administradores});
 };
 
-adminCtrl.renderAdministradorForm = (req, res) => {
-    res.render('app/admins/administrador');
+
+adminCtrl.renderAdministradorForm = (req,res) => {
+    res.render('app/administradores/administrador');
 };
 
-adminCtrl.createAdministrador = async (req, res) => {
+
+adminCtrl.createAdministrador = async (req,res) => {
+
     const errors = [];
-    const {nombre,apellido,email,password,confirm_password} = req.body;
+    const{nombre,apellido,email,password,cpassword,Field} = req.body;
 
-    if(password.length < 5){
-        errors.push({text: 'Las contrasenas tiene pocos caracteres'});
-    }
-
-    if(password!=confirm_password){
-        errors.push({text: 'Las contrasenas no coinciden'});
-    }
-
-    const users = await admin.findOne({email:email});
-    if(users){
-        errors.push({text: 'Correo ya existe'});
+    if(password.length < 8){
+        errors.push({text: 'Contraseña es muy corta'});
     }
     
-    if(errors.length > 0 ){
-        res.render('signin',{errors});
+    if(password!=cpassword){
+        errors.push({text: 'La contraseña y la confirmación de la contraseña no coinciden'})
+    }
+
+    if(Field!="Si"){
+        errors.push({text: 'No acepto los terminos y condiciones'});
+    }
+
+    if(errors.length >0){
+        res.render('inicioadm/registro', {errors,nombre,apellido,email});
+    }else {
+        const emailUser = await admin.findOne({email: email}).lean();
+        if(emailUser){
+            req.flash('error_msg','El correo ya esta en uso, registrarse desde el principio');
+            res.redirect('/registrop');
+
+        }else {
+            let cuenta = `${nombre[0]}`+`${apellido}`;
+            const new_admin = new admin();
+            new_admin.nombre = nombre;
+            new_admin.apellido = apellido;
+            new_admin.email = email;
+            new_admin.contrasena=password;
+            //new_admin.contrasena = await new_admin.encriptarPass(password);
+            new_admin.cuenta = cuenta;
+            new_admin.db =null;
+            new_admin.creacion = null;
+            new_admin.supervision = null;
+            new_admin.img="";
+            await new_admin.save();
+            req.flash('success_msg','Administrador creado correctamente');
+            res.redirect('/login');
+        
+        }
+        
+    }
+};
+
+
+adminCtrl.createAdministrador2 = async (req,res) => {
+
+    const errors = [];
+    const {nombre,apellido,email,cuenta,contrasena,img,db,creacion,supervision} = req.body;
+
+    if(contrasena.length < 8){
+        errors.push({text: 'Contraseña es muy corta, debe Registrar desde el principio'});
+    }
+    
+    if(errors.length >0){
+        res.render('app/administradores/administrador', {errors});
     }else{
+        const emailUser = await admin.findOne({email: email}).lean();
+        if(emailUser){
+            req.flash('error_msg','El correo ya esta en uso, debe Registrar desde el principio');
+            res.redirect('/administrador');
 
-        let cuenta = `${nombre[0]}`+`${apellido}`;
-        const new_admin = new admin();
-        new_admin.nombre = nombre;
-        new_admin.apellido = apellido;
-        new_admin.email = email;
-        new_admin.contrasena = password;
-        new_admin.cuenta = cuenta;
-        new_admin.db='';
-        new_admin.creacion = '';
-        new_admin.supervision = '';
-        new_admin.img="";
-        //new_admin.contrasena = new_admin.encriptarPass(password);
-        console.log('antes del save');
-        await new_admin.save();
-        console.log('despue del save');
-        res.redirect('/login');
+        }else {
+            const new_admin=new admin();
+            new_admin.nombre = nombre;
+            new_admin.apellido = apellido;
+            new_admin.email = email;
+            new_admin.contrasena=contrasena;
+            //new_admin.contrasena = await new_admin.encriptarPass(contrasena);;
+            new_admin.cuenta = cuenta;
+            new_admin.img=img;
+        
+            new_admin.db =null;
+            new_admin.creacion = null;
+            new_admin.supervision = null;
+        
+            if(db=='S'){
+                new_admin.db=db;
+            }
+            if(creacion=='S'){
+                new_admin.creacion=creacion;
+            }
+            if(supervision=='S'){
+                new_admin.supervision=supervision;
+            }
+            
+            await new_admin.save();
+            req.flash('success_msg','Administrador creado correctamente');
+            res.redirect('/administradores/all');
+            
+        }
+
     }
-
-};
-
-adminCtrl.createAdministrador2 = async (req, res) => {
-    const {nombre,apellido,email,cuenta,contrasena,img,sb,creacion,supervision} = req.body;
-
-    const new_admin = new admin();
-    new_admin.nombre = nombre;
-    new_admin.apellido = apellido;
-    new_admin.email = email;
-    new_admin.contrasena = contrasena;
-    new_admin.cuenta = cuenta;
-    if(sb!=null){
-        new_admin.db=sb;
-    }
-    if(creacion!=null){
-        new_admin.creacion = creacion;
-    }
-    if(supervision!=null){
-        new_admin.supervision = supervision;
-    }
-   
-    new_admin.img=img;
-
-    await new_admin.save();
- 
-    req.flash('success_msg','Administrador creado correctamente');
-    res.redirect('/administradores/all');
+    
 };
 
 
-adminCtrl.obtenerAdminxCuenta = async (req, res) => {
+adminCtrl.findAdministrador  = async (req,res) => {
+    const {buscadorBox} = req.body;
+
+    const administradores = await admin.find({nombre: buscadorBox}).lean();
+    res.render('app/administradores/administradores',{administradores});
+    
+};
+     
+
+adminCtrl.obtenerAdminxCuenta = async (req,res) => {
     const administrador = await admin.findById(req.params.id).lean();
-    res.render('app/admins/administrador2',{administrador});
+    res.render('app/administradores/administrador2',{administrador});
 };
 
-adminCtrl.modificarAdmin = async (req, res) => {
-    const administrador =  req.body;
-    await admin.findByIdAndUpdate(req.params.id, administrador);
 
-    req.flash('success_msg','Administrador modificado correctamente');
+adminCtrl.modificarAdmin = async (req,res) => {
+    const administrador = req.body;
+    
+    if(administrador.db!='S'){
+        administrador.db=null;
+    }
+    if(administrador.creacion!='S'){
+        administrador.creacion=null;
+    }
+    if(administrador.supervision!='S'){
+        administrador.supervision=null;
+    }
+    await admin.findByIdAndUpdate(req.params.id, administrador );
+    req.flash('success_updated','Administrador actualizado');
     res.redirect('/administradores/all');
 };
 
-adminCtrl.eliminarAdmin = async (req, res) => {
 
+adminCtrl.eliminarAdmin = async (req,res) => {
     await admin.findByIdAndDelete(req.params.id);
-    req.flash('success_msg','Administrador eliminado correctamente');
+    req.flash('success_deleted','Administrador eliminado');
     res.redirect('/administradores/all');
 };
 
