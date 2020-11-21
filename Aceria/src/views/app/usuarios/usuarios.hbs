@@ -9,11 +9,11 @@
                 <form action="/usuario/find" method="POST">
                     <label>Categoria: </label>
                     <select class="redondeado" style="width: 200px;" name="categoria" id="categoria">
-                        <option value="none"></option>
-                        <option value="natural">Persona Natural</option>
-                        <option value="arquite">Arquitecto</option>
-                        <option value="civiles">Ing. Civil</option>
-                        <option value="adroind">Agro Industria</option>
+                        <option value=""></option>
+                        <option value="Persona Natural">Persona Natural</option>
+                        <option value="Arquitecto">Arquitecto</option>
+                        <option value="Ing. Civil">Ing. Civil</option>
+                        <option value="Agro Industria">Agro Industria</option>
                     </select>
                     <input class="redondeado" style="width: 200px;" type="text" name="buscadorBox" placeholder="   BUSCAR">
                     <input type="image" src="iconos/buscar.png" width="18" height="18" role="button">
@@ -35,6 +35,7 @@
                 <tr>
                     <th class="sep" style="color:#ffffff;">Imagen</th>
                     <th class="sep" style="color:#ffffff;">Usuario</th>
+                    <th class="sep" style="color:#ffffff;">Nombre</th>
                     <th class="sep" style="color:#ffffff;">Correo</th>
                     <th class="sep" style="color:#ffffff;">Telefono</th>
                     <th class="sep" style="color:#ffffff;">Categoria</th>
@@ -47,6 +48,7 @@
             <tr>
                 <td class="sep"><img src={{img}}></td>
                 <td class="sep">{{cuenta}}</td>
+                <td class="sep">{{nombre}}</td>
                 <td class="sep">{{email}}</td>
                 <td class="sep">{{telefono}}</td>
                 <td class="sep">{{categoria}}</td>

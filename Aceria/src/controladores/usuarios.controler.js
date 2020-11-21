@@ -16,7 +16,7 @@ UserCtrl.renderUserForm = (req,res) => {
 
 UserCtrl.createUser = async (req,res) => {
     const errors = [];
-    const {cuenta,nombre,direccion,email,contrasena,categoria,img,estado} = req.body;
+    const {cuenta,nombre,direccion,email,contrasena,categoria,img,estado, telefono} = req.body;
 
     if(nombre==null){
         errors.push({text: 'Nombre es un campo obligatorio'});
@@ -44,15 +44,19 @@ UserCtrl.createUser = async (req,res) => {
 
         }else {
             const new_user=new user();
-            
-            /*
-            new_oper.nombre = nombre;
-            new_oper.apellido = apellido;
-            new_oper.email = email;
-            new_oper.contrasena=contrasena;
-            //new_admin.contrasena = await new_admin.encriptarPass(contrasena);;
-            new_oper.cuenta = cuenta;
-            new_oper.img=img;*/
+            new_user.cuenta = cuenta;
+            new_user.nombre = nombre;
+            new_user.email = email;
+            new_user.contrasena = contrasena;
+            new_user.direccion = direccion;
+            new_user.telefono = telefono;
+            new_user.img = img;
+            new_user.categoria = categoria
+            new_user.estado = null;
+
+            if(estado=='activo'){
+                new_user.estado = estado;
+            }
 
             await new_user.save();
             req.flash('success_msg','Operador creado correctamente');
@@ -80,6 +84,9 @@ UserCtrl.rendereditUser = async (req,res) => {
 
 UserCtrl.editUser = async (req,res) => {
     const usuario = req.body;
+    if(usuario.estado!='activo'){
+        usuario.estado=null;
+    }
     await user.findByIdAndUpdate(req.params.id, usuario );
     req.flash('success_updated','Usuario actualizado');
     res.redirect('/usuario/all');
