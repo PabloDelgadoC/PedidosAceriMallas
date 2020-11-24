@@ -5,6 +5,9 @@ const method_override = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
 const passport = require('passport');
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const logger = require('morgan');
 
 //inicializadores
 const app = express();
@@ -22,7 +25,8 @@ app.engine('.hbs',exphbs({
 app.set('view engine', '.hbs');
 
 //middlewares
-app.use(express.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 app.use(method_override('_method'));
 app.use(session({
     secret: 'secret',
@@ -32,6 +36,8 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
+app.use(cors());
+app.use(logger('dev'));
 
 
 

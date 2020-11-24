@@ -1,9 +1,10 @@
 const {Schema, model} = require('mongoose');
-const bcrip = require('bcryptjs');
+const bcrypt = require('bcryptjs');
 
 const UsuarioSchema = new Schema({
 
     nombre:   { type: String, required: true },
+    apellido: { type: String, required: true },
     email:    { type: String, required: true },
     contrasena: { type: String, required: true },
     cuenta: String,  
@@ -14,13 +15,12 @@ const UsuarioSchema = new Schema({
     estado: String
 });
 
-UsuarioSchema.methods.encriptarPass = async contrasena => {
-    const salt = await bcrip.genSalt(10);
-    return await bcrip.hash(contrasena, salt);
-};
-
-UsuarioSchema.methods.matchPass = async function(contrasena) {
-    return (await bcrip.compare(contrasena,this.contrasena));
-};
+UsuarioSchema.method('comparePassword', function(pass) {
+    if( bcrypt.compareSync(pass, this.contrasena)) {
+        return true;
+    } else {
+        return false;
+    }
+});
 
 module.exports = model('Usuarios',UsuarioSchema);

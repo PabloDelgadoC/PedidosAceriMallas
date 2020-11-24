@@ -182,8 +182,7 @@ body {
 
   .presentar{
     text-align: center;
-    margin-left: 150px;
-    margin-right: 150px;
+    margin: auto;
   }
 
   .cabecera{

@@ -8,7 +8,10 @@ const {
     findUser,
     rendereditUser,
     editUser,
-    eliminarUser
+    eliminarUser,
+    createUserMovil,
+    forgotPassword,
+    logIn,
 } =require('../controladores/usuarios.controler');
 
 const { Autenticado } = require('../helper/autenticador');
@@ -29,5 +32,10 @@ router.put('/usuario/edit/:id',    Autenticado, editUser);
 
 //eleminar
 router.delete('/usuario/delete/:id', Autenticado,  eliminarUser);      
+
+//USERS MOVIL ROUTES
+router.post('/api/signup', createUserMovil);
+router.patch('/api/forgot-password', forgotPassword);
+router.post('/api/login', logIn);
 
 module.exports = router;

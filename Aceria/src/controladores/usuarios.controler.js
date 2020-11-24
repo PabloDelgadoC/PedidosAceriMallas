@@ -1,7 +1,9 @@
 const UserCtrl = {};
 
 const user=require('../modelos/usuarios');
-
+const nodemailer = require('nodemailer');
+const bcrypt = require('bcryptjs');
+const { Token } = require('../helper/token');
 
 UserCtrl.renderUsersForm = async (req,res) => {
     const usuarios = await user.find().lean();
@@ -16,10 +18,14 @@ UserCtrl.renderUserForm = (req,res) => {
 
 UserCtrl.createUser = async (req,res) => {
     const errors = [];
-    const {cuenta,nombre,direccion,email,contrasena,categoria,img,estado, telefono} = req.body;
+    const {cuenta,nombre,apellido,direccion,email,contrasena,categoria,img,estado, telefono} = req.body;
 
     if(nombre==null){
         errors.push({text: 'Nombre es un campo obligatorio'});
+    }
+
+    if(apellido==null){
+        errors.push({text: 'Apellido es un campo obligatorio'});
     }
 
     if(contrasena==null){
@@ -46,6 +52,7 @@ UserCtrl.createUser = async (req,res) => {
             const new_user=new user();
             new_user.cuenta = cuenta;
             new_user.nombre = nombre;
+            new_user.apellido = apellido;
             new_user.email = email;
             new_user.contrasena = contrasena;
             new_user.direccion = direccion;
@@ -70,8 +77,18 @@ UserCtrl.createUser = async (req,res) => {
 UserCtrl.findUser = async (req,res) => {
     const {categoria, buscadorBox} = req.body;
 
-    const usuarios = await user.find({categoria: categoria, nombre:buscadorBox }).lean();
-    res.render('app/usuarios/usuarios',{usuarios});
+    if ( categoria) {
+        const usuarios = await user.find({categoria: categoria}).lean();
+        res.render('app/usuarios/usuarios',{usuarios});
+    }
+    else if ( buscadorBox ) {
+        const usuarios = await user.find({nombre:buscadorBox }).lean();
+        res.render('app/usuarios/usuarios',{usuarios});
+    }
+    else {
+        const usuarios = await user.find({categoria: categoria, nombre:buscadorBox }).lean();
+        res.render('app/usuarios/usuarios',{usuarios});
+    }
 };
 
 
@@ -100,8 +117,165 @@ UserCtrl.eliminarUser = async (req,res) => {
     res.redirect('/usuario/all');
 };
 
+//USERS MOVIL
+UserCtrl.createUserMovil = async (req, res) => {
+    const {nombre,apellido,telefono,contrasena,direccion,email} = req.body;
+    const new_user = new user();
+    new_user.nombre = nombre;
+    new_user.apellido = apellido;
+    new_user.cuenta = nombre + ' ' + apellido;
+    new_user.telefono = telefono;
+    new_user.contrasena = bcrypt.hashSync(contrasena,10);
+    new_user.direccion = direccion;
+    new_user.email = email;
+    new_user.categoria = 'Persona Natural';
+    new_user.estado = 'activo';
+    new_user.img = '';
+    console.log(new_user);
+
+    await new_user.save( (error, user) => {
+        if(error) return res.status(500).send({
+            ERROR: error,
+            MESSAGE: 'ERROR TO SAVE USER',
+        });
+
+        if(!user) return res.status(404).send({
+            MESSAGE: 'DO NOT SAVE THE USER',
+        });
+
+        const  userToken = Token.getJwtToken({
+            _id: user._id
+        });
+
+        return res.status(200).send({
+            STATUS: 'OK',
+            MESSAGE: 'Usuario creado exitosamente',
+            USER: user,
+            TOKEN: userToken
+        });
+    });
+    
+};
+
+UserCtrl.forgotPassword = async (req, res) => {
+    const email = req.body.email;
+    
+    await user.findOne({email: email}).exec( async (error, user) => {
+        if(error) return res.status(500).send({
+            ERROR: error,
+            MESSAGE: 'ERROR TO UPDATE PASSWORD',
+        });
+
+        if(!user) return res.status(404).send({
+            MESSAGE: 'DO NOT UPDATE THE PASSWORD',
+        });
+
+        let random = parseInt(Math.random()*1000);
+        user.contrasena = user.nombre.slice(2) + random.toString() + user.apellido.slice(2);
+
+        await user.save((error, user) => {
+            if(error) return res.status(500).send({
+                ERROR: error,
+                MESSAGE: 'ERROR TO SAVE USER',
+            });
+    
+            if(!user) return res.status(404).send({
+                MESSAGE: 'DO NOT SAVE THE USER',
+            });
+        });
+
+        const output = `
+            <h2>Ha solicitado cambio de contraseña</h2>
+            <p>Por el cual su nueva contraseña es:</p>
+            <ul>  
+                <li>Email: ${email}</li>
+                <li>Contraseña: ${user.contrasena}
+            </ul>
+            <h4>Recuerde no compartir con nadie su contraseña</h4>
+            <h5>Puede cambiar su contraseña en su perfil después de iniciar sesión</h5>
+        `;
+        // create reusable transporter object using the default SMTP transport
+        let transporter = nodemailer.createTransport({
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: 'dawap2020@gmail.com', // generated ethereal user
+                pass: 'allan123AP'  // generated ethereal password
+            },
+            tls:{
+            rejectUnauthorized:false
+            }
+        });
+        // setup email data with unicode symbols
+        let mailOptions = {
+            from: '"Acerimallas" <dawap2020@gmail.com>', // sender address
+            to: email, // list of receivers
+            subject: 'Recuperacion de Contraseña', // Subject line
+            text: 'Contactáme', // plain text body
+            html: output // html body
+        };
+        // send mail with defined transport object
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                return console.log(error);
+            }
+            console.log('Message sent: %s', info.messageId);   
+            console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
+
+            res.send(output);
+        });
+
+        return res.status(200).send({
+            STATUS: 'OK',
+            MESSAGE: 'Se ha enviado la contraseña al correo',
+            USER: user
+        });
+    });
+};
+
+UserCtrl.logIn = async (req, res) => {
+    const {email,contrasena} = req.body;
+    if(email) {
+        console.log('Entro al email');
+        await user.findOne({email: email}).exec( (error, user) => {
+            if(error) return res.status(500).send({
+                ERROR: error,
+                MESSAGE: 'ERROR TO LOG IN',
+            });
+    
+            if(!user) return res.status(404).send({
+                MESSAGE: 'DO NOT LOG IN THE USER',
+            });
+    
+            if( user.comparePassword( contrasena) ) {
+                return res.status(200).send({
+                    STATUS: 'PASSWORD',
+                    MESSAGE: 'Contraseña incorrecta',
+                    USER: user
+                });
+            }
+            else {
+                const  userToken = Token.getJwtToken({
+                    _id: user._id
+                });;
+        
+                return res.status(200).send({
+                    STATUS: 'OK',
+                    MESSAGE: 'Inicio de sesión exitoso',
+                    USER: user,
+                    TOKEN: userToken
+                });
+            }
+        });
+    }
+    else {
+        return res.status(200).send({
+            STATUS: 'EMAIL',
+            MESSAGE: 'El correo no está registrado'
+        });
+    }
+    
+}
 
 module.exports = UserCtrl;
-
-
-

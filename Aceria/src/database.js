@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const {HOST, DATABASE} = process.env;
-const URI = `mongodb://${HOST}/${DATABASE}`; 
+const URI = `mongodb://${HOST}:27017/${DATABASE}`; 
 
 mongoose.connect(URI, {
     useNewUrlParser: true,
