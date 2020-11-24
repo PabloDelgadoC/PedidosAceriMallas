@@ -9,6 +9,8 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 
+
+
 //inicializadores
 const app = express();
 require('./configuracion/passport');
@@ -59,6 +61,7 @@ app.use(require('./routes/admin.routes'));
 app.use(require('./routes/operador.routes'));
 app.use(require('./routes/usuarios.routes'));
 app.use(require('./routes/dash.routes'));
+app.use(require('./routes/producto.routes'));
 
 
 

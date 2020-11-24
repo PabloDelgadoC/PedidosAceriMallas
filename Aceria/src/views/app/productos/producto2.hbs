@@ -1,0 +1,77 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/usuario/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">P R O D U C T O S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Registrar Producto</h5>
+        <br>
+        <br>
+        <form action="/producto/edit/{{producto._id}}?_method=PUT" method="POST">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Categoria: </label>
+                        <select class="redondeado" style="width: 200px;" name="categoria" id="categoria">
+                            <option value="{{producto.categoria}}">{{producto.categoria}}</option>
+                            <option value="Malla Perforada">Malla Perforada</option>
+                            <option value="Planchas">Planchas</option>
+                            <option value="Personalizado">Personalizado</option>
+                            <option value="Otros">Otros</option>
+                        </select>  
+                    </div>
+                    <div class="separador">
+                        <label>Codigo:</label>
+                        <input class="redondeado derecha" type="text" id="codigo" name="codigo" value="{{producto.codigo}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Nombre:</label>
+                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="{{producto.nombre}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Dimensiones:</label>
+                        <br>
+                        <label>Alto:</label>
+                        <input class="redondeado_corto derecha" type="text" id="alto" name="alto" value="{{producto.alto}}" />
+                        <br>
+                        
+                        <label>Ancho:</label>
+                        <input class="redondeado_corto derecha" type="text" id="ancho" name="ancho" value="{{producto.ancho}}" />
+                        <br>
+                        
+                        <label>Grosor:</label>
+                        <input class="redondeado_corto derecha" type="text" id="grosor" name="grosor" value="{{producto.grosor}}" />
+                        <br>
+                        
+                        <label>Diametro:</label>
+                        <input class="redondeado_corto derecha" type="text" id="diametro" name="diametro" value="{{producto.diametro}}" />
+                        <br>
+                        
+                        <label>Separacion:</label>
+                        <input class="redondeado_corto derecha" type="text" id="separa" name="separa" value="{{producto.separa}}" />
+                    
+                    </div>
+                </div>
+
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Precio:</label>
+                        <input class="redondeado derecha" type="text" id="precio" name="precio" value="{{producto.precio}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Descripcion:</label>
+                        <input class="redondeado derecha" style="height: 180px;" type="text" id="descripcion" name="descripcion" value="{{producto.descripcion}}" />
+                    </div>
+                    <div class="separador">
+                        <label>Imagen:</label>
+                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                    </div>
+                    
+                    <button class="button btn btn_personalizado">REGISTRAR</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

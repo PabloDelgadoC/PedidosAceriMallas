@@ -1,0 +1,77 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/usuario/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">P R O D U C T O S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Registrar Producto</h5>
+        <br>
+        <br>
+        <form action="/producto/add" method="POST">
+
+            <div class="row">
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Categoria: </label>
+                        <select class="redondeado" style="width: 200px;" name="categoria" id="categoria">
+                            <option value=""></option>
+                            <option value="Malla Perforada">Malla Perforada</option>
+                            <option value="Planchas">Planchas</option>
+                            <option value="Personalizado">Personalizado</option>
+                            <option value="Otros">Otros</option>
+                        </select>  
+                    </div>
+                    <div class="separador">
+                        <label>Codigo:</label>
+                        <input class="redondeado derecha" type="text" id="codigo" name="codigo" value="" />
+                    </div>
+                    <div class="separador">
+                        <label>Nombre:</label>
+                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="" />
+                    </div>
+                    <div class="separador">
+                        <label>Dimensiones:</label>
+                        <br>
+                        <label>Alto:</label>
+                        <input class="redondeado_corto derecha" type="text" id="alto" name="alto" value="" />
+                        <br>
+                        
+                        <label>Ancho:</label>
+                        <input class="redondeado_corto derecha" type="text" id="ancho" name="ancho" value="" />
+                        <br>
+                        
+                        <label>Grosor:</label>
+                        <input class="redondeado_corto derecha" type="text" id="grosor" name="grosor" value="" />
+                        <br>
+                        
+                        <label>Diametro:</label>
+                        <input class="redondeado_corto derecha" type="text" id="diametro" name="diametro" value="" />
+                        <br>
+                        
+                        <label>Separacion:</label>
+                        <input class="redondeado_corto derecha" type="text" id="separa" name="separa" value="" />
+                    
+                    </div>
+                </div>
+
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Precio:</label>
+                        <input class="redondeado derecha" type="text" id="precio" name="precio" value="" />
+                    </div>
+                    <div class="separador">
+                        <label>Descripcion:</label>
+                        <input class="redondeado derecha" style="height: 180px;" type="text" id="descripcion" name="descripcion" value="" />
+                    </div>
+                    <div class="separador">
+                        <label>Imagen:</label>
+                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                    </div>
+                    
+                    <button class="button btn btn_personalizado">REGISTRAR</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
