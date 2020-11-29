@@ -1,16 +1,21 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar id="header" color="acerimalla">
 
     <ion-buttons slot="start">
-      <ion-icon class="ion-margin" name="file-tray-outline" size='large'></ion-icon>
+      <ion-button (click)="onClick()">
+        <ion-icon slot="icon-only" name="file-tray-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
 
-    <ion-title class="ion-text-capitalize ion-text-center"> {{titulo}} </ion-title>
+    <!--<ion-title class="ion-text-capitalize ion-text-center"> {{titulo}} </ion-title>-->
+    <img src="../../../assets/img/logo.png" alt="">
 
     <!--MENU PRINCIPAL-->
     <ion-buttons slot="end">
-      <!--atrr menu=first es el menuId en app.component.html-->
-      <ion-menu-button class="ion-margin" menu='first' color="dark"></ion-menu-button>
+      <ion-button>
+        <!--atrr menu=first es el menuId en app.component.html-->
+      <ion-menu-button slot="icon-only" menu='first' color="light"></ion-menu-button>
+      </ion-button>
     </ion-buttons>
     <!--FIN MENU PRINCIPAL-->
     

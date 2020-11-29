@@ -8,6 +8,11 @@ const routes: Routes = [
     component: TabsPage,
     children: [
       {
+        path: '',
+        redirectTo: '/tabs/tab1',
+        pathMatch: 'full'
+      },
+      {
         path: 'tab1',
         loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
@@ -28,10 +33,24 @@ const routes: Routes = [
         loadChildren: () => import('../assistant/assistant.module').then( m => m.AssistantPageModule)
       },
       {
-        path: '',
-        redirectTo: '/tabs/tab1',
-        pathMatch: 'full'
-      }
+        path: 'catalog',
+        loadChildren: () => import('../catalog/catalog.module').then( m => m.CatalogPageModule)
+      },
+      {
+        path: 'cupons',
+        loadChildren: () => import('../cupons/cupons.module').then( m => m.CuponsPageModule)
+      },{
+        path: 'locales',
+        loadChildren: () => import('../locales/locales.module').then( m => m.LocalesPageModule)
+      },
+      {
+        path: 'galery',
+        loadChildren: () => import('../galery/galery.module').then( m => m.GaleryPageModule)
+      },
+      {
+        path: 'pedidos',
+        loadChildren: () => import('../pedidos/pedidos.module').then( m => m.PedidosPageModule)
+      },
     ]
   },
   {

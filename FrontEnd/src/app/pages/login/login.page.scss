@@ -1,10 +1,10 @@
 page-login {
-    /*ion-content {
-        background-image: url('../assets/imgs/fondo-login.png');
+    /**ion-header {
+        background-image: url('../../../assets/img/fondo.png');
         background-repeat: no-repeat;
         background-position: center;
         background-size: cover;
-    }*/
+    }**/
     ion-input {
         border-radius: 50px;
         background: rgba(255, 255, 255, 0.1);
@@ -23,14 +23,6 @@ page-login {
         height: 5px;
         background: rgba(255, 255, 255, 0.1);
         width: 200px;
-        margin-left: auto;
-        margin-right: auto;
-        float: none;
-    }
-    .boton-session {
-        background-color: #00A95E;
-        border-radius: 5px;
-        width: 300px;
         margin-left: auto;
         margin-right: auto;
         float: none;

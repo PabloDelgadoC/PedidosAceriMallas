@@ -1,7 +1,5 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>IMAGEN ACERIMALLAS</ion-title>
-  </ion-toolbar>
+<ion-header class="ion-no-border">
+  <img style="background-size: cover;" src="../../../assets/img/logo.png" alt="">
 </ion-header>
 
 <ion-content class="ion-padding">
@@ -24,18 +22,15 @@
     <br>
     <br/>
     <br/>
-    <br/>
-    <ion-button expand="block" tappable (click)="login()">
+    <ion-button expand="block" color="acerimalla" tappable (click)="login()">
       <ion-text>INICIAR SESIÓN</ion-text>
     </ion-button>
-    <br/>
     <ion-button expand="block" color="light" tappable (click)="loginFacebook()">
       <ion-text text-center>
         Ingresar con &nbsp;
       </ion-text>
       <ion-icon style="zoom:1.5;" name="logo-facebook"></ion-icon>
     </ion-button>
-    <br/>
     <br/>
     <br/>
     <div class="ion-padding ion-text-center">
@@ -47,7 +42,7 @@
 </ion-content>
 
 <ion-footer class="ion-padding ion-no-border ion-text-center">
-  <ion-text tappable>
+  <ion-text tappable color="acerimalla">
     ¿Nuevo Usuario? 
     <strong [routerLink]="['/signup']">
       ¡Regístrate aquí!

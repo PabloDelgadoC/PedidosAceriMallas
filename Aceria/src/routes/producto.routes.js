@@ -8,7 +8,8 @@ const {
     findProduct,
     rendereditProduct,
     editProduct,
-    eliminarProduct
+    eliminarProduct,
+    getProducts,
 } =require('../controladores/producto.controler');
 
 const { Autenticado } = require('../helper/autenticador');
@@ -30,4 +31,6 @@ router.put('/producto/edit/:id',    Autenticado, editProduct);
 //eleminar
 router.delete('/producto/delete/:id', Autenticado,  eliminarProduct);      
 
+//USERS MOVIL ROUTES
+router.get('/api/products', getProducts);
 module.exports = router;

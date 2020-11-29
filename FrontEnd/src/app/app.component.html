@@ -3,19 +3,54 @@
   <!--MENU-->
   <ion-menu side="end" menuId="first" contentId="main">
     <ion-header class="ion-no-border">
-      <ion-toolbar>
-        <ion-title><ion-icon name="person-circle-outline" style="zoom: 4.5;"></ion-icon> NOMBRE USUARIO</ion-title>
+      <ion-toolbar color="acerimalla">
+        <ion-grid color="acerimalla">
+          <ion-row>
+              <ion-col size="auto">
+                  <div class="user-avatar">
+                    <ion-icon name="person-circle-outline" style="zoom: 4.5;"></ion-icon>
+                  </div>
+              </ion-col>
+              <ion-col Style="padding-top: 5%" size="auto">
+                  <h2 ion-text class="no-margin bold" style="color: white">
+                      Nombre
+                  </h2>
+              </ion-col>
+          </ion-row>
+      </ion-grid>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+
+    <ion-content color="acerimalla">
       <ion-list>
-        <ion-item><ion-icon name="search"></ion-icon> Historial de pedidos</ion-item>
-        <ion-item><ion-icon ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>Cupones</ion-item>
-        <ion-item><ion-icon name="add"></ion-icon>Opciones de pago</ion-item>
-        <ion-item>Catálogos</ion-item>
-        <ion-item>Locales</ion-item>
-        <ion-item>Galería</ion-item>
+        <ion-menu-toggle>
+          <ion-button color="acerimalla" class="ion-no-margin ion-no-border" [routerLink]="['/tabs/pedidos']" expand="full">
+            Historial de pedidos
+          </ion-button>
+          <ion-button color="acerimalla" class="ion-no-margin" [routerLink]="['/tabs/cupons']" expand="full">
+            Cupones
+          </ion-button>
+          <ion-button color="acerimalla" class="ion-no-margin" [routerLink]="['/tabs/pay']" expand="full">
+            Opciones de pago
+          </ion-button>
+          <ion-button color="acerimalla" class="ion-no-margin" [routerLink]="['/tabs/catalog']" expand="full">
+            Catálogos
+          </ion-button>
+          <ion-button color="acerimalla" class="ion-no-margin" [routerLink]="['/tabs/locales']" expand="full">
+            Locales
+          </ion-button>
+          <ion-button color="acerimalla" class="ion-no-margin" [routerLink]="['/tabs/galery']" expand="full">
+            Galería
+          </ion-button>
+        </ion-menu-toggle>
       </ion-list>
+      <ion-footer>
+        <ion-toolbar color="acerimalla">
+            <ion-title (click)="logOut()" class="ion-text-center">
+                &nbsp;Cerrar Sesión
+              </ion-title>
+        </ion-toolbar>
+    </ion-footer>
     </ion-content>
   </ion-menu>
 
