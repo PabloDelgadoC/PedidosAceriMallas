@@ -1,0 +1,63 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/promocion/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">P R O M O C I O N E S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Registrar Promoción</h5>
+        <br>
+        <br>
+        <form action="/promocion/edit/{{desc._id}}?_method=PUT" method="POST">
+        <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="spanp">
+                
+                    <div class="separador">
+                        <label>Cliente:</label>
+                        <input class="redondeado_busqueda derecha" type="text" id="idcliente" name="idcliente" value="{{desc.idcliente}}" disabled />
+                        <input class="derecha" type="image" src="iconos/buscar.png" width="18" height="18" role="button" disabled/>
+                    </div>
+
+                    <div class="separador">
+                        <label>Titular:</label>
+                        <input class="redondeado derecha" type="text" id="namecliente" name="namecliente" value="{{desc.namecliente}}" disabled/>
+                    </div>
+
+                    <div class="separador">
+                        <label>Codigo:</label>
+                        <input class="redondeado derecha" type="text" id="codigo" name="codigo" value="{{desc.codigo}}" />
+                    </div>
+
+                    <div class="separador">
+                        <label>Mensaje:</label>
+                        <textarea class="redondeado derecha" style="height: 180px;" type="text" id="mensaje" name="mensaje" value="" />{{desc.mensaje}}</textarea>
+                    </div>
+                </div>
+
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Fecha Inicio:</label>
+                        <input class="redondeado derecha" type="date" name="finicio" value="{{desc.finicio}}"/>
+                    </div>
+
+                    <div class="separador">
+                        <label>Fecha Final:</label>
+                        <input class="redondeado derecha" type="date" name="ffin" value="{{desc.ffin}}"/>
+                    </div>
+
+                    <div class="separador">
+                        <label>Fecha de Uso:</label>
+                        <input class="redondeado derecha" type="date" name="ffin" value="{{desc.fuso}}" disabled/>
+                    </div>
+
+                    <div class="espaciado2">
+                        
+                    </div>
+
+                    <button class="button btn btn_personalizado">REGISTRAR</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

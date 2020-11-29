@@ -6,9 +6,9 @@ const {Schema, model} = require('mongoose');
     namecliente: { type: String, required: true},
     mensaje:    String,
     estado:     String,
-    finicio:    Date,
-    ffin:       Date,
-    fuso:       Date,
+    finicio:    String,
+    ffin:       String,
+    fuso:       String,
 });
 
 

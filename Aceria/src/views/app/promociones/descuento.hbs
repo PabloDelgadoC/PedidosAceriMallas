@@ -7,80 +7,54 @@
         <h5 style="text-align: center; color: #cb1189;">Registrar Promoción</h5>
         <br>
         <br>
-        <form action="/promocion/add" method="POST">
+       
             <div class="row">
+                 
                 <div class="spanp">
-                    <div class="separador">
-                        <label>Codigo:</label>
-                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="" />
-                    </div>
-                     <form action="/promocion/client" method="POST">
-                        <label>Codigo:</label>
-                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="" />
-                        <input type="image" src="iconos/buscar.png" width="18" height="18" role="button">
-                    </form>
-
+                <form action="/promocion/findCliente" method="POST">
                     <div class="separador">
                         <label>Cliente:</label>
-                        <input class="redondeado derecha" type="text" id="apellido" name="apellido" value="" />
+                        <input class="redondeado_busqueda derecha" type="text" id="idcliente" name="idcliente" value="{{usuario.cuenta}}"/>
+                        <input class="derecha" type="image" src="iconos/buscar.png" width="18" height="18" role="button">
+                    </div>
+                </form>
+
+                <form action="/promocion/add" method="POST">
+                    <input type="hidden" id="sorpresa" name="idcliente" value="{{usuario.cuenta}}"/>
+                    <div class="separador">
+                        <label>Titular:</label>
+                       
+                        <input class="redondeado derecha" type="text" id="namecliente" name="namecliente" value="{{usuario.nombre}}" />
                     </div>
 
                     <div class="separador">
-                        <label>Cliente:</label>
-                        <input class="redondeado derecha" type="text" id="apellido" name="apellido" value="" />
-                    </div>
-                    <div class="separador">
-                        <label>Correo:</label>
-                        <input class="redondeado derecha" type="email" id="email" name="email" value="" />
+                        <label>Codigo:</label>
+                        <input class="redondeado derecha" type="text" id="codigo" name="codigo" value="" />
                     </div>
 
                     <div class="separador">
-                        <label>Usuario:</label>
-                        <input class="redondeado derecha" type="text" id="cuenta" name="cuenta" value="" />
-                    </div>
-                    <div class="separador">
-                        <label>Contraseña:</label>
-                        <input class="redondeado derecha" type="password" id="contrasena" name="contrasena" value="" />
+                        <label>Mensaje:</label>
+                        <textarea class="redondeado derecha" style="height: 180px;" type="text" id="mensaje" name="mensaje" value="" /></textarea>
                     </div>
                 </div>
 
                 <div class="spanp">
 
-                    <div class="separador">
-                        <label>Imagen:</label>
-                        <input type="file" id="img" name="img" accept=".png, .jpeg">
-                    </div>
                     
                     <div class="separador">
-                        <label>Permisos:</label>
-                        <br>
-                        <div class="spans">
-                             <div class="separador">
-                            <label for="db">Base de Datos:</label>
-                            <label class="switch derecha">
-                                <input type="checkbox" id="db" name="db" value="S">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-
-                        <div class="separador" >
-                            <label for="creacion">Administrador:</label>
-                            <label class="switch derecha">
-                                <input type="checkbox" id="creacion" name="creacion" value="S">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-
-                        <div class="separador">
-                            <label for="supervision">Supervisor:</label>
-                            <label class="switch derecha">
-                                <input type="checkbox" id="supervision" name="supervision" value="S">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-
-                        </div>
+                        <label>Fecha Inicio:</label>
+                        <input class="redondeado derecha" type="date" name="finicio" value=""/>
                     </div>
+
+                    <div class="separador">
+                        <label>Fecha Inicio:</label>
+                        <input class="redondeado derecha" type="date" name="ffin" value="" />
+                    </div>
+
+                     <div class="espaciado">
+                        
+                    </div>
+
                     <button class="button btn btn_personalizado">REGISTRAR</button>
                 </div>
 

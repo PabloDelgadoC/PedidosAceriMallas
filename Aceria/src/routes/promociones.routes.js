@@ -6,6 +6,7 @@ const {
     renderPromotForm,
     createPromo,
     findPromo,
+    fincliente,
     rendereditPromo,
     editPromo,
     eliminarPromo
@@ -21,7 +22,9 @@ router.get('/promocion',             Autenticado, renderPromotForm);
 router.post('/promocion/add',        Autenticado, createPromo );  
 
 //buscardores
-router.post('/promocion/find',       Autenticado, findPromo );          
+router.post('/promocion/find',       Autenticado, findPromo );
+router.post('/promocion/findCliente', Autenticado, fincliente);
+
 
 //editar
 router.get('/promocion/edit/:id',    Autenticado, rendereditPromo);    
