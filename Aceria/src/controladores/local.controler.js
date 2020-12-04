@@ -2,13 +2,14 @@ const LocalCtrl = {};
 
 const local= require('../modelos/locales');
 
-LocalCtrl.renderLocalesForm = (req,res) => {
-
+LocalCtrl.renderLocalesForm = async (req,res) => {
+    const locales = await local.find().lean();
+    res.render('app/locales/locales',{locales});
 };
 
 
 LocalCtrl.renderLocalForm = (req,res) => {
-
+    res.render('app/locales/local');
 };
 
 LocalCtrl.createLocal = (req,res) => {
@@ -35,10 +36,6 @@ module.exports = LocalCtrl;
 
 
 
-PromoCtrl.renderPromosForm = async (req,res) => {
-    const desc = await descuentos.find().lean();
-    res.render('app/promociones/descuentos',{desc});
-};
 
 
 PromoCtrl.renderPromotForm = (req,res) => {

@@ -64,7 +64,9 @@ adminCtrl.createAdministrador = async (req,res) => {
 adminCtrl.createAdministrador2 = async (req,res) => {
 
     const errors = [];
-    const {nombre,apellido,email,cuenta,contrasena,img,db,creacion,supervision} = req.body;
+    const {nombre,apellido,email,cuenta,contrasena,db,creacion,supervision} = req.body;
+    console.log(req.file);
+  
 
     if(contrasena.length < 8){
         errors.push({text: 'Contraseña es muy corta, debe Registrar desde el principio'});
@@ -86,7 +88,9 @@ adminCtrl.createAdministrador2 = async (req,res) => {
             new_admin.contrasena=contrasena;
             //new_admin.contrasena = await new_admin.encriptarPass(contrasena);;
             new_admin.cuenta = cuenta;
-            new_admin.img=img;
+            if(req.file){
+                new_admin.img= 'uploads/' + req.file.filename;
+            }
         
             new_admin.db =null;
             new_admin.creacion = null;
@@ -131,6 +135,11 @@ adminCtrl.obtenerAdminxCuenta = async (req,res) => {
 adminCtrl.modificarAdmin = async (req,res) => {
     const administrador = req.body;
     
+    if(req.file){
+        administrador.img= 'uploads/' + req.file.filename;
+    }
+    
+
     if(administrador.db!='S'){
         administrador.db=null;
     }

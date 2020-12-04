@@ -7,7 +7,7 @@
         <h5 style="text-align: center; color: #cb1189;">Registrar Producto</h5>
         <br>
         <br>
-        <form action="/producto/edit/{{producto._id}}?_method=PUT" method="POST">
+        <form action="/producto/edit/{{producto._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PUT">
             <div class="row">
                 <div class="spanp">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="separador">
                         <label>Imagen:</label>
-                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                        <input type="file" id="img" name="img" accept=".png, .jpeg, .jpg">
                     </div>
                     
                     <button class="button btn btn_personalizado">REGISTRAR</button>

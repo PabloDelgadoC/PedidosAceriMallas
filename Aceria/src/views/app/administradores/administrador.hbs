@@ -7,7 +7,7 @@
         <h5 style="text-align: center; color: #cb1189;">Registrar administradores</h5>
         <br>
         <br>
-        <form action="/administrador/add2" method="POST">
+        <form action="/administrador/add2" method="POST"  enctype="multipart/form-data">
 
             <div class="row">
                 <div class="spanp">
@@ -37,8 +37,10 @@
                 <div class="spanp">
 
                     <div class="separador">
-                        <label>Imagen:</label>
-                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile02" name="img" accept=".png, .jpeg, .jpg">
+                             <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose Image</label>
+                        </div>
                     </div>
                     
                     <div class="separador">

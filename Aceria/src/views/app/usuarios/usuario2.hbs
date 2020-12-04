@@ -7,7 +7,7 @@
         <h5 style="text-align: center; color: #cb1189;">Registrar Usuarios</h5>
         <br>
         <br>
-        <form action="/usuario/edit/{{usuario._id}}?_method=PUT" method="POST">
+        <form action="/usuario/edit/{{usuario._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="PUT">
             <div class="row">
                 <div class="spanp">
@@ -50,7 +50,7 @@
                 <div class="spanp">
                     <div class="separador">
                         <label>Imagen:</label>
-                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                        <input type="file" id="img" name="img" accept=".png, .jpeg, .jpg">
                     </div>
                     
                     <div class="separador">

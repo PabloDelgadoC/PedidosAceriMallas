@@ -15,7 +15,7 @@ ProductCtrl.renderProductForm = async (req,res) => {
 ProductCtrl.createProduct = async (req,res) => {
     const errors = [];
   
-    const { categoria,codigo,nombre,ancho,alto,grosor,diametro,separa,descripcion,precio,img} = req.body;
+    const { categoria,codigo,nombre,ancho,alto,grosor,diametro,separa,descripcion,precio} = req.body;
 
     if(codigo.length < 6){
         errors.push({text: 'Codigo es muy corto, debe de tener minimo 6 caracteres'});
@@ -48,7 +48,10 @@ ProductCtrl.createProduct = async (req,res) => {
 
             new_product.descripcion = descripcion;
             new_product.precio = precio;
-            new_product.img = img;
+            if(req.file){
+                new_product.img = 'uploads/' + req.file.filename;
+            }
+           
            
             if(ancho!=null){
                 new_product.ancho = ancho;
@@ -90,6 +93,10 @@ ProductCtrl.rendereditProduct = async (req,res) => {
 
 ProductCtrl.editProduct = async (req,res) => {
     const producto = req.body;
+    if(req.file){
+        producto.img = 'uploads/' + req.file.filename;
+    }
+    
 
     if(producto.alto==''){
         producto.alto=null;

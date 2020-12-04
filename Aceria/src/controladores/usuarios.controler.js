@@ -18,7 +18,7 @@ UserCtrl.renderUserForm = (req,res) => {
 
 UserCtrl.createUser = async (req,res) => {
     const errors = [];
-    const {cuenta,nombre,apellido,direccion,email,contrasena,categoria,img,estado, telefono} = req.body;
+    const {cuenta,nombre,apellido,direccion,email,contrasena,categoria,estado, telefono} = req.body;
 
     if(nombre==null){
         errors.push({text: 'Nombre es un campo obligatorio'});
@@ -57,9 +57,12 @@ UserCtrl.createUser = async (req,res) => {
             new_user.contrasena = contrasena;
             new_user.direccion = direccion;
             new_user.telefono = telefono;
-            new_user.img = img;
             new_user.categoria = categoria
             new_user.estado = null;
+
+            if(req.file){
+                new_user.img= 'uploads/' + req.file.filename;
+            }
 
             if(estado=='activo'){
                 new_user.estado = estado;
@@ -101,6 +104,11 @@ UserCtrl.rendereditUser = async (req,res) => {
 
 UserCtrl.editUser = async (req,res) => {
     const usuario = req.body;
+
+    if(req.file){
+        usuario.img= 'uploads/' + req.file.filename;
+    }
+
     if(usuario.estado!='activo'){
         usuario.estado=null;
     }

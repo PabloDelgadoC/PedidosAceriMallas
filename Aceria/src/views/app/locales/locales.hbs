@@ -38,17 +38,15 @@
                 <td class="sep"><img src={{img}}></td>
                 <td class="sep">{{direccion}}</td>
                  <td class="sep">
-                    <a href="/administrador/edit/{{_id}}">
+                    <a href="/administrador/edit/{{_id}}">Mostrar Mapa</a>       
+                </td>
+                <td class="sep">
+                    <a href="/local/edit/{{_id}}">
                         <img src="iconos/editar.png" width="18" height="22" loading="lazy">
                     </a>       
                 </td>
                 <td class="sep">
-                    <a href="/administrador/edit/{{_id}}">
-                        <img src="iconos/editar.png" width="18" height="22" loading="lazy">
-                    </a>       
-                </td>
-                <td class="sep">
-                    <form action="/administrador/delete/{{_id}}?_method=DELETE" method="POST">
+                    <form action="/local/delete/{{_id}}?_method=DELETE" method="POST">
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="image" src="iconos/eliminar.png" width="18" height="22" role="button">
                     </form>

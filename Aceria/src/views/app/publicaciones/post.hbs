@@ -1,0 +1,71 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/publicacion/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">P U B L I C A C I O N E S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Registrar Publicacion</h5>
+        <br>
+        <br>
+        <form action="/publicacion/add" method="POST"  enctype="multipart/form-data">
+            <div class="row">
+                <div class="spanp">
+
+                    <div class="separador">
+                        <label>Titulo:</label>
+                        <input class="redondeado derecha" type="text" id="titulo" name="titulo"/>
+                    </div>
+
+                    <div class="separador123">
+                        <label>Descripcion:</label>
+                        <textarea class="redondeado derecha" style="height: 100px;" type="text" id="descripcion" name="descripcion" /></textarea>
+                    </div>
+
+                    <div class="separador">
+                        <label>Contenido:</label>
+                        <textarea class="redondeado derecha" style="height: 250px;" type="text" id="detalles" name="detalles" /></textarea>
+                    </div>
+                </div>
+
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Dimensiones:</label>
+                        <br>
+                        <label>Alto:</label>
+                        <input class="redondeado_corto derecha" type="text" id="alto" name="alto" value="" />
+                        <br>
+                        
+                        <label>Ancho:</label>
+                        <input class="redondeado_corto derecha" type="text" id="ancho" name="ancho" value="" />
+                        <br>
+                        
+                        <label>Grosor:</label>
+                        <input class="redondeado_corto derecha" type="text" id="grosor" name="grosor" value="" />
+                        <br>
+                        
+                        <label>Diametro:</label>
+                        <input class="redondeado_corto derecha" type="text" id="diametro" name="diametro" value="" />
+                        <br>
+                        
+                        <label>Separacion:</label>
+                        <input class="redondeado_corto derecha" type="text" id="separa" name="separa" value="" />
+                    </div>
+
+                    <div class="separador">
+                        <label>Tags:</label>
+                        <input class="redondeado derecha" type="text" id="tags" name="tags"/>
+                    </div>
+
+                    <div class="separador">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="inputGroupFile02" name="img" accept=".png, .jpeg, .jpg">
+                             <label class="custom-file-label" for="inputGroupFile02" aria-describedby="inputGroupFileAddon02">Choose Image</label>
+                        </div>
+                    </div>
+                    <button class="button btn btn_personalizado">REGISTRAR</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

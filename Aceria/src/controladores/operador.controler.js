@@ -33,10 +33,11 @@ OperCtrl.createOperador = async (req,res) => {
             new_oper.apellido = apellido;
             new_oper.email = email;
             new_oper.contrasena=contrasena;
-            //new_admin.contrasena = await new_admin.encriptarPass(contrasena);;
             new_oper.cuenta = cuenta;
-            new_oper.img=img;
-
+            if(req.file){
+                new_oper.img= 'uploads/' + req.file.filename;
+            }
+ 
             await new_oper.save();
             req.flash('success_msg','Operador creado correctamente');
             res.redirect('/operador/all');
@@ -62,6 +63,10 @@ OperCtrl.editOperador = async (req,res) => {
 
     const operador = req.body;
 
+    if(req.file){
+        operador.img= 'uploads/' + req.file.filename;
+    }
+    
     await oper.findByIdAndUpdate(req.params.id, operador );
     req.flash('success_updated','Operador actualizado');
     res.redirect('/operador/all');
