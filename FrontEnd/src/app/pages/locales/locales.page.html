@@ -1,5 +1,29 @@
 <app-header></app-header>
 
 <ion-content>
+    <ion-toolbar>
+        <ion-title color="dark">Locales</ion-title>
+    </ion-toolbar>
+    <ion-list>
+        <ion-card>
+            
+            <ion-item>
+                <ion-thumbnail slot="start" (click)="seleccionar_direccion();">
+                    <img src='https://via.placeholder.com/600/92c952'>
+                </ion-thumbnail>
+                    <ion-label> 
+                        <ion-icon slot="only-icon" name="pin-outline"></ion-icon>
+                        <p>Via a Daule, Guayaquil 090602</p>
+                        
+                        <ion-icon slot="start" name="calendar-outline"></ion-icon>
+                        <p> Lunes - Viernes de 8:00 - 17:00</p>
+                    
+                        <ion-icon slot="start" name="call-outline"></ion-icon>
+                        <p> +593 48861758</p>
+                    </ion-label>
+                
+            </ion-item>
+        </ion-card>
 
+    </ion-list>
 </ion-content>

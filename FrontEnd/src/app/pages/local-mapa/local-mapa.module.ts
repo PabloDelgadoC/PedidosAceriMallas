@@ -4,21 +4,19 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { HomePageRoutingModule } from './home-routing.module';
+import { LocalMapaPageRoutingModule } from './local-mapa-routing.module';
 
-import { HomePage } from './home.page';
+import { LocalMapaPage } from './local-mapa.page';
 import { ComponentModule } from '../../component/component.module';
-import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    HomePageRoutingModule,
+    LocalMapaPageRoutingModule,
     ComponentModule,
-    PipesModule,
   ],
-  declarations: [HomePage]
+  declarations: [LocalMapaPage]
 })
-export class HomePageModule {}
+export class LocalMapaPageModule {}

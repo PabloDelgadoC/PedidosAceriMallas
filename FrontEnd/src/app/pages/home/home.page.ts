@@ -11,6 +11,7 @@ import { Constanst } from '../../constants/constanst';
 export class HomePage implements OnInit {
 
   public products: any = null;
+  public textToFilter: string;
 
   constructor(
     private _service: Services,
@@ -19,7 +20,7 @@ export class HomePage implements OnInit {
 
   async ngOnInit() {
     const loading = await this.loadingCtrl .create({
-      message: 'Cargando...'
+      message: 'Cargando...',
     });
     await loading.present();
     this._service.getProducts(Constanst.URL + '/api/products')
@@ -34,6 +35,10 @@ export class HomePage implements OnInit {
 
   segmentChanged(ev: any) {
     console.log('Segment changed', ev);
+  }
+
+  onSearchChange(event: any) {
+    this.textToFilter = event.detail.value;
   }
 
 }

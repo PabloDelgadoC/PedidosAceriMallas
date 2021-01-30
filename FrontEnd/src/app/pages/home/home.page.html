@@ -7,38 +7,45 @@
     </ion-toolbar>
 
     <ion-toolbar>
-        <ion-searchbar mode="ios" placeholder="Buscar producto"></ion-searchbar>
+        <ion-searchbar mode="ios" 
+            placeholder="Buscar producto"
+            inputmode="text"
+            (ionChange)="onSearchChange($event)"
+            [debounce]="250"  
+        ></ion-searchbar>
     </ion-toolbar>
 
     <ion-toolbar>
-        <ion-segment color="acerimalla" value="all" (ionChange)="segmentChanged($event)">
-            <ion-segment-button value="metal-perforado" style="font-size: 6.5px;">
+        <ion-segment scrollable color="acerimalla" value="" (ionChange)="segmentChanged($event)">
+            <ion-segment-button value="">
                 Metal perforado
             </ion-segment-button>
-            <ion-segment-button value="metal-expandido" style="font-size: 6.5px;">
+            <ion-segment-button value="metal-expandido">
                 Metal expandido
             </ion-segment-button>
-            <ion-segment-button value="pisos-metalicos" style="font-size: 6.5px;">
+            <ion-segment-button value="pisos-metalicos">
                 Pisos metálicos
             </ion-segment-button>
-            <ion-segment-button value="mallas" style="font-size: 6.5px;">
-                Mallas i
+            <ion-segment-button value="mallas industriales">
+                Mallas industriales
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 
     <ion-grid>
         <ion-row *ngIf="products != null; else wait">
-            <ion-col size="6" *ngFor="let product of products">
+            <ion-col size="6" *ngFor="let product of products | filtro:textToFilter:'nombre'">
                 <ion-card mode="ios">
                     <ion-card-header>
-                        <img src="{{product.img}}" alt="{{product.img}}"/>
-                        <ion-card-title style="width: 88%; margin-left: 0px;"><h4>{{product.nombre}}</h4></ion-card-title>
-                        <ion-text style="float: right;">{{product.precio}}</ion-text>
+                        <img src='http://localhost:4000/{{product.img}}' alt="{{product.img}}"/>
                     </ion-card-header>
-                  
+                    
                     <ion-card-content>
-                      {{product.descripcion}}
+                        <div>
+                            <ion-card-title style="width: 88%; margin-left: 0px;"><h4>{{product.nombre}}</h4></ion-card-title>
+                            <ion-text style="float: right;">{{product.precio}}</ion-text>
+                        </div>
+                        {{product.descripcion}}
                     </ion-card-content>
                 </ion-card>
             </ion-col>
