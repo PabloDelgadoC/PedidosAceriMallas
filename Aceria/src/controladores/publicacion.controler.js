@@ -25,7 +25,7 @@ PostCtrl.createPost = async (req,res) => {
         errors.push({text: 'Titulo es muy corto, debe de tener minimo 10 caracteres'});
     }
 
-    if(descripcion.length < 40){
+    if(descripcion.length < 10){
         errors.push({text: 'La Descripcion es muy corta, debe de tener minimo 40 caracteres'});
     }
 
