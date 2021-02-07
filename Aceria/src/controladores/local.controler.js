@@ -13,11 +13,17 @@ LocalCtrl.renderLocalForm = (req,res) => {
 };
 
 LocalCtrl.createLocal = (req,res) => {
+    console.log(req.body);
 
 };
 LocalCtrl.findLocal = (req,res) => {
 
 };
+
+LocalCtrl.solomapa = (req,res) => {
+
+};
+
 LocalCtrl.renderEditLocal = (req,res) => {
 
 };

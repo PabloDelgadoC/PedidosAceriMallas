@@ -281,4 +281,10 @@ body {
   height: 100px;
 }
   
+#map-template{
+  height: 180px;
+  width: 500px;
+  position: absolute;
+  background: chartreuse;
+}
 

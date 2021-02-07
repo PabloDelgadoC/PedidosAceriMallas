@@ -6,6 +6,7 @@ const {
     renderLocalForm,
     createLocal,
     findLocal,
+    solomapa,
     renderEditLocal,
     editLocal,
     elimanateLocal
@@ -22,6 +23,10 @@ router.post('/local/add',        Autenticado, createLocal );
 
 //buscardores
 router.post('/local/find',       Autenticado, findLocal );          
+
+//mostrar
+router.get('/local/mostrar/:id', Autenticado, solomapa);
+
 
 //editar
 router.get('/local/edit/:id',    Autenticado, renderEditLocal);    

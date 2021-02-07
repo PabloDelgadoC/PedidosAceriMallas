@@ -11,66 +11,35 @@
             <div class="row">
                 <div class="spanp">
                     <div class="separador">
-                        <label>Nombre:</label>
-                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="" />
+                        <label>Codigo:</label>
+                        <input class="redondeado derecha" type="text" id="codigo" name="codigo" value="" />
+                    </div>
+                    <div class="separador espaciado">
+                        <label>Descripcion:</label>
+                        <textarea class="redondeado derecha" style="height: 180px;" type="text" id="descripcion" name="descripcion"/></textarea>
                     </div>
                     <div class="separador">
-                        <label>Apellido:</label>
-                        <input class="redondeado derecha" type="text" id="apellido" name="apellido" value="" />
-                    </div>
-                    <div class="separador">
-                        <label>Correo:</label>
-                        <input class="redondeado derecha" type="email" id="email" name="email" value="" />
-                    </div>
-
-                    <div class="separador">
-                        <label>Usuario:</label>
-                        <input class="redondeado derecha" type="text" id="cuenta" name="cuenta" value="" />
-                    </div>
-                    <div class="separador">
-                        <label>Contraseña:</label>
-                        <input class="redondeado derecha" type="password" id="contrasena" name="contrasena" value="" />
-                    </div>
+                        <label>Direccion:</label>
+                        <input class="redondeado derecha" type="text" id="direccion" name="direccion" value="" />
+                    </div>                  
                 </div>
 
                 <div class="spanp">
-
                     <div class="separador">
                         <label>Imagen:</label>
                         <input type="file" id="img" name="img" accept=".png, .jpeg">
                     </div>
                     
-                    <div class="separador">
-                        <label>Permisos:</label>
-                        <br>
-                        <div class="spans">
-                             <div class="separador">
-                                <label for="db">Base de Datos:</label>
-                                <label class="switch derecha">
-                                    <input type="checkbox" id="db" name="db" value="S">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-
-                            <div class="separador" >
-                                <label for="creacion">Administrador:</label>
-                                <label class="switch derecha">
-                                    <input type="checkbox" id="creacion" name="creacion" value="S">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-
-                            <div class="separador">
-                                <label for="supervision">Supervisor:</label>
-                                <label class="switch derecha">
-                                    <input type="checkbox" id="supervision" name="supervision" value="S">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
+                    <div class="separador espaciado">
+                        <div id="map-template">
+                            <input type="hidden" id="lat" name="lat" value="" />
+                            <input type="hidden" id="long" name="long" value="" />
                         </div>
-
                     </div>
-                    <button class="button btn btn_personalizado">REGISTRAR</button>
+
+                    <div class="separador">
+                        <button class="button btn btn_personalizado">REGISTRAR</button>
+                    </div>
                 </div>
 
             </div>
