@@ -78,7 +78,7 @@ app.use(require('./routes/usuarios.routes'));
 app.use(require('./routes/dash.routes'));
 app.use(require('./routes/producto.routes'));
 app.use(require('./routes/promociones.routes'));
-
+app.use(require('./routes/pedido.routes'));
 app.use(require('./routes/local.routes'));
 app.use(require('./routes/publicacion.routes'));
 
