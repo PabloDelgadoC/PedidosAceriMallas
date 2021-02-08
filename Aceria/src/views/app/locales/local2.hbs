@@ -1,2 +1,49 @@
 {{>top}}
 {{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/locales/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">L O C A L E S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Registrar Locales</h5>
+        <br>
+        <br>
+        <form action="/local/edit/{{locales._id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="_method" value="PUT">
+            <div class="row">
+                <div class="spanp">
+                    <div class="separador">
+                        <label>Codigo:</label>
+                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="{{locales.nombre}}" />
+                    </div>
+                    <div class="separador espaciado">
+                        <label>Descripcion:</label>
+                        <textarea class="redondeado derecha" style="height: 180px;" type="text" id="descripcion" name="descripcion"/>{{locales.descripcion}}</textarea>
+                    </div>
+                    <div class="separador">
+                        <label>Direccion:</label>
+                        <input class="redondeado derecha" type="text" id="direccion" name="direccion" value="{{locales.direccion}}" />
+                    </div>                  
+                </div>
+
+                <div class="spanp">
+                    <div class="separador">
+                       <label>Imagen:</label>
+                        <input type="file" id="img" name="img" accept=".png, .jpeg, .jpg">
+                    </div>
+                    
+                    <div class="separador espaciado">
+                        <div id="map-template">
+                            <input type="hidden" id="coordx" name="coordx" value="{{locales.coordx}}" />
+                            <input type="hidden" id="coordy" name="coordy" value="{{locales.coordy}}" />
+                        </div>
+                    </div>
+
+                    <div class="separador">
+                        <button class="button btn btn_personalizado">REGISTRAR</button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>

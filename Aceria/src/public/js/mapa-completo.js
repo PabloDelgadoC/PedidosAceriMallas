@@ -1,11 +1,11 @@
-var map = L.map('map-template').setView([-2.09, -79.93],13);
+var map = L.map('map-template-all').setView([-2.09, -79.93],15);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-var myMarker = L.marker([getlatitud(), getlongitud()],{draggable: true}).addTo(map);
-
+var myMarker = L.marker([getlatitud(), getlongitud()],{draggable: false}).addTo(map);
+/*
 myMarker.on('dragend', function() {
 			var coord = String(myMarker.getLatLng()).split(',');
 			console.log()
@@ -15,7 +15,7 @@ myMarker.on('dragend', function() {
 			
 			document.getElementById("coordx").value = lat[1];
 			document.getElementById("coordy").value = lng[0];	
-});
+});*/
 
 function getlatitud(){
 	const lati = document.getElementById("coordx").value;

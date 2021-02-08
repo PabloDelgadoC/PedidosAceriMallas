@@ -65,8 +65,6 @@ adminCtrl.createAdministrador2 = async (req,res) => {
 
     const errors = [];
     const {nombre,apellido,email,cuenta,contrasena,db,creacion,supervision} = req.body;
-    console.log(req.file);
-  
 
     if(contrasena.length < 8){
         errors.push({text: 'Contraseña es muy corta, debe Registrar desde el principio'});

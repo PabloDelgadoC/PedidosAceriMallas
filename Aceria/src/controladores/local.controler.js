@@ -12,128 +12,85 @@ LocalCtrl.renderLocalForm = (req,res) => {
     res.render('app/locales/local');
 };
 
-LocalCtrl.createLocal = (req,res) => {
-    console.log(req.body);
+LocalCtrl.createLocal = async (req,res) => {
+    const errors = [];
+    const {nombre,descripcion,direccion,coordx,coordy} = req.body;
+
+    if(nombre.length < 5){
+        errors.push({text: 'Codigo es muy corto, debe de tener minimo 5 caracteres'});
+    }
+
+    if(direccion.length < 10){
+        errors.push({text: 'Direccion es muy corto, debe de tener minimo 5 caracteres'});
+    }
+
+    const locales = await local.findOne({nombre: nombre}).lean();
+    if(locales){
+        errors.push({text: 'Ya existe un Local con dicho codigo asignado'});
+    }
+
+    if(errors.length >0){
+        res.render('app/locales/locales',{errors});
+    }else{
+        
+        const puesto=new local();
+        puesto.nombre = nombre;
+        puesto.descripcion = descripcion;
+        puesto.direccion = direccion;
+        puesto.coordx = coordx;
+        puesto.coordy = coordy; 
+
+        if(req.file){
+            puesto.img = 'uploads/' + req.file.filename;
+        }
+         
+        await puesto.save();
+        req.flash('success_msg','El Local ha sido creado correctamente');
+        res.redirect('/locales/all');
+        
+    }
 
 };
-LocalCtrl.findLocal = (req,res) => {
+
+LocalCtrl.findLocal = async (req,res) => {
+    const {buscadorBox} = req.body;
+    const desc = await local.find({nombre: buscadorBox}).lean();
+    res.render('app/locales/locales',{desc});
 
 };
 
-LocalCtrl.solomapa = (req,res) => {
+LocalCtrl.solomapa = async (req,res) => {
+    const locales = await local.findById(req.params.id).lean();
+    res.render('app/locales/mapasolo',{locales});
 
 };
 
-LocalCtrl.renderEditLocal = (req,res) => {
+LocalCtrl.renderEditLocal = async (req,res) => {
+    const locales = await local.findById(req.params.id).lean();
+    res.render('app/locales/local2',{locales});
 
 };
-LocalCtrl.editLocal = (req,res) => {
+
+
+LocalCtrl.editLocal = async (req,res) => {
+
+    const puesto = req.body;
+
+    if(req.file){
+        puesto.img = 'uploads/' + req.file.filename;
+    }
+    
+    await local.findByIdAndUpdate(req.params.id, puesto);
+    req.flash('success_updated','Promocion actualizado');
+    res.redirect('/locales/all');
 
 };
-LocalCtrl.elimanateLocal = (req,res) => {
+
+LocalCtrl.elimanateLocal = async (req,res) => {
+    await local.findByIdAndDelete(req.params.id);
+    req.flash('success_deleted','Local eliminado');
+    res.redirect('/locales/all');
 
 };
 
 module.exports = LocalCtrl;
-
-
-
-/*
-
-
-
-
-
-PromoCtrl.renderPromotForm = (req,res) => {
-    res.render('app/promociones/descuento');
-};
-
-
-PromoCtrl.fincliente = async (req,res) => {
-    const {idcliente,x,y} = req.body;
-
-    if(x!=null){
-        if(y!=null){
-            const usuario = await user.findOne({cuenta: idcliente}).lean();
-            
-            if(usuario){
-                res.render('app/promociones/descuento',{usuario});
-            }else{
-                res.redirect('/descuento');
-            }
-        }
-    }
-};
-
-
-PromoCtrl.createPromo = async (req,res) => {
-    const errors = [];
-  
-    const {codigo,idcliente,namecliente,mensaje,finicio,ffin} = req.body;
-
-    if(codigo.length < 6){
-        errors.push({text: 'Codigo es muy corto, debe de tener minimo 6 caracteres'});
-    }
-
-    if(errors.length >0){
-        res.render('app/promociones/descuento',{errors});
-    }else{
-        
-        const desc = await descuentos.findOne({codigo: codigo}).lean();
-        if(desc){
-            req.flash('error_msg','El codigo de Descuento ya existe, debe Registrar desde el principio');
-            res.redirect('/descuento');
-        }else {
-            const new_desc=new descuentos();
-            new_desc.idcliente      = idcliente;
-            new_desc.codigo         = codigo;
-            new_desc.namecliente    = namecliente;
-            new_desc.mensaje        = mensaje;
-            new_desc.finicio        = finicio;
-            new_desc.ffin           = ffin;
-            new_desc.estado         = 'Pendiente';
-            new_desc.fuso           = null;
-
-            await new_desc.save();
-            req.flash('success_msg','El codigo de Descuento ha sido creado correctamente');
-            res.redirect('/promocion/all');
-            
-        }
-    }
-
-};
-
-//parece que si 
-PromoCtrl.findPromo = async (req,res) => {
-    const {buscadorBox} = req.body;
-
-    const desc = await descuentos.find({namecliente: buscadorBox}).lean();
-    res.render('app/promociones/descuentos',{desc});
-};
-
-
-PromoCtrl.rendereditPromo = async (req,res) => {
-    const desc = await descuentos.findById(req.params.id).lean();
-    res.render('app/promociones/descuento2',{desc});
-
-};
-
-
-PromoCtrl.editPromo = async (req,res) => {
-    const promocion = req.body;
-
-    await descuentos.findByIdAndUpdate(req.params.id, promocion);
-    req.flash('success_updated','Promocion actualizado');
-    res.redirect('/promocion/all');
-};
-
-
-PromoCtrl.eliminarPromo = async (req,res) => {
-    await descuentos.findByIdAndDelete(req.params.id);
-    req.flash('success_deleted','Promocion eliminado');
-    res.redirect('/promocion/all');
-};
-
-
-module.exports = PromoCtrl;
-*/

@@ -7,12 +7,12 @@
         <h5 style="text-align: center; color: #cb1189;">Registrar Locales</h5>
         <br>
         <br>
-        <form action="/local/add" method="POST">
+        <form action="/local/add" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="spanp">
                     <div class="separador">
                         <label>Codigo:</label>
-                        <input class="redondeado derecha" type="text" id="codigo" name="codigo" value="" />
+                        <input class="redondeado derecha" type="text" id="nombre" name="nombre" value="" />
                     </div>
                     <div class="separador espaciado">
                         <label>Descripcion:</label>
@@ -27,13 +27,13 @@
                 <div class="spanp">
                     <div class="separador">
                         <label>Imagen:</label>
-                        <input type="file" id="img" name="img" accept=".png, .jpeg">
+                        <input type="file" id="img" name="img" accept=".png, .jpeg, .jpg">
                     </div>
                     
                     <div class="separador espaciado">
                         <div id="map-template">
-                            <input type="hidden" id="lat" name="lat" value="" />
-                            <input type="hidden" id="long" name="long" value="" />
+                            <input type="hidden" id="coordx" name="coordx" value="" />
+                            <input type="hidden" id="coordy" name="coordy" value="" />
                         </div>
                     </div>
 

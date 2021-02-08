@@ -281,10 +281,17 @@ body {
   height: 100px;
 }
   
-#map-template{
+#map-template {
   height: 180px;
   width: 500px;
   position: absolute;
   background: chartreuse;
 }
 
+
+#map-template-all {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background: chartreuse;
+}
