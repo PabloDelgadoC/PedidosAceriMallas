@@ -6,10 +6,10 @@
         <h3 style="text-align: center;">P E D I D O S</h3>
         <h5 style="text-align: center; color: #cb1189;">Crea Pedido Nuevo</h5>
         <br>
-        <form action="/pedido/add" method="POST"></form>
+        <form id="crear_formulario" action="/pedido/add" method="POST"></form>
             <div class="top" > 
                 <label>N.- Orden:</label>
-                <input class="redondeado" type="text" name="npedido" placeholder="00001">
+                <input class="redondeado" type="text" name="npedido" disabled>
                 <label c>Fecha:</label>
                 <input class="redondeado" type="date" name="fecha" value=""/>
                 
@@ -22,36 +22,47 @@
                     <div class="spans2">
                         <div>
                             <label>Cliente:</label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001"> 
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido"> 
                         </div>
                         <div>
                             <label>RUC/CI:</label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>Correo:</label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 220px;" type="mail" name="npedido">
                         </div>
                         
                     </div>
                     <div class="spans2">
                         <div>  
                             <label>Direccion: </label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>Telefono:  </label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>F. Pago:   </label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                            <select class="redondeado derecha" style="width: 220px;" name="categoria" id="categoria">
+                                <option value=""></option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Cheque">Cheque a fecha</option>
+                                <option value="tarjeta">Debito/Tarjeta</option>
+                                <option value="Credito">Credito Directo</option>
+                            </select>
                         </div>
                     </div>
                     <div class="spans2">
                         <div>
                             <label>F. Entrega:   </label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                            <select class="redondeado derecha" style="width: 220px;" name="categoria" id="categoria">
+                                <option value=""></option>
+                                <option value="domicilio">Dominicilio</option>
+                                <option value="despacho">Despacho en Local</option>
+                                <option value="entregado">Entrega Inmediata</option>
+                            </select>
                         </div>
                         
                     </div>
@@ -65,6 +76,7 @@
                 <div class="spang">
                     <div class="seccion_detalle">
                         <h5>Detalle de Orden</h5>
+                       
                         <table class="table-template">
                         <thead class="cabecera">
                             <tr>
@@ -96,35 +108,62 @@
                 </div>
                 <div class="spans2">
                     <div class="valores">
-                        <h5>Saldos</h5>
+                        <h5>Importes</h5>
                         <div>
                             <label>Sub Total: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>Descuento: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>Sub Total: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>IVA: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
                         </div>
                         <div>
                             <label>Total: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
                         </div>
                     </div>
                     <br>
                     <div>
-                        <button class="button btn btn_personalizado">Crear Pedido</button>
+                        <button form="crear_formulario" class="button btn btn_personalizado">Crear Pedido</button>
                     </div>
                 
                 </div>
             </div>
         </form>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Add Producto
+        </button>
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- fin de modal -->
+
     </div>
 </div>
+
+
+
