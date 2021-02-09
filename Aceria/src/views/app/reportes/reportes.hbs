@@ -6,4 +6,60 @@
         <h3 style="text-align: center;">R E P O R T E S</h3>
         <br>
     </div>
+
+    <div class="presentar">
+        <div class="row mb-3">
+            <div class="col-6">
+                
+                    <label>Selección por tipo: </label>
+                    <select class="redondeado derecha" name="categoria" id="categoria">
+                        <option value="movil">Usuarios Móvil</option>
+                        <option value="web">Usuarios Web</option>
+                        <option value="ventas">Ventas</option>
+                        <option value="generados">Valores Generados</option>
+                    </select> 
+                
+            </div>
+            <div class="col-2">
+                <button id="btn_buscar">Buscar</button>
+            </div>
+            
+        </div>
+        <input type="text" class="form-control mb-3" id="inputPassword2" placeholder="Buscar evento">
+        <table class="table-template" id="tabla_reporte">
+            <thead class="cabecera">
+                <tr>
+                    
+                    <th class="sep" style="color:#ffffff;">Nombres</th>
+                    <th class="sep" style="color:#ffffff;">Apellidos</th>
+                    <th class="sep" style="color:#ffffff;">Correo</th>
+                    
+                </tr>
+            </thead>
+            {{#each desc}}
+            <tr>
+                <td class="sep">{{codigo}}</td>
+                <td class="sep">{{namecliente}}</td>
+                <td class="sep">{{mensaje}}</td>
+                <td class="sep">{{estado}}</td>
+                <td class="sep">{{finicio}}</td>
+                <td class="sep">{{ffin}}</td>
+                <td class="sep">
+                        {{#if fuso}}
+                            {{fuso}}
+                        {{else}}
+                            --:--:--
+                        {{/if}}
+
+                </td>
+                
+                
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+
 </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="/js/reportes.script.js"></script>
