@@ -11,7 +11,7 @@ const {
     eliminarUser,
     createUserMovil,
     forgotPassword,
-    logIn,
+    logIn
 } =require('../controladores/usuarios.controler');
 
 const { Autenticado } = require('../helper/autenticador');

@@ -1,2 +1,130 @@
 {{>top}}
 {{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/pedido/pendiente" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">P E D I D O S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Crea Pedido Nuevo</h5>
+        <br>
+        <form action="/pedido/add" method="POST"></form>
+            <div class="top" > 
+                <label>N.- Orden:</label>
+                <input class="redondeado" type="text" name="npedido" placeholder="00001">
+                <label c>Fecha:</label>
+                <input class="redondeado" type="date" name="fecha" value=""/>
+                
+            </div>
+            <br>
+            <div class="cuerpo">
+                <h5>Datos del Comprador</h5>
+                <div class="row">
+                    
+                    <div class="spans2">
+                        <div>
+                            <label>Cliente:</label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001"> 
+                        </div>
+                        <div>
+                            <label>RUC/CI:</label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>Correo:</label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        
+                    </div>
+                    <div class="spans2">
+                        <div>  
+                            <label>Direccion: </label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>Telefono:  </label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>F. Pago:   </label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                    </div>
+                    <div class="spans2">
+                        <div>
+                            <label>F. Entrega:   </label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        
+                    </div>
+                
+                </div>
+               
+            </div>
+            <br>
+        
+            <div class="row">
+                <div class="spang">
+                    <div class="seccion_detalle">
+                        <h5>Detalle de Orden</h5>
+                        <table class="table-template">
+                        <thead class="cabecera">
+                            <tr>
+                                <th class="sep" style="color:#ffffff;">Codigo</th>
+                                <th class="sep" style="color:#ffffff;">Nombre</th>
+                                <th class="sep" style="color:#ffffff;">Cantidad</th>
+                                <th class="sep" style="color:#ffffff;">P. Unit</th>
+                                <th class="sep" style="color:#ffffff;">SubTotal</th>
+                                <th class="sep" style="color:#ffffff;">IVA</th>
+                                <th class="sep" style="color:#ffffff;">Total</th>
+                            </tr>
+                        </thead>
+                        {{#each detallepdido}}
+                        <tr>
+                            <td class="sep">{{productcodigo}}</td>
+                            <td class="sep">{{productnombre}}</td>
+                            <td class="sep">{{productcant}}</td>
+                            <td class="sep">{{productprecio}}</td>
+                            <td class="sep">{{producsubtotal}}</td>
+                            <td class="sep">{{ProductiVA}}</td>
+                            <td class="sep">{{producttotal}}</td>
+                        </tr>
+                        {{/each}}
+                    </table>
+
+
+                    </div>
+
+                </div>
+                <div class="spans2">
+                    <div class="valores">
+                        <h5>Saldos</h5>
+                        <div>
+                            <label>Sub Total: </label>
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>Descuento: </label>
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>Sub Total: </label>
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>IVA: </label>
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                        <div>
+                            <label>Total: </label>
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido" placeholder="00001">
+                        </div>
+                    </div>
+                    <br>
+                    <div>
+                        <button class="button btn btn_personalizado">Crear Pedido</button>
+                    </div>
+                
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

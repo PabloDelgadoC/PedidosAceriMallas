@@ -10,13 +10,13 @@ pedidoCtrl.renderPedidopendienteForm = async (req,res) => {
 
 pedidoCtrl.renderPedidoTransitoForm = async (req,res) => {
     const pedidos = await pedido.find({estado: "transito"}).lean();
-    res.render('app/pedido/pendiente',{pedidos});
+    res.render('app/pedido/transito',{pedidos});
 
 };
 
 pedidoCtrl.renderPedidoCompletoForm = async (req,res) => {
     const pedidos = await pedido.find({estado: "completo"}).lean();
-    res.render('app/pedido/pendiente',{pedidos});
+    res.render('app/pedido/completo',{pedidos});
 };
 
 pedidoCtrl.renderNewPedidoForm = (req,res) => {
