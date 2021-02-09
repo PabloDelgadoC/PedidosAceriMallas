@@ -12,6 +12,9 @@ export class HomePage implements OnInit {
 
   public products: any = null;
   public textToFilter: string;
+  public flag: boolean = false;
+  public segment: string = '';
+  public searchDisable:boolean = false;
 
   constructor(
     private _service: Services,
@@ -33,11 +36,19 @@ export class HomePage implements OnInit {
     loading.dismiss();
   }
 
-  segmentChanged(ev: any) {
-    console.log('Segment changed', ev);
+  segmentChanged(event) {
+    this.segment = event.detail.value;
+    if ( this.segment === "") {
+      this.flag = false;
+      this.searchDisable = false;
+    }
+    else{
+      this.flag = true;
+      this.searchDisable = true;
+    }
   }
 
-  onSearchChange(event: any) {
+  onSearchChange(event) {
     this.textToFilter = event.detail.value;
   }
 

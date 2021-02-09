@@ -2,8 +2,8 @@
 
 <ion-content>
 
-    <ion-toolbar>
-        <ion-title color="dark">Productos</ion-title>
+    <ion-toolbar class="ion-no-padding">
+        <ion-title color="dark" class="ion-text-start">PRODUCTOS</ion-title>
     </ion-toolbar>
 
     <ion-toolbar>
@@ -11,53 +11,75 @@
             placeholder="Buscar producto"
             inputmode="text"
             (ionChange)="onSearchChange($event)"
-            [debounce]="250"  
+            [debounce]="350"
+            [disabled]="searchDisable"
+            animated  
         ></ion-searchbar>
     </ion-toolbar>
 
     <ion-toolbar>
         <ion-segment scrollable color="acerimalla" value="" (ionChange)="segmentChanged($event)">
             <ion-segment-button value="">
-                Metal perforado
+                Todos
             </ion-segment-button>
-            <ion-segment-button value="metal-expandido">
-                Metal expandido
+            <ion-segment-button value="Malla Perforada">
+                Malla Perforada
             </ion-segment-button>
-            <ion-segment-button value="pisos-metalicos">
-                Pisos metálicos
+            <ion-segment-button value="Planchas">
+                Planchas
             </ion-segment-button>
-            <ion-segment-button value="mallas industriales">
-                Mallas industriales
+            <ion-segment-button value="Personalizado">
+                Personalizado
+            </ion-segment-button>
+            <ion-segment-button value="Otros">
+                Otros
             </ion-segment-button>
         </ion-segment>
     </ion-toolbar>
 
-    <ion-grid>
-        <ion-row *ngIf="products != null; else wait">
+    <ion-grid *ngIf="!flag">
+        <ion-row *ngIf="products != null">
             <ion-col size="6" *ngFor="let product of products | filtro:textToFilter:'nombre'">
                 <ion-card mode="ios">
-                    <ion-card-header>
-                        <img src='http://localhost:4000/{{product.img}}' alt="{{product.img}}"/>
-                    </ion-card-header>
+                    <ion-img src="http://localhost:4000/{{product.img}}" style="height: 100%; object-fit: contain;"></ion-img>
                     
-                    <ion-card-content>
-                        <div>
-                            <ion-card-title style="width: 88%; margin-left: 0px;"><h4>{{product.nombre}}</h4></ion-card-title>
-                            <ion-text style="float: right;">{{product.precio}}</ion-text>
-                        </div>
-                        {{product.descripcion}}
+                    
+                    <ion-card-content class="ion-no-padding">
+                        <ion-item class="ion-no-padding" lines="none">
+                            <ion-thumbnail slot="start">
+                                <ion-text>{{product.nombre}}</ion-text>
+                            </ion-thumbnail>
+                            <ion-thumbnail slot="end">
+                                <ion-text>{{product.precio}}</ion-text>
+                            </ion-thumbnail>
+                        </ion-item>
+                        <ion-label>{{product.descripcion}}</ion-label>
                     </ion-card-content>
                 </ion-card>
             </ion-col>
         </ion-row>
     </ion-grid>
 
-    <ng-template #wait>
-        <div class="text-center">
-            <div class="spinner-border" role="status">
-              <span class="sr-only">Cargando...</span>
-            </div>
-          </div>
-    </ng-template>
+    <ion-grid *ngIf="flag">
+        <ion-row *ngIf="products != null">
+            <ion-col size="6" *ngFor="let product of products | filtro:segment:'categoria'">
+                <ion-card mode="ios">
+                    <ion-img src="http://localhost:4000/{{product.img}}" style="height: 100%; object-fit: contain;"></ion-img>
+                    
+                    <ion-card-content class="ion-no-padding">
+                        <ion-item class="ion-no-padding" lines="none">
+                            <ion-thumbnail slot="start">
+                                <ion-text>{{product.nombre}}</ion-text>
+                            </ion-thumbnail>
+                            <ion-thumbnail slot="end">
+                                <ion-text>{{product.precio}}</ion-text>
+                            </ion-thumbnail>
+                        </ion-item>
+                        <ion-label>{{product.descripcion}}</ion-label>
+                    </ion-card-content>
+                </ion-card>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
 
 </ion-content>

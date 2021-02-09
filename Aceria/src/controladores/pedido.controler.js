@@ -121,7 +121,4 @@ LocalCtrl.editLocal = async (req,res) => {
 
 };
 
-
-
-
 */
