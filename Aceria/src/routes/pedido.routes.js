@@ -12,7 +12,7 @@ const {
     renderEditPedido,
     editPedido,
     eliminarPedido
-} =require('../controladores/operador.controler');
+} =require('../controladores/pedido.controler');
 
 const { Autenticado } = require('../helper/autenticador');
 

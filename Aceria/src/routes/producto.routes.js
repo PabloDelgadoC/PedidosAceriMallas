@@ -9,7 +9,7 @@ const {
     rendereditProduct,
     editProduct,
     eliminarProduct,
-    getProducts,
+    getProducts
 } =require('../controladores/producto.controler');
 
 const { Autenticado } = require('../helper/autenticador');

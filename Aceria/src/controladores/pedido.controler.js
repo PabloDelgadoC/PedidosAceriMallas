@@ -10,13 +10,13 @@ pedidoCtrl.renderPedidopendienteForm = async (req,res) => {
 
 pedidoCtrl.renderPedidoTransitoForm = async (req,res) => {
     const pedidos = await pedido.find({estado: "transito"}).lean();
-    res.render('app/pedido/pendiente',{pedidos});
+    res.render('app/pedido/transito',{pedidos});
 
 };
 
 pedidoCtrl.renderPedidoCompletoForm = async (req,res) => {
     const pedidos = await pedido.find({estado: "completo"}).lean();
-    res.render('app/pedido/pendiente',{pedidos});
+    res.render('app/pedido/completo',{pedidos});
 };
 
 pedidoCtrl.renderNewPedidoForm = (req,res) => {
@@ -29,14 +29,14 @@ pedidoCtrl.createPedido = (req,res) => {
 pedidoCtrl.findPedido = (req,res) => {
 };
 
-pedidoCtrl.renderPedidoDetalleForm = (req,res) => {
+pedidoCtrl.renderPedidoDetalleForm = async (req,res) => {
     const pedido = await pedido.findById(req.params.id).lean();
     const detalle = await detalle.findById(req.params.id).lean();
     res.render('app/pedido/detalle',{pedido,detalle});
 
 };
 
-pedidoCtrl.renderEditPedido = (req,res) => {
+pedidoCtrl.renderEditPedido = async (req,res) => {
     const pedido = await pedido.findById(req.params.id).lean();
     const detalle = await detalle.findById(req.params.id).lean();
     res.render('app/pedido/editpedido',{pedido,detalle});
@@ -45,7 +45,7 @@ pedidoCtrl.renderEditPedido = (req,res) => {
 pedidoCtrl.editPedido = (req,res) => {
 };
 
-pedidoCtrl.eliminarPedido = (req,res) => {
+pedidoCtrl.eliminarPedido = async (req,res) => {
     await pedido.findByIdAndDelete(req.params.id);
     req.flash('success_deleted','Pedido eliminado');
     res.redirect('/pedido/pendiente');

@@ -156,8 +156,8 @@ body {
   }
 
   .busqueda_parte{
-    margin-left: 150px;
-    margin-right: 150px;
+    margin-left: 100px;
+    margin-right: 100px;
 
     padding-top: 2rem;
     padding-bottom: 3rem;
@@ -218,16 +218,35 @@ body {
     padding-bottom: 1rem;
   }
 
+  .spang{
+    width: 600px;
+  }
+
   .spans{
     width: 250px;
     padding-left: 4rem;
   }
+  .spans2{
+    width: 300px;
+    padding-left: 10px;
+  }
 
+  .valores{
+    margin-left: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+  }
+ 
   .alert{
     margin-left: 260px;
     margin-top: 0px;
     margin-right: 150px;
     margin-bottom: 0px;
+  }
+
+  .table-template{
+    width: 100%;
   }
 
   .espaciado{
