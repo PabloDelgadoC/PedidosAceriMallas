@@ -8,30 +8,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-    <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="css/datatables.min.css">
+    <link rel="stylesheet" href="DataTables-1.10.23/css/dataTables.bootstrap4.min.css">
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/sidebar.css">
     <link rel="stylesheet" href="css/leaflet.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.css"/>
 
+    
+    
 
 </head>
 
 <body>
-    {{{body}}}
     {{>mensajes}}
     {{>errores}}
-
-    <script src="js/jquery-3.5.1.js"></script>
+    {{{body}}}
+    
     <script src="js/jquery-3.5.1.min.js"></script>
-    <script src="js/bootstrap.bundle.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script language="javascript" src="js/bootstrap.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/bootstrap.min.js"></script>
     <script src="js/sidebar.js"></script>
+    <script type="text/javascript" src="js/datatables.min.js"></script>
     <script src="js/leaflet.js"></script>
     <script src="js/principal.js"></script>
     <script src="js/mapa-completo.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.23/datatables.min.js"></script>
+
+    <script>
+
+        $(document).ready( function() {
+            $('#myTable').DataTable({
+                "scrollX": true,
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ Entradas",
+                    "loadingRecords": "Cargando...",
+                    "sProcessing": "Procesando...",
+                    "sSearch": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Ultimo",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    }
+                }
+            });
+        });
+    </script>
     
 </body>
+
 </html>
