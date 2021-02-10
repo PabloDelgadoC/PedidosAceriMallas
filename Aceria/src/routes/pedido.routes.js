@@ -8,6 +8,7 @@ const {
     renderNewPedidoForm,
     createPedido,
     findPedido,
+    findcliente,
     renderPedidoDetalleForm,
     renderEditPedido,
     editPedido,
@@ -23,18 +24,19 @@ router.get('/pedido/completo',      Autenticado, renderPedidoCompletoForm );
 router.get('/pedido/crear',         Autenticado, renderNewPedidoForm);          
 
 //agregar
-router.post('/pedido/add',        Autenticado, createPedido );  
+router.post('/pedido/add',          Autenticado, createPedido );  
 
 //buscardores
 router.post('/pedido/find',         Autenticado, findPedido );          
+router.post('/pedido/findCliente',  Autenticado, findcliente )
 
 //observadores
-router.get('/pedido/detalle/:id',  Autenticado, renderPedidoDetalleForm );
+router.get('/pedido/detalle/:id',   Autenticado, renderPedidoDetalleForm );
 
 
 //editar
-router.get('/pedido/edit/:id',    Autenticado, renderEditPedido );    
-router.put('/pedido/edit/:id',    Autenticado, editPedido );         
+router.get('/pedido/edit/:id',      Autenticado, renderEditPedido );    
+router.put('/pedido/edit/:id',      Autenticado, editPedido );         
 
 //eleminar
 router.delete('/pedido/delete/:id', Autenticado,  eliminarPedido );      

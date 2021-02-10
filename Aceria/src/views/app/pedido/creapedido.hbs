@@ -6,62 +6,68 @@
         <h3 style="text-align: center;">P E D I D O S</h3>
         <h5 style="text-align: center; color: #cb1189;">Crea Pedido Nuevo</h5>
         <br>
-        <form id="crear_formulario" action="/pedido/add" method="POST"></form>
+        <form id="crear_formulario" action="/pedido/add" method="POST">
             <div class="top" > 
                 <label>N.- Orden:</label>
                 <input class="redondeado" type="text" name="npedido" disabled>
                 <label c>Fecha:</label>
                 <input class="redondeado" type="date" name="fecha" value=""/>
-                
             </div>
+            <input type="hidden" name="usernombre" value={{usuario.cuenta}}> 
+        </form>
+
             <br>
             <div class="cuerpo">
                 <h5>Datos del Comprador</h5>
                 <div class="row">
                     
                     <div class="spans2">
-                        <div>
-                            <label>Cliente:</label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido"> 
-                        </div>
+                        <form action="/pedido/findCliente" method="POST">
+                            <div>
+                                <label>Cliente:</label>
+                                <input class="redondeado derecha" style="width: 200px;" type="text" name="usernombre" value={{usuario.cuenta}}> 
+                                <input type="image" src="iconos/buscar.png" width="18" height="18" role="button">
+                            </div>
+                        </form>
+                        
                         <div>
                             <label>RUC/CI:</label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="userruc" value={{usuario.userruc}}>
                         </div>
                         <div>
                             <label>Correo:</label>
-                            <input class="redondeado derecha" style="width: 220px;" type="mail" name="npedido">
+                            <input class="redondeado derecha" style="width: 220px;" type="mail" form="crear_formulario" name="usermail" value={{usuario.usermail}}>
                         </div>
                         
                     </div>
                     <div class="spans2">
                         <div>  
                             <label>Direccion: </label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="userdir" value={{usuario.userdir}}>
                         </div>
                         <div>
                             <label>Telefono:  </label>
-                            <input class="redondeado derecha" style="width: 220px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="userfono" value={{usuario.userfono}}>
                         </div>
                         <div>
                             <label>F. Pago:   </label>
-                            <select class="redondeado derecha" style="width: 220px;" name="categoria" id="categoria">
-                                <option value=""></option>
+                            <select class="redondeado derecha" style="width: 220px;" form="crear_formulario" name="fpago" value={{usuario.fpago}}>
+                                <option value="{{usuario.fpago}}">{{usuario.fpago}}</option>
                                 <option value="Efectivo">Efectivo</option>
-                                <option value="Cheque">Cheque a fecha</option>
-                                <option value="tarjeta">Debito/Tarjeta</option>
-                                <option value="Credito">Credito Directo</option>
+                                <option value="Cheque a fecha">Cheque a fecha</option>
+                                <option value="Tarjeta">Debito/Tarjeta</option>
+                                <option value="Credito Directo">Credito Directo</option>
                             </select>
                         </div>
                     </div>
                     <div class="spans2">
                         <div>
                             <label>F. Entrega:   </label>
-                            <select class="redondeado derecha" style="width: 220px;" name="categoria" id="categoria">
-                                <option value=""></option>
-                                <option value="domicilio">Dominicilio</option>
-                                <option value="despacho">Despacho en Local</option>
-                                <option value="entregado">Entrega Inmediata</option>
+                            <select class="redondeado derecha" style="width: 220px;" form="crear_formulario" name="fentrega" value={{usuario.fentrega}}>
+                                <option value="{{usuario.fentrega}}">{{usuario.fentrega}}</option>
+                                <option value="Domicilio">Dominicilio</option>
+                                <option value="Despacho">Despacho en Local</option>
+                                <option value="Entregado">Entrega Inmediata</option>
                             </select>
                         </div>
                         
@@ -111,23 +117,23 @@
                         <h5>Importes</h5>
                         <div>
                             <label>Sub Total: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" form="crear_formulario" name="subtotal1" value={{usuario.subtotal1}}>
                         </div>
                         <div>
                             <label>Descuento: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" form="crear_formulario" name="descuento" value={{usuario.descuento}}>
                         </div>
                         <div>
                             <label>Sub Total: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" nform="crear_formulario" name="subtotal2" value={{usuario.subtotal2}}>
                         </div>
                         <div>
                             <label>IVA: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" form="crear_formulario" name="iva" value={{usuario.iva}}>
                         </div>
                         <div>
                             <label>Total: </label>
-                            <input class="redondeado derecha" style="width: 200px;" type="text" name="npedido">
+                            <input class="redondeado derecha" style="width: 200px;" type="text" form="crear_formulario" name="total" value={{usuario.total}}>
                         </div>
                     </div>
                     <br>
@@ -137,7 +143,8 @@
                 
                 </div>
             </div>
-        </form>
+
+
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                     Add Producto
         </button>
@@ -151,11 +158,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form id="buscarproducto" action="/pedido/findProducto" method="POST">
+                        <div>
+                            <label>Cliente:</label>
+                            <input class="redondeado derecha" style="width: 200px;" type="text" name="usernombre" value={{usuario.cuenta}}> 
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" form="buscarproducto" class="btn btn-primary">Agregar Producto</button>
                 </div>
                 </div>
             </div>

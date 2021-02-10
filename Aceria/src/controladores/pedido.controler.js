@@ -1,6 +1,7 @@
 const pedidoCtrl = {};
 
 const pedido= require('../modelos/pedidos');
+const user =require('../modelos/usuarios');
 const detalle= require('../modelos/detallefactura');
 
 pedidoCtrl.renderPedidopendienteForm = async (req,res) => {
@@ -27,6 +28,12 @@ pedidoCtrl.createPedido = (req,res) => {
 };
 
 pedidoCtrl.findPedido = (req,res) => {
+};
+
+pedidoCtrl.findcliente = async (req,res) => {
+    const {usernombre} = req.body;
+    const usuario = await user.find({cuenta: usernombre}).lean();
+    res.render('app/pedido/creapedido',{usuario});
 };
 
 pedidoCtrl.renderPedidoDetalleForm = async (req,res) => {
