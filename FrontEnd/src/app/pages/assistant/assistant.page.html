@@ -1,7 +1,9 @@
 <app-header></app-header>
 
 <ion-content class="ion-padding">
-    <h4><strong>SERVICIO AL CLIENTE</strong></h4>
+    <ion-toolbar class="ion-no-padding">
+        <ion-title color="dark" class="ion-text-start"><b>SERVICIO AL CLIENTE</b></ion-title>
+    </ion-toolbar>
 
     <ion-card mode="ios">      
         <ion-card-content>
@@ -18,14 +20,14 @@
     </ion-card>
 
     <ion-card mode="ios">
-        <ion-card-content>
+        <ion-card-content (click)="contactenos()">
             <ion-icon name="call"></ion-icon>
             <ion-text class="ion-padding">Contáctenos</ion-text>
         </ion-card-content>
     </ion-card>
 
     <ion-card mode="ios">
-        <ion-card-content>
+        <ion-card-content (click)="sugerencias()">
             <ion-icon name="folder-open"></ion-icon>
             <ion-text class="ion-padding">Buzón de sugerencias</ion-text>
         </ion-card-content>

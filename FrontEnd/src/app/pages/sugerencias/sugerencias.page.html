@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<ion-content class="ion-padding">
+
+  <ion-toolbar>
+    <ion-title color="dark" class="ion-no-padding"><b>TIPS/SUGERENCIAS</b></ion-title>
+  </ion-toolbar>
+
+  <br/>
+  <br/>
+
+  <ion-item id="text-area">
+    <ion-textarea id='sugerencia' required placeholder="Envíenos sus sugerencias">
+    </ion-textarea>
+  </ion-item>
+  <br/>
+  <ion-button (click)="EnviarSugerencia()" expand='block' color="acerimalla">
+    Envíar
+  </ion-button>
+  
+
+</ion-content>
