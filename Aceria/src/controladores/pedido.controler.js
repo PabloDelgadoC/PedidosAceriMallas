@@ -168,10 +168,9 @@ pedidoCtrl.eliminarPedido = async (req,res) => {
     const deta = await detalle.findOne({pedidoid: req.params.id}).lean();
     await detalle.findByIdAndDelete(deta._id);
 
-    const pago = await pagos.find({pedidoid: req.params.id}).lean();
-    for(const pag in pago){
-        await pagos.findByIdAndDelete(pag._id);
-    }
+    const pago = await pagos.findOne({pedidoid: req.params.id}).lean();
+    await pagos.findByIdAndDelete(pago._id);
+
 
 
     req.flash('success_deleted','Pedido eliminado');

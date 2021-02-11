@@ -1,0 +1,106 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/pagos/all" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">A B O N O S</h3>
+         
+        <br>
+        <div class="top">
+            <div class="span6 ml-auto">
+                <button type="button" class="btn btn_personalizado" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                    AGREGAR ABONO
+                </button>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div clas="cuerpo">
+            <div class="row">
+                <div class="spanp">
+                     <h3>Resumen de Factura</h3>
+                            <div>  
+                                <label>N.- Pedido: </label>
+                                <input class="redondeado derecha" style="width: 220px;" type="text" value="{{fac.npedido}}" readonly="readonly">
+                            </div>
+                            <div>
+                                <label>Cliente:  </label>
+                                <input class="redondeado derecha" style="width: 220px;" type="text" value="{{fac.usernombre}}" readonly="readonly">
+                            </div>
+                            <div>
+                                <label>RUC/CI:</label>
+                                <input class="redondeado derecha" style="width: 220px;" type="mail" value="{{fac.userruc}}" readonly="readonly">
+                            </div>
+                </div>
+
+                 <div class="spanp">
+                     <h3>Saldos</h3>
+                            <div>  
+                                <label>Monto: </label>
+                                <input class="redondeado derecha" style="width: 220px;" type="text" value="{{pag.monto}}" readonly="readonly">
+                            </div>
+                            <div>
+                                <label>Abonos:  </label>
+                                <input class="redondeado derecha" style="width: 220px;" type="text" value="{{pag.pagos}}" readonly="readonly">
+                            </div>
+                            <div>
+                                <label>Saldos:</label>
+                                <input class="redondeado derecha" style="width: 220px;" type="mail" value="{{pag.saldo}}" readonly="readonly">
+                            </div>
+                </div>
+        </div>
+    </div>
+    
+        <br>
+    <div class="presentar">
+        <table class="table-template">
+            <thead class="cabecera">
+                <tr>
+                    <th class="sep" style="color:#ffffff;">Fecha</th>
+                    <th class="sep" style="color:#ffffff;">Monto</th>
+                </tr>
+            </thead>
+            {{#each abo}}
+            <tr>
+                <td class="sep">{{fecha}}</td>
+                <td class="sep">{{monto}}</td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+
+
+    <!-- Modal -->
+        <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <form action="/pagos/abono" method="POST">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ingresar Abonos</h5>
+                        </div>
+                        <div class="modal-body">
+                                <div>
+                                    <label>Pedido al que Pertenece:</label>&nbsp;&nbsp;
+                                    <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number" name="codigo_pedido"> 
+                                </div>
+                                <div>
+                                    <label>Valor:</label>
+                                    <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number" name="valor"> 
+                                </div>
+                                <div>
+                                    <label>Fecha:</label>
+                                    <input class="redondeado2 derecha"  style="width: 200px;" type="date" name="fecha" >
+                                </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button class="btn btn-primary">Agregar Abono</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- fin del modal -->
+
+</div>
