@@ -7,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CarBuyPage implements OnInit {
 
+  public numArticulos:number;
+  public total:number;
+  public products:any;
+
   constructor() { }
 
   ngOnInit() {

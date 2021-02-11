@@ -5,17 +5,6 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 var myMarker = L.marker([getlatitud(), getlongitud()],{draggable: false}).addTo(map);
-/*
-myMarker.on('dragend', function() {
-			var coord = String(myMarker.getLatLng()).split(',');
-			console.log()
-			var lat = coord[0].split('(');
-			var lng = coord[1].split(')');
-			myMarker.bindPopup("Coordenadas: " + lat[1] + ", " + lng[0] + ".");
-			
-			document.getElementById("coordx").value = lat[1];
-			document.getElementById("coordy").value = lng[0];	
-});*/
 
 function getlatitud(){
 	const lati = document.getElementById("coordx").value;

@@ -9,12 +9,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/home',
         pathMatch: 'full'
-      },
-      {
-        path: 'tab1',
-        loadChildren: () => import('../tab1/tab1.module').then(m => m.Tab1PageModule)
       },
       {
         path: 'profile',
@@ -55,11 +51,15 @@ const routes: Routes = [
         path: 'locales/local1',
         loadChildren: () => import('../local-mapa/local-mapa.module').then( m => m.LocalMapaPageModule)
       },
+      {
+        path: 'sugerencias',
+        loadChildren: () => import('../sugerencias/sugerencias.module').then( m => m.SugerenciasPageModule)
+      },
     ]
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];

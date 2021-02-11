@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const {HOST, DATABASE} = process.env;
 
-const URI = `mongodb+srv://userMongo:software2021@cluster0.hc1lx.mongodb.net/dbMongo?retryWrites=true&w=majority`; 
+const URI = `mongodb://${HOST}:27017/${DATABASE}`; 
 
 mongoose.connect(URI, {
     useNewUrlParser: true,

@@ -1,0 +1,17 @@
+ion-slides {
+    height: 50%;
+}
+
+.swiper-slide {
+    display: block;
+}
+
+.swiper-slide img {
+    max-width: 100%;
+    pointer-events: none;
+}
+
+ion-footer {
+    position: absolute;
+    bottom: 0;
+}

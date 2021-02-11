@@ -7,7 +7,7 @@ const session = require('express-session');
 const passport = require('passport');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-//const logger = require('morgan');
+const logger = require('morgan');
 const multer = require('multer');
 
 
@@ -51,7 +51,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 app.use(cors());
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(multer({ storage: storage }).single('img'));
 
 
@@ -82,6 +82,7 @@ app.use(require('./routes/pedido.routes'));
 app.use(require('./routes/local.routes'));
 app.use(require('./routes/publicacion.routes'));
 app.use(require('./routes/reportes.router'))
+app.use(require('./routes/sugerencias.routes'));
 
 
 

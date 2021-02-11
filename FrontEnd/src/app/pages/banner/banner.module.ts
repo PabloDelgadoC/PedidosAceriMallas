@@ -4,19 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ExploreContainerComponent } from './explore-container.component';
+import { BannerPageRoutingModule } from './banner-routing.module';
+
+import { BannerPage } from './banner.page';
 
 @NgModule({
-  imports: [ 
+  imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    BannerPageRoutingModule
   ],
-  declarations: [
-    ExploreContainerComponent,
-  ],
-  exports: [
-    ExploreContainerComponent,
-  ]
+  declarations: [BannerPage]
 })
-export class ExploreContainerComponentModule {}
+export class BannerPageModule {}

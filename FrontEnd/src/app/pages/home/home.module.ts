@@ -9,6 +9,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 import { HomePage } from './home.page';
 import { ComponentModule } from '../../component/component.module';
 import { PipesModule } from '../../pipes/pipes.module';
+import { BannerPage } from '../banner/banner.page';
 
 @NgModule({
   imports: [
@@ -19,6 +20,9 @@ import { PipesModule } from '../../pipes/pipes.module';
     ComponentModule,
     PipesModule,
   ],
-  declarations: [HomePage]
+  declarations: [
+    HomePage,
+    BannerPage
+  ]
 })
 export class HomePageModule {}

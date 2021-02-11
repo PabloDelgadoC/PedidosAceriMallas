@@ -1,0 +1,29 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <h3 style="text-align: center;">T I P S / S U G E R E N C I A S</h3>
+
+    </div>
+    <div class="presentar">
+        <table style='width: 100%;'>
+            <thead class="cabecera">
+                <tr>
+                    <th class="sep" style="color:#ffffff;">Sugerencias</th>
+                    <th class="sep" style="color:#ffffff;">Acciones</th>
+                </tr>
+            </thead>
+            {{#each sugerencias}}
+            <tr>
+                <td class="sep">{{sugerencia}}</td>
+                <td class="sep">
+                    <form action="/sugerencias/delete/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="image" src="iconos/eliminar.png" width="18" height="22" role="button">
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

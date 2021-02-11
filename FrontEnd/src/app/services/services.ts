@@ -30,4 +30,8 @@ export class Services {
   public getProducts(url: string) {
     return this.http.get(url);
   }
+
+  public postRecomendation(url:string, data:any): Observable<any> {
+    return this.http.post(url, data, {headers: this.headers});
+  }
 }
