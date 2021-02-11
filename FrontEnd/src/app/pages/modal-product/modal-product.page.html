@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-img src="http://localhost:4000/{{img}}"></ion-img>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed style="padding-top: 25px;">
+    <ion-row>
+      <ion-col size="9">
+        <ion-title><b>{{nombre}}</b></ion-title>
+      </ion-col>
+      <ion-col size="3" class="ion-text-center">
+        <ion-text color="acerimalla">
+          ${{precio}}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-grid fixed class="ion-padding">
+    <ion-row>
+      <ion-col size="12" class="ion-text-justify">
+        <ion-text color="medium">{{descripcion}}</ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
+
+<ion-footer class="ion-no-border ion-padding">
+  <ion-button color="acerimalla" (click)="addCar()" expand="block">
+    AÑADIR AL CARRITO
+  </ion-button>
+</ion-footer>

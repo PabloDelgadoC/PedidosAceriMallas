@@ -7,6 +7,7 @@ import { TabsPageRoutingModule } from './tabs-routing.module';
 
 import { TabsPage } from './tabs.page';
 import { ComponentModule } from '../../component/component.module';
+import { BannerPage } from '../banner/banner.page';
 
 @NgModule({
   imports: [

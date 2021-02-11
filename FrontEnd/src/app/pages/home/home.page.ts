@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
+
 import { Services } from 'src/app/services/services';
 import { Constanst } from '../../constants/constanst';
+import { ModalProductPage } from '../modal-product/modal-product.page';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +21,7 @@ export class HomePage implements OnInit {
   constructor(
     private _service: Services,
     public loadingCtrl: LoadingController,
+    private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
@@ -50,6 +53,19 @@ export class HomePage implements OnInit {
 
   onSearchChange(event) {
     this.textToFilter = event.detail.value;
+  }
+
+  async showProduct(product:any) {
+    const modalProduct = await this.modalCtrl.create({
+      component: ModalProductPage,
+      componentProps: {
+        img: product.img,
+        nombre: product.nombre.toUpperCase(),
+        precio: product.precio,
+        descripcion: product.descripcion
+      }
+    });
+    await modalProduct.present();
   }
 
 }
