@@ -8,6 +8,7 @@ const {
     renderNewPedidoForm,
     createPedido,
     findPedido,
+    findProducto,
     findcliente,
     renderPedidoDetalleForm,
     renderEditPedido,
@@ -27,8 +28,9 @@ router.get('/pedido/crear',         Autenticado, renderNewPedidoForm);
 router.post('/pedido/add',          Autenticado, createPedido );  
 
 //buscardores
-router.post('/pedido/find',         Autenticado, findPedido );          
-router.post('/pedido/findCliente',  Autenticado, findcliente )
+router.post('/pedido/find',         Autenticado, findPedido );    
+router.post('/pedido/findProducto',  Autenticado, findProducto );      
+router.post('/pedido/findCliente',  Autenticado, findcliente );
 
 //observadores
 router.get('/pedido/detalle/:id',   Autenticado, renderPedidoDetalleForm );

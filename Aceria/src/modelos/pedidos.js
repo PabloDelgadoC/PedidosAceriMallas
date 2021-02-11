@@ -1,8 +1,8 @@
 const {Schema, model} = require('mongoose');
 
  const PedidoSchema = new Schema({
-    usuario: { type: String, required: true }, 
-    npedido: { type: Number, required: true },
+    usuario: { type: String, required: true },  
+    npedido: { type: Number, required: true }, //
     usernombre: String,
     userruc:    String,
     usermail:   String,
@@ -13,7 +13,7 @@ const {Schema, model} = require('mongoose');
     fentrega:   String,
     subtotal1:  Number,
     descuento:  Number,
-    subtotal2:   Number,
+    subtotal2:  Number,
     iva:        Number,
     total:      Number,
     estado:     String
