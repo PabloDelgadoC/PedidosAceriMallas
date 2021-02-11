@@ -17,14 +17,10 @@ router.get('/pagos/all',            Autenticado, renderPagosForm );
 
 //buscardores
 router.post('/pagos/find',          Autenticado, findPagos );
-router.post('/pagos/abono',         Autenticado, addAbono );
+router.post('/pagos/abono',         Autenticado, addAbono );     
 
-
-//editar
+//editar 
 router.get('/pagos/detalles/:id',       Autenticado, renderAbonosForm);    
-router.put('/pagos/edit/:id',       Autenticado, editAbono);         
-
-//eleminar
-router.delete('/pagos/delete/:id',  Autenticado,  eliminarAbono);      
+   
 
 module.exports = router;

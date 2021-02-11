@@ -56,13 +56,6 @@ pagosCtrl.addAbono = async (req,res) => {
 
 };
 
-pagosCtrl.editAbono = async (req,res) => {
-};
-
-pagosCtrl.eliminarAbono = async (req,res) => {
-
-};
-
 pagosCtrl.findPagos = async (req,res) => {
 
 };
