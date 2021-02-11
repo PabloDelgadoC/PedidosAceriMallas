@@ -52,6 +52,7 @@ router.get('/reportes/calificaciones',async (req,res)=>{
 router.get('/ventas/add',        Autenticado, ventasControlador.createVenta );  
 router.get('/pagos/add',        Autenticado, ventasControlador.createPago );  
 router.get('/califica/add',        Autenticado, ventasControlador.crearCalificacion );
+router.get('/cupones/add',        Autenticado, ventasControlador.crearCupon );
 router.post('/califica/add', async (req,res)=>{
     console.log('hola')
 

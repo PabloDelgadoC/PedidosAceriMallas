@@ -3,6 +3,7 @@ const VentasCtrl = {};
 const venta=require('../modelos/ventas');
 const pago=require('../modelos/pagos');
 const calificacion=require('../modelos/calificacion');
+const cupones=require('../modelos/cupones');
 
 VentasCtrl.createVenta = async (req,res) => {
             const new_venta=new venta();
@@ -55,5 +56,21 @@ VentasCtrl.crearCalificacion = async (req,res) => {
     res.redirect('/producto/all');
 
 };
+
+
+VentasCtrl.crearCupon = async (req,res) => {
+    const new_cupones=new cupones();
+
+    new_cupones.codigo='cup_567';
+    new_cupones.canjeado=false;
+    new_cupones.porcentaje=10;
+    
+   
+    await new_cupones.save();
+    req.flash('success_msg','Venta creada correctamente');
+    res.redirect('/producto/all');
+
+};
+
 
 module.exports = VentasCtrl;

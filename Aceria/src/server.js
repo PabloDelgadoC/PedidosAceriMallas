@@ -83,7 +83,7 @@ app.use(require('./routes/local.routes'));
 app.use(require('./routes/publicacion.routes'));
 app.use(require('./routes/reportes.router'))
 app.use(require('./routes/sugerencias.routes'));
-
+app.use(require('./routes/cupones.router'));
 
 
 //archivos estaticos
