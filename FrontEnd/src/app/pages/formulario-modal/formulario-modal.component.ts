@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { ModalController, NavParams } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
+
 import { Services } from 'src/app/services/services';
 
 @Component({
@@ -11,14 +12,15 @@ import { Services } from 'src/app/services/services';
 
 export class FormularioModalComponent{
 
-  rating:number=0
+  rating:number;
   selected_value;
-  constructor(private modalCrtl: ModalController, private navParams: NavParams,
-              private services: Services) {
+  constructor(
+    private modalCrtl: ModalController,
+    private toastController: ToastController,
+    private services: Services
+  ) { }
 
-  }
-
-  dismissModal(){
+  closeModal() {
     this.modalCrtl.dismiss();
   }
 
@@ -27,13 +29,31 @@ export class FormularioModalComponent{
       servicio:this.selected_value,
       usuario:localStorage.getItem("usuario"),
       calificacion:this.rating
-    }
-    this.services.postForm(data).subscribe(result=>{
-      if(result["resp"]=="exito")
-        this.dismissModal()
-      else
-        this.dismissModal()
-    })
+    };
+
+    this.services.postForm(data).subscribe( async result => {
+      var toast = null;
+      if(result["resp"]=="exito"){
+        this.closeModal();
+        toast = await this.toastController.create({
+          message: 'Se ha enviado su calificación con éxito',
+          duration: 3000,
+          position: 'top',
+          cssClass: 'dark-trans'
+        });
+        toast.present();
+      }
+      else{
+        this.closeModal();
+        toast = await this.toastController.create({
+          message: 'No se ha enviado su calificación',
+          duration: 3000,
+          position: 'top',
+          cssClass: 'dark-trans'
+        });
+        toast.present();
+      }
+    });
   }
 
 }

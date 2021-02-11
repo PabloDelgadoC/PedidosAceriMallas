@@ -1,37 +1,37 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Formulario
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button  (click)="dismissModal()">
-        <p>Cerrar</p>
-      </ion-button>
+  <ion-toolbar id="header" color="acerimalla">
+
+    <ion-buttons slot="start">
+      <ion-icon slot="start" name="arrow-back" color="light" (click)="closeModal()"></ion-icon>
     </ion-buttons>
+
+    <img src="../../../assets/img/logo.png" alt="">
+    
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
 
   <ion-list>
 
     <ion-item>
-      <ion-label>Servicio</ion-label>
-      <ion-select  [(ngModel)]="selected_value" value="servicio" interface="action-sheet">
+      <ion-label color="acerimalla">Servicio</ion-label>
+      <ion-select [(ngModel)]="selected_value" value="servicio" interface="action-popover">
         <ion-select-option value="App">App</ion-select-option>
         <ion-select-option value="Entregas">Entregas</ion-select-option>
         <ion-select-option value="Productos">Productos</ion-select-option>
         <ion-select-option value="Trato Vendedor">Trato del vendedor</ion-select-option>
       </ion-select>
     </ion-item>
-
+    <br/><br/>
     <ion-item>
-      <ion-label position="stacked">Valoracion</ion-label>
-      <ion-input placeholder="placeholder" [(ngModel)]="rating" type="number" min="0" max="5"></ion-input>
+      <ion-label color="acerimalla" position="stacked">Valoracion</ion-label>
+      <ion-input placeholder="Ej: 5" [(ngModel)]="rating" type="number" min="0" max="5"></ion-input>
     </ion-item>
 
   </ion-list>
+  <ion-button color="acerimalla" class="ion-padding" expand="block" (click)="guardarValoracion()">
+    Enivar Valoración
+  </ion-button>
 </ion-content>
-<ion-footer>
-  <ion-button expand="block" (click)="guardarValoracion()">Enivar Valoración</ion-button>
-</ion-footer>
+

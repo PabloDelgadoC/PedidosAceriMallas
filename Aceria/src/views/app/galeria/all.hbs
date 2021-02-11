@@ -1,0 +1,50 @@
+{{>top}}
+{{>sidebar}}
+<div class="main">
+
+    <div class="busqueda_parte">
+        <h3 style="text-align: center;">G A L E R I A</h3>
+        <br>
+        <div class="row">
+            <div class="span6 ml-auto">
+                <a class="btn btn_personalizado" href="/galeria/create"
+                    role="button">REGISTRAR</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="presentar">
+        <table style='width: 100%;'>
+            <thead class="cabecera">
+                <tr>
+                    <th class="sep" style="color:#ffffff;">Código</th>
+                    <th class="sep" style="color:#ffffff;">Nombre</th>
+                    <th class="sep" style="color:#ffffff;">Imagen</th>
+                    <th class="sep" style="color:#ffffff;">Descripción</th>
+                    <th class="sep" style="color:#ffffff;"></th>
+                    <th class="sep" style="color:#ffffff;"></th>
+                </tr>
+            </thead>
+            {{#each galeria}}
+            <tr>
+                <td class="sep">{{codigo}}</td>
+                <td class="sep">{{nombre}}</td>
+                <td class="sep">{{imagen}}</td>
+                <td class="sep">{{descripcion}}</td>
+                <td class="sep">
+                    <a href="/galeria/edit/{{_id}}">
+                        <img src="iconos/editar.png" width="18" height="22" loading="lazy">
+                    </a>       
+                </td>
+                <td class="sep">
+                    <form action="/galeria/delete/{{_id}}?_method=DELETE" method="POST">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <input type="image" src="iconos/eliminar.png" width="18" height="22" role="button">
+                    </form>
+                </td>
+            </tr>
+            {{/each}}
+        </table>
+    </div>
+</div>

@@ -40,7 +40,7 @@ const controller = {
 
     deleteSugerencia: async (req, res) => {
         await Sugerencia.findByIdAndDelete(req.params.id);
-        req.flash('success_deleted','Sugerencia eliminada');
+        req.flash('success_deleted','Sugerencia eliminada exitosamente');
         res.redirect('/sugerencias');
     },
 };

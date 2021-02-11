@@ -55,6 +55,10 @@ const routes: Routes = [
         path: 'sugerencias',
         loadChildren: () => import('../sugerencias/sugerencias.module').then( m => m.SugerenciasPageModule)
       },
+      {
+        path: 'pay-options',
+        loadChildren: () => import('../pay-options/pay-options.module').then( m => m.PayOptionsPageModule)
+      },
     ]
   },
   {

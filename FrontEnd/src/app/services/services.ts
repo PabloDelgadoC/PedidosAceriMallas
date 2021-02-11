@@ -41,4 +41,8 @@ export class Services {
   public getLocales(url:string) {
     return this.http.get(url);
   }
+
+  public getGalery(url:string) {
+    return this.http.get(url);
+  }
 }
