@@ -34,4 +34,11 @@ export class Services {
   public postRecomendation(url:string, data:any): Observable<any> {
     return this.http.post(url, data, {headers: this.headers});
   }
+
+  public postForm(data:any): Observable<any> {
+    return this.http.post('http://localhost:4000/califica/add', data);
+  }
+  public getLocales(url:string) {
+    return this.http.get(url);
+  }
 }

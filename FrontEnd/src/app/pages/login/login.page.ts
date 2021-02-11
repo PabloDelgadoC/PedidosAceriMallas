@@ -46,7 +46,8 @@ export class LoginPage implements OnInit {
       .subscribe( async (res:any) => {
         console.log('SERVER RESPOND: ', res);
         if(res.STATUS === 'OK') {
-          await localStorage.setItem("ACCESS_TOKEN", res.TOKEN);
+          localStorage.setItem("ACCESS_TOKEN", res.TOKEN);
+          localStorage.setItem("usuario", user.email);
           this.authSubject.next(true);
           this.router.navigate(['tabs/home']);
         }

@@ -9,7 +9,8 @@ const {
     solomapa,
     renderEditLocal,
     editLocal,
-    elimanateLocal
+    elimanateLocal,
+    getLocals
 } =require('../controladores/local.controler');
 
 const { Autenticado } = require('../helper/autenticador');
@@ -34,5 +35,8 @@ router.put('/local/edit/:id',    Autenticado, editLocal);
 
 //eleminar
 router.delete('/local/delete/:id', Autenticado, elimanateLocal);      
+
+//USERS MOVIL ROUTES
+router.get('/api/locals', getLocals);
 
 module.exports = router;

@@ -48,8 +48,8 @@ const routes: Routes = [
         loadChildren: () => import('../pedidos/pedidos.module').then( m => m.PedidosPageModule)
       },
       {
-        path: 'locales/local1',
-        loadChildren: () => import('../local-mapa/local-mapa.module').then( m => m.LocalMapaPageModule)
+        path: 'locales/local',
+        loadChildren: () => import('../locales/local-mapa/local-mapa.module').then( m => m.LocalMapaPageModule)
       },
       {
         path: 'sugerencias',

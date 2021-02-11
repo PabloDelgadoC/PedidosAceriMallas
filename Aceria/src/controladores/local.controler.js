@@ -14,7 +14,7 @@ LocalCtrl.renderLocalForm = (req,res) => {
 
 LocalCtrl.createLocal = async (req,res) => {
     const errors = [];
-    const {nombre,descripcion,direccion,coordx,coordy} = req.body;
+    const {nombre,descripcion,direccion,telefono,coordx,coordy} = req.body;
 
     if(nombre.length < 5){
         errors.push({text: 'Codigo es muy corto, debe de tener minimo 5 caracteres'});
@@ -37,6 +37,7 @@ LocalCtrl.createLocal = async (req,res) => {
         puesto.nombre = nombre;
         puesto.descripcion = descripcion;
         puesto.direccion = direccion;
+        puesto.telefono = telefono;
         puesto.coordx = coordx;
         puesto.coordy = coordy; 
 
@@ -91,6 +92,16 @@ LocalCtrl.elimanateLocal = async (req,res) => {
     req.flash('success_deleted','Local eliminado');
     res.redirect('/locales/all');
 
+};
+
+//USERS MOVIL
+LocalCtrl.getLocals = async (req, res) => {
+    const locals = await local.find();
+    return res.status(200).send({
+        STATUS: 'OK',
+        MESSAGE: 'Show locals',
+        LOCALS: locals
+    });
 };
 
 module.exports = LocalCtrl;
