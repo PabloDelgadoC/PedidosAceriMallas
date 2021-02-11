@@ -6,7 +6,8 @@ const {Schema, model} = require('mongoose');
     direccion:  {type: String, required: true},
     coordx:     {type: String, required: true},
     coordy:     {type: String, required: true},
-    img:        String
+    img:        String,
+    telefono: String
 });
 
 module.exports = model('Locales',LocalesSchema);
