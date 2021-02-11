@@ -7,6 +7,7 @@ const admin=require('../modelos/administrador');
 const ventas=require('../modelos/ventas');
 const pagos=require('../modelos/pagos');
 
+
 //temporal
 const ventasControlador=require('../controladores/ventas.controler')
 
@@ -50,6 +51,27 @@ router.get('/reportes/calificaciones',async (req,res)=>{
 //agregar
 router.get('/ventas/add',        Autenticado, ventasControlador.createVenta );  
 router.get('/pagos/add',        Autenticado, ventasControlador.createPago );  
-router.get('/califica/add',        Autenticado, ventasControlador.crearCalificacion );  
+router.get('/califica/add',        Autenticado, ventasControlador.crearCalificacion );
+router.post('/califica/add', async (req,res)=>{
+    console.log('hola')
+
+    let servicio=req.body.servicio;
+    let usuario=req.body.usuario;
+    let puntaje=req.body.calificacion;
+
+    console.log('servicio: ',servicio)
+    console.log('usuario: ',usuario)
+    console.log('calificacion: ',puntaje)
+
+    const new_calificacion=new calificacion();
+    new_calificacion.servicio=servicio
+    new_calificacion.usuario=usuario
+    new_calificacion.calificacion=puntaje
+    
+   
+    await new_calificacion.save();
+    return res.send({'resp': 'exito'})
+
+});  
 
 module.exports = router;

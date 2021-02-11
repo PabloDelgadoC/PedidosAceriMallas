@@ -37,9 +37,17 @@ VentasCtrl.createPago = async (req,res) => {
 VentasCtrl.crearCalificacion = async (req,res) => {
     const new_calificacion=new calificacion();
 
-    new_calificacion.servicio='App'
-    new_calificacion.usuario='Pablo Delgado'
-    new_calificacion.calificacion='5'
+    let servicio=req.body.servicio;
+    let usuario=req.body.usuario;
+    let calificacion=req.body.calificacion;
+
+    console.log('servicio: ',servicio)
+    console.log('usuario: ',usuario)
+    console.log('calificacion: ',calificacion)
+
+    new_calificacion.servicio=servicio
+    new_calificacion.usuario=usuario
+    new_calificacion.calificacion=calificacion
     
    
     await new_calificacion.save();
