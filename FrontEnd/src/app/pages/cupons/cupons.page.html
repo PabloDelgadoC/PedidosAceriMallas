@@ -4,4 +4,14 @@
     <ion-toolbar class="ion-no-padding">
         <ion-title color="dark" class="ion-text-start"><b>CUPONES</b></ion-title>
     </ion-toolbar>
+
+    <ion-card *ngFor="let cupon of cupons">
+        <ion-card-header>
+            <ion-card-subtitle><b>CÓDIGO:</b> {{cupon.codigo}}</ion-card-subtitle>
+            <ion-card-title><b>DESCUENTO:</b> {{cupon.porcentaje}}%</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            CANJEADO: <span *ngIf="cupon.canjeado">SI</span> <span *ngIf="!cupon.canjeado">NO</span>
+        </ion-card-content>
+    </ion-card>
 </ion-content>

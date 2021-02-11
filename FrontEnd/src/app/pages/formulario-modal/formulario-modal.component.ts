@@ -46,7 +46,7 @@ export class FormularioModalComponent{
       else{
         this.closeModal();
         toast = await this.toastController.create({
-          message: 'No se ha enviado su calificación',
+          message: 'No ha iniciado sesión',
           duration: 3000,
           position: 'top',
           cssClass: 'dark-trans'

@@ -28,20 +28,31 @@ export class SugerenciasPage implements OnInit {
     };
     this._service.postRecomendation(Constanst.URL + '/sugerencias/create', sugerencia)
     .subscribe(async (res:any) => {
-      console.log('SERVER RESPOND: ', res);
       var toast = null;
       if(res.STATUS === 'OK') {
-        toast = await this.toastController.create({
-          message: res.MESSAGE,
-          duration: 3000,
-          position:'top',
-          cssClass: 'dark-trans'
-        });
-        toast.present();
+        if(localStorage.getItem("usuario")){
+          toast = await this.toastController.create({
+            message: res.MESSAGE,
+            duration: 3000,
+            position:'top',
+            cssClass: 'dark-trans'
+          });
+          toast.present();
+        }
+        else{
+          toast = await this.toastController.create({
+            message: 'No ha iniciado sesión',
+            duration: 3000,
+            position:'top',
+            cssClass: 'dark-trans'
+          });
+          toast.present();
+        }
       }else {
         toast = await this.toastController.create({
           message: 'No se ha podido enviar la sugerencia, intente mas tarde',
           duration: 3000,
+          position:'top',
           cssClass: 'dark-trans'
         });
         toast.present();

@@ -45,4 +45,8 @@ export class Services {
   public getGalery(url:string) {
     return this.http.get(url);
   }
+
+  public getCupons(url:string) {
+    return this.http.get(url);
+  }
 }

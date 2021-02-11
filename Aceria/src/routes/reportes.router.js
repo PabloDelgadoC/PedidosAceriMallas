@@ -69,6 +69,9 @@ router.post('/califica/add', async (req,res)=>{
     new_calificacion.usuario=usuario
     new_calificacion.calificacion=puntaje
     
+    if(usuario === null) {
+        return res.send({'resp': 'no user'});
+    }
    
     await new_calificacion.save();
     return res.send({'resp': 'exito'})

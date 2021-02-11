@@ -1,10 +1,14 @@
 <app-header></app-header>
 
 <ion-content class="ion-padding">
+
+    <ion-toolbar class="ion-no-padding">
+        <ion-title color="dark" class="ion-text-start"><b>GALERIA</b></ion-title>
+    </ion-toolbar>
     <ion-grid fixed>
         <ion-row>
             <ion-col size="6" *ngFor="let galery of galeria">
-                <ion-img src="http://localhost:4000/{{galery.img}}" style="height: 100%; object-fit: contain;" (click)="showImg(product)"></ion-img>
+                <ion-img src="http://localhost:4000/{{galery.img}}" style="height: 100%; object-fit: contain;" (click)="showImg()"></ion-img>
             </ion-col>
         </ion-row>
     </ion-grid>

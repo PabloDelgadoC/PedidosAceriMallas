@@ -1,8 +1,9 @@
 <ion-header>
   <ion-toolbar id="header" color="acerimalla">
-
     <ion-buttons slot="start">
-      <ion-icon slot="start" name="arrow-back" color="light" (click)="closeModal()"></ion-icon>
+      <ion-button (click)="closeModal()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
 
     <img src="../../../assets/img/logo.png" alt="">
@@ -11,6 +12,9 @@
 </ion-header>
 
 <ion-content class="ion-padding">
+  <ion-toolbar class="ion-no-padding">
+    <ion-title color="dark" class="ion-text-start"><b>CALIFICAR SERVICIOS</b></ion-title>
+</ion-toolbar>
 
   <ion-list>
 

@@ -34,7 +34,15 @@ router.get('/consultarCupon/:id', async(req,res)=>{
             return res.send({'resp': data1[0].porcentaje})
         }
     }
-    console.log(data1)
-});  
+});
+
+router.get('/api/cupones', async (req, res) => {
+    const cupons = await cupones.find().lean();
+    return res.status(200).send({
+        STATUS: 'OK',
+        MESSAGE: 'Show cupons',
+        CUPONS: cupons
+    });
+});
 
 module.exports = router;
