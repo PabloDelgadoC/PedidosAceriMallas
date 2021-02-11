@@ -4,21 +4,21 @@
     <ion-toolbar>
         <ion-title color="dark" class="ion-text-start"><b>LOCALES</b></ion-title>
     </ion-toolbar>
-    <ion-list class="ion-no-padding">
-        <ion-card>
+    <ion-list class="ion-no-padding" *ngIf="locals">
+        <ion-card *ngFor="let local of locals">
             <ion-item>
-                <ion-thumbnail slot="start" (click)="seleccionar_direccion();">
-                    <img src='https://via.placeholder.com/600/92c952'>
+                <ion-thumbnail slot="start" (click)="seleccionar_direccion(local.coordx,local.coordy);">
+                    <ion-img src="http://localhost:4000/{{local.img}}"></ion-img>
                 </ion-thumbnail>
                 <ion-label> 
-                    <ion-icon slot="only-icon" name="pin-outline"></ion-icon>
-                    <p>Via a Daule, Guayaquil 090602</p>
-                
-                    <ion-icon slot="start" name="calendar-outline"></ion-icon>
-                    <p> Lunes - Viernes de 8:00 - 17:00</p>
-                
-                    <ion-icon slot="start" name="call-outline"></ion-icon>
-                    <p> +593 48861758</p>
+                    <ion-icon color="acerimalla" slot="only-icon" name="pin-outline"></ion-icon> &nbsp;
+                    <ion-text>{{local.direccion}}</ion-text>
+                    <br/>
+                    <ion-icon color="acerimalla" slot="start" name="calendar-outline"></ion-icon> &nbsp;
+                    <ion-text>{{local.descripcion}}</ion-text>
+                    <br/>
+                    <ion-icon color="acerimalla" slot="start" name="call-outline"></ion-icon> &nbsp;
+                    <ion-text>{{local.telefono}}</ion-text>
                 </ion-label>
                 
             </ion-item>
