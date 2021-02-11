@@ -1,3 +1,156 @@
 {{>top}}
 {{>sidebar}}
+<div class="main">
+    <div class="busqueda_parte">
+        <a href="/pedido/pendiente" style="color:#622870;"><img src="iconos/atras.png" width="10" height="15" loading="lazy"> Atrás</a>
+        <h3 style="text-align: center;">P E D I D O S</h3>
+        <h5 style="text-align: center; color: #cb1189;">Detalle de Pedido</h5>
+        <br>
+            <div class="top" > 
+                <label>N.- Orden:</label>
+                <input class="redondeado2" type="number"  readonly="readonly" id="npedido" form="crear_formulario" name="npedido" value="{{ped.npedido}}">
+                <label c>Fecha:</label>
+                <input class="redondeado2" type="date"  readonly="readonly" id="fecha" form="crear_formulario" name="fecha" onchange="cargarData()" value={{ped.fecha}}>
+            </div>
+  
+            <br>
+            <div class="cuerpo">
+                <h5>Datos del Comprador</h5>
+                <div class="row">
+                    
+                    <div class="spans2">
+                            <div>
+                                <label>Codigo:</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <input class="redondeado" style="width: 210px;" type="text" name="usernombre"  readonly="readonly"> 
+                            </div>
+                          <div>
+                            <label>Nombre:</label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="usu" value={{ped.usernombre}}  readonly="readonly">
+                        </div>
+                        
+                        <div>
+                            <label>RUC/CI:</label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="userruc" value={{ped.userruc}}  readonly="readonly">
+                        </div>
+                    </div>
+                    <div class="spans2">
+                        <div>  
+                            <label>Direccion: </label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="userdir" value={{ped.userdir}} readonly="readonly">
+                        </div>
+                        <div>
+                            <label>Telefono:  </label>
+                            <input class="redondeado derecha" style="width: 220px;" type="text" form="crear_formulario" name="userfono" value={{ped.userfono}} readonly="readonly">
+                        </div>
+                        <div>
+                            <label>Correo:</label>
+                            <input class="redondeado derecha" style="width: 220px;" type="mail" form="crear_formulario" name="usermail" value={{ped.usermail}} readonly="readonly">
+                        </div>
+                       
+                    </div>
+                    <div class="spans2">
+                         <div>
+                            <label>F. Pago:   </label>
+                            <select class="redondeado derecha" style="width: 220px;" form="crear_formulario" id="fpago" name="fpago" onchange="cargarData()">
+                                <option value="">{{ped.fpago}}</option>
+                                <option value="Efectivo">Efectivo</option>
+                                <option value="Cheque a fecha">Cheque a fecha</option>
+                                <option value="Tarjeta">Debito/Tarjeta</option>
+                                <option value="Credito Directo">Credito Directo</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>F. Entrega:   </label>
+                            <select class="redondeado derecha" style="width: 220px;" form="crear_formulario" id="fentrega" name="fentrega" onchange="cargarData()">
+                                <option value="">{{ped.fentrega}}</option>
+                                <option value="Domicilio">Dominicilio</option>
+                                <option value="Despacho">Despacho en Local</option>
+                                <option value="Entregado">Entrega Inmediata</option>
+                            </select>
+                        </div>
+                        
+                    </div>
+                
+                </div>
+               
+            </div>
+            <br>
+        
+            <div class="row">
+                <div class="spang">
+                    <div class="seccion_detalle">
+                        <h5>Detalle de Orden</h5>
+                       
+                        <table class="table-template">
+                        <thead class="cabecera">
+                            <tr>
+                                <th class="sep" style="color:#ffffff;">Codigo</th>
+                                <th class="sep" style="color:#ffffff;">Nombre</th>
+                                <th class="sep" style="color:#ffffff;">Cantidad</th>
+                                <th class="sep" style="color:#ffffff;">P. Unit</th>
+                                <th class="sep" style="color:#ffffff;">SubTotal</th>
+                            </tr>
+                        </thead>
+                            <tr>
+                                <td class="sep">{{deta.productcodigo}}</td>
+                                <td class="sep">{{deta.productnombre}}</td>
+                                <td class="sep">{{deta.productcant}}</td>
+                                <td class="sep">{{deta.productprecio}}</td>
+                                <td class="sep">{{deta.producsubtotal}}</td>
+                            </tr>
+                    </table>
+                    </div>
+                </div>
+                <div class="spans2">
+                    <div class="valores">
+                        <h5>Importes</h5>
+                        <div>
+                            <label>Sub Total: </label>
+                            <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number"  form="crear_formulario" id="subtotal1" name="subtotal1" oninput="cargarDescuento()" value="{{ped.subtotal1}}" readonly="readonly">
+                        </div>
+                        <div>
+                            <label>Descuento: </label>
+                            <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number" form="crear_formulario" id="descuento" name="descuento" oninput="cargarDescuento()" value="{{ped.descuento}}" readonly="readonly">
+                        </div>
+                        <div>
+                            <label>Sub Total: </label>
+                            <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number" form="crear_formulario" id="subtotal2" name="subtotal2" value="{{ped.subtotal2}}"  readonly="readonly">
+                        </div>
+                        <div>
+                            <label>IVA: </label>
+                            <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number" form="crear_formulario" id="iva"  name="iva" value="{{ped.iva}}" readonly="readonly" >
+                        </div>
+                        <div>
+                            <label>Total: </label>
+                            <input class="redondeado2 derecha" style="width: 200px;" step="any" type="number" form="crear_formulario" id="total" name="total" value="{{ped.total}}"  readonly="readonly">
+                        </div>
+                        <form action="/pedido/edit/{{ped._id}}?_method=PUT" method="POST">
+                            <input type="hidden" name="_method" value="PUT">
+                            <input type="hidden" name="_id" value="{{ped._id}}">
+        
+                            <div class="separador">
+                                <label>Estado: </label>
+                                <select class="redondeado2 derecha" style="width: 200px;"  id="estado" name="estado">
+                                    <option value="pendiente">Pendiente</option>
+                                    <option value="transito">Pedido en Transito</option>
+                                    <option value="completo">Pedido Entregado</option>
+                                </select>
+                            </div>
+
+                            <div class="separador">
+                                <button class="button btn btn_personalizado">REGISTRAR</button>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+
+                    <br>                
+                </div>
+            </div>
+    </div>
+</div>
+
+
 

@@ -171,6 +171,15 @@ body {
     width: 300px;
   }
 
+  .redondeado2 {
+    border-radius: 5px;
+    background-color:  #edeef0;
+    border: 0;
+    height: 30px;
+    width: 300px;
+    text-align: right;
+  }
+
 
   .btn_personalizado {
     background-color: #cb1189;
