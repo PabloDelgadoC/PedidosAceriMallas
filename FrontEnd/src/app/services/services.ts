@@ -34,4 +34,8 @@ export class Services {
   public postRecomendation(url:string, data:any): Observable<any> {
     return this.http.post(url, data, {headers: this.headers});
   }
+
+  public getLocales(url:string) {
+    return this.http.get(url);
+  }
 }

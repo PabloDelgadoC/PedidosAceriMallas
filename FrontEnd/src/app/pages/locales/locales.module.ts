@@ -8,6 +8,7 @@ import { LocalesPageRoutingModule } from './locales-routing.module';
 
 import { LocalesPage } from './locales.page';
 import { ComponentModule } from '../../component/component.module';
+import { LocalMapaPage } from './local-mapa/local-mapa.page';
 
 @NgModule({
   imports: [
@@ -17,6 +18,9 @@ import { ComponentModule } from '../../component/component.module';
     LocalesPageRoutingModule,
     ComponentModule,
   ],
-  declarations: [LocalesPage]
+  declarations: [
+    LocalesPage,
+    LocalMapaPage,
+  ]
 })
 export class LocalesPageModule {}

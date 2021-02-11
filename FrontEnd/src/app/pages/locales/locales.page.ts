@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoadingController } from '@ionic/angular';
+
+import { Services } from 'src/app/services/services';
+import { Constanst } from '../../constants/constanst';
 
 @Component({
   selector: 'app-locales',
@@ -7,18 +11,34 @@ import { Router } from '@angular/router';
   styleUrls: ['./locales.page.scss'],
 })
 export class LocalesPage implements OnInit {
-
-  locales: any = ['local1','local2']; 
+ 
+  public locals:any = null;
 
   constructor(
     private router: Router,
+    private _service: Services,
+    public loadingCtrl: LoadingController,
   ) { }
 
-  ngOnInit() {
+  async ngOnInit() {
+    const loading = await this.loadingCtrl .create({
+      message: 'Cargando...',
+    });
+    await loading.present();
+    this._service.getProducts(Constanst.URL + '/api/locals')
+      .subscribe( (res:any) => {
+        this.locals = res.LOCALS;
+      },
+      (err) => {
+        console.log('ERROR TO GET PRODUCTS OR DID NOT ARRIVE SERVER RESPOND: ', err);
+      });
+    loading.dismiss();
   }
-  seleccionar_direccion() {
-    console.log('click seleccionar direccion');
-    this.router.navigate(['tabs/locales/local1']);
+
+  seleccionar_direccion(lat:string, lng:string) {
+    localStorage.setItem('coordx',lat);
+    localStorage.setItem('coordy', lng);
+    this.router.navigate(['tabs/locales/local']);
   }
 
 }

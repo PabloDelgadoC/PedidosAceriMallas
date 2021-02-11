@@ -7,7 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { LocalMapaPageRoutingModule } from './local-mapa-routing.module';
 
 import { LocalMapaPage } from './local-mapa.page';
-import { ComponentModule } from '../../component/component.module';
+import { ComponentModule } from '../../../component/component.module';
 
 @NgModule({
   imports: [
