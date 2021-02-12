@@ -1,4 +1,4 @@
 export class Constanst {
 
-    public static URL: String = "http://localhost:4000";
+    public static URL: String = "https://acerimallas.herokuapp.com";
 }

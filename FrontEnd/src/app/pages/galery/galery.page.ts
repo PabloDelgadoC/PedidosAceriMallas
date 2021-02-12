@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ModalController } from '@ionic/angular';
 
 import { Services } from 'src/app/services/services';
 import { Constanst } from '../../constants/constanst';
+import { ModalGaleryPage } from '../modal-galery/modal-galery.page';
 
 @Component({
   selector: 'app-galery',
@@ -17,6 +18,7 @@ export class GaleryPage implements OnInit {
   constructor(
     public loadingCtrl: LoadingController,
     private _service: Services,
+    private modalCtrl: ModalController
   ) { }
 
   async ngOnInit() {
@@ -34,8 +36,16 @@ export class GaleryPage implements OnInit {
     loading.dismiss();
   }
 
-  public showImg() {
-
+  public async showImg(img:any) {
+    const modalProduct = await this.modalCtrl.create({
+      component: ModalGaleryPage,
+      componentProps: {
+        img: img.img,
+        nombre: img.nombre.toUpperCase(),
+        descripcion: img.descripcion
+      }
+    });
+    await modalProduct.present();
   }
 
 }
