@@ -56,4 +56,9 @@ export class FormularioModalComponent{
     });
   }
 
+  rangeChange(event) {
+    this.rating = event.detail.value;
+    console.log(this.rating);
+  }
+
 }

@@ -30,7 +30,14 @@
     <br/><br/>
     <ion-item>
       <ion-label color="acerimalla" position="stacked">Valoracion</ion-label>
-      <ion-input placeholder="Ej: 5" [(ngModel)]="rating" type="number" min="0" max="5"></ion-input>
+      <ion-range [(ngModel)]="rating" name="rating"
+        min="0" max="5"
+         pin="true"
+        snaps="true" step="1"
+        ticks="true" value="0"
+        color="acerimalla"
+        (ionChange)="rangeChange($event)">
+      </ion-range>
     </ion-item>
 
   </ion-list>
