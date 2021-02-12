@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Storage } from  '@ionic/storage';
 import { BehaviorSubject } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -21,7 +20,6 @@ export class LoginPage implements OnInit {
 
   constructor( 
     private _service: Services,
-    private storage: Storage,
     public loadingController: LoadingController,
     private router: Router,
   ) { }
@@ -48,6 +46,8 @@ export class LoginPage implements OnInit {
         if(res.STATUS === 'OK') {
           localStorage.setItem("ACCESS_TOKEN", res.TOKEN);
           localStorage.setItem("usuario", user.email);
+          localStorage.setItem('noLogin', 'false');
+          localStorage.setItem("id", res.USER._id);
           this.authSubject.next(true);
           this.router.navigate(['tabs/home']);
         }
@@ -66,5 +66,9 @@ export class LoginPage implements OnInit {
 
   public loginFacebook(): void {
 
+  }
+
+  public noLogin() {
+    localStorage.setItem('noLogin', 'true');
   }
 }

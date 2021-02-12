@@ -284,6 +284,15 @@ UserCtrl.logIn = async (req, res) => {
         });
     }
     
-}
+};
+
+UserCtrl.profile = async (req, res) => {
+    const usuario = await user.findById(req.params.id).lean();
+    return res.status(200).send({
+        STATUS: 'OK',
+        MESSAGE: 'Usuario obtenido exitosamente',
+        USER: usuario
+    });
+};
 
 module.exports = UserCtrl;

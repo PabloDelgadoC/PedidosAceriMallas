@@ -4,47 +4,79 @@
     <div id="user-photo" class="ion-text-center">
       <ion-icon name="person-circle-outline" style="zoom: 10.0;"></ion-icon>
     </div>
-    <div class="ion-padding">
-      <!-- Login form -->
+    <div class="ion-padding" *ngIf="user">
+
       <ion-label for="name">Nombres:</ion-label>
       <ion-item color="light">
-        <ion-input name="name" type="text" required></ion-input>
+        <ion-text name="name" type="text">{{user.nombre}}</ion-text>
       </ion-item>
       <br/>
       <br/>
-      <ion-label for="last-name">Apellidos:</ion-label>
+      <ion-label for="cedula">Ruc/Cedula:</ion-label>
       <ion-item color="light">
-        <ion-input name="last-name" type="text" required></ion-input>
-      </ion-item>
-      <br/>
-      <br/>
-      <ion-label for="cedula">Cedula:</ion-label>
-      <ion-item color="light">
-        <ion-input name="cedula" type="text" required></ion-input>
+        <ion-text name="cedula" type="text" >{{user.ruc}}</ion-text>
       </ion-item>
       <br/>
       <br/>
       <ion-label for="phone">Telefono:</ion-label>
       <ion-item color="light">
-        <ion-input name="phone" type="number" required></ion-input>
+        <ion-text name="phone" type="text" >{{user.telefono}}</ion-text>
       </ion-item>
       <br/>
       <br/>
       <ion-label for="address">Direccion:</ion-label>
       <ion-item color="light">
-        <ion-input name="address" type="email" required></ion-input>
+        <ion-text name="address" type="text" >{{user.direccion}}</ion-text>
       </ion-item>
       <br/>
       <br/>
       <ion-label for="email">E-mail:</ion-label>
       <ion-item color="light">
-        <ion-input name="email" type="email" required></ion-input>
+        <ion-text name="email" type="email" >{{user.email}}</ion-text>
       </ion-item>
       <br/>
       <br/>
       <ion-label for="password">Contraseña:</ion-label>
       <ion-item color="light">
-        <ion-input name="password" type="paswword" required></ion-input>
+        <ion-label name="password" type="password" >{{user.contrasena}}</ion-label>
+      </ion-item>
+    </div>
+
+    <div class="ion-padding" *ngIf="!user">
+
+      <ion-label for="name">Nombres:</ion-label>
+      <ion-item color="light">
+        <ion-text name="name" type="text"></ion-text>
+      </ion-item>
+      <br/>
+      <br/>
+      <ion-label for="cedula">Ruc/Cedula:</ion-label>
+      <ion-item color="light">
+        <ion-text name="cedula" type="text" ></ion-text>
+      </ion-item>
+      <br/>
+      <br/>
+      <ion-label for="phone">Telefono:</ion-label>
+      <ion-item color="light">
+        <ion-text name="phone" type="text" ></ion-text>
+      </ion-item>
+      <br/>
+      <br/>
+      <ion-label for="address">Direccion:</ion-label>
+      <ion-item color="light">
+        <ion-text name="address" type="text" ></ion-text>
+      </ion-item>
+      <br/>
+      <br/>
+      <ion-label for="email">E-mail:</ion-label>
+      <ion-item color="light">
+        <ion-text name="email" type="email" ></ion-text>
+      </ion-item>
+      <br/>
+      <br/>
+      <ion-label for="password">Contraseña:</ion-label>
+      <ion-item color="light">
+        <ion-label name="password" type="password" ></ion-label>
       </ion-item>
     </div>
   </ion-content>

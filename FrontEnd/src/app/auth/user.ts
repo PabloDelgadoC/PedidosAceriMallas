@@ -2,7 +2,7 @@ export interface User {
 
     contrasena: string;
     nombre: string;
-    apellido: string;
+    ruc: string;
     direccion: string;
     telefono: string;
     email: string;

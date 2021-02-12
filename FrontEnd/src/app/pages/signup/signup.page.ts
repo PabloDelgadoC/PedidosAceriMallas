@@ -28,7 +28,7 @@ export class SignupPage implements OnInit {
   public createAccount(): void {
     const user: User = {
       nombre: (document.getElementById('names') as HTMLInputElement).value,
-      apellido: (document.getElementById('last-name') as HTMLInputElement).value,
+      ruc: (document.getElementById('ruc') as HTMLInputElement).value,
       telefono: (document.getElementById('cellphone') as HTMLInputElement).value,
       email: (document.getElementById('email') as HTMLInputElement).value,
       direccion: (document.getElementById('address') as HTMLInputElement).value,

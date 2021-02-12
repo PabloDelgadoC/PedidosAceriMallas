@@ -11,7 +11,8 @@ const {
     eliminarUser,
     createUserMovil,
     forgotPassword,
-    logIn
+    logIn,
+    profile,
 } =require('../controladores/usuarios.controler');
 
 const { Autenticado } = require('../helper/autenticador');
@@ -37,5 +38,6 @@ router.delete('/usuario/delete/:id', Autenticado,  eliminarUser);
 router.post('/api/signup', createUserMovil);
 router.patch('/api/forgot-password', forgotPassword);
 router.post('/api/login', logIn);
+router.get('/api/profile/:id', profile);
 
 module.exports = router;

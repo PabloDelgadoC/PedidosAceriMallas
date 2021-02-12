@@ -49,4 +49,8 @@ export class Services {
   public getCupons(url:string) {
     return this.http.get(url);
   }
+
+  public getProfile(url:string) {
+    return this.http.get(url);
+  }
 }
