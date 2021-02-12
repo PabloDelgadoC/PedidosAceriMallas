@@ -8,7 +8,7 @@
         <ion-card *ngFor="let local of locals">
             <ion-item>
                 <ion-thumbnail slot="start" (click)="seleccionar_direccion(local.coordx,local.coordy);">
-                    <ion-img src="http://localhost:4000/{{local.img}}"></ion-img>
+                    <ion-img src="https://acerimallas.herokuapp.com/{{local.img}}"></ion-img>
                 </ion-thumbnail>
                 <ion-label> 
                     <ion-icon color="acerimalla" slot="only-icon" name="pin-outline"></ion-icon> &nbsp;
