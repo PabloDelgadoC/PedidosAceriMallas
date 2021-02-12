@@ -1,13 +1,13 @@
 const {Schema, model} = require('mongoose');
 
- const pagosSchema = new Schema({
+ const abonoSchema = new Schema({
     pedidoid: { type: String, required: true },
     npedido:  { type: Number, required: true },
+    pagoid:   { type: String, required: true },
     monto:  Number,
-    pagos:  Number,
-    saldo:  Number
+    fecha: String
 });
 
 
 
-module.exports = model('Pagos',pagosSchema);
+module.exports = model('Abono',abonoSchema);

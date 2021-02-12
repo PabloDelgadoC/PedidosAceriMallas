@@ -18,14 +18,14 @@ UserCtrl.renderUserForm = (req,res) => {
 
 UserCtrl.createUser = async (req,res) => {
     const errors = [];
-    const {cuenta,nombre,apellido,direccion,email,contrasena,categoria,estado, telefono} = req.body;
+    const {cuenta,nombre,ruc,direccion,email,contrasena,categoria,estado, telefono} = req.body;
 
     if(nombre==null){
         errors.push({text: 'Nombre es un campo obligatorio'});
     }
 
-    if(apellido==null){
-        errors.push({text: 'Apellido es un campo obligatorio'});
+    if(ruc==null){
+        errors.push({text: 'RUC/CI es un campo obligatorio'});
     }
 
     if(contrasena==null){
@@ -52,7 +52,7 @@ UserCtrl.createUser = async (req,res) => {
             const new_user=new user();
             new_user.cuenta = cuenta;
             new_user.nombre = nombre;
-            new_user.apellido = apellido;
+            new_user.ruc = ruc;
             new_user.email = email;
             new_user.contrasena = contrasena;
             new_user.direccion = direccion;
@@ -127,11 +127,11 @@ UserCtrl.eliminarUser = async (req,res) => {
 
 //USERS MOVIL
 UserCtrl.createUserMovil = async (req, res) => {
-    const {nombre,apellido,telefono,contrasena,direccion,email} = req.body;
+    const {nombre,ruc,telefono,contrasena,direccion,email} = req.body;
     const new_user = new user();
     new_user.nombre = nombre;
-    new_user.apellido = apellido;
-    new_user.cuenta = nombre + ' ' + apellido;
+    new_user.ruc = ruc;
+    new_user.cuenta = nombre;
     new_user.telefono = telefono;
     new_user.contrasena = bcrypt.hashSync(contrasena,10);
     new_user.direccion = direccion;
