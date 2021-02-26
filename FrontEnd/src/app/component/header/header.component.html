@@ -1,23 +1,19 @@
 <ion-header>
-  <ion-toolbar id="header" color="acerimalla">
-
-    <ion-buttons slot="start">
-      <ion-button (click)="valoracion()">
+  <ion-toolbar color="acerimalla">
+    <!--<ion-title class="ion-text-capitalize ion-text-center"> {{titulo}} </ion-title>-->
+    <!--MENU PRINCIPAL-->
+    <ion-row>
+    <ion-buttons color="acerimalla">
+      <ion-button color="light"(click)="valoracion()">
         <ion-icon slot="icon-only" name="file-tray-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
-
-    <!--<ion-title class="ion-text-capitalize ion-text-center"> {{titulo}} </ion-title>-->
-    <img src="../../../assets/img/logo.png" alt="">
-
-    <!--MENU PRINCIPAL-->
-    <ion-buttons slot="end">
-      <ion-button>
-        <!--atrr menu=first es el menuId en app.component.html-->
+    <img class="imgLogoLogin2" src="../../../assets/img/logo.png" alt="">
+    <ion-buttons color="acerimalla">
+      
       <ion-menu-button slot="icon-only" menu='first' color="light"></ion-menu-button>
-      </ion-button>
     </ion-buttons>
     <!--FIN MENU PRINCIPAL-->
-    
+    </ion-row>
   </ion-toolbar>
 </ion-header>

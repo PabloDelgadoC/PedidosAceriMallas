@@ -1,7 +1,20 @@
+<script src="https://code.jquery.com/jquery-1.11.3.min.js" charset="UTF-8"></script>
+
+<link href="https://cdn.paymentez.com/ccapi/sdk/payment_stable.min.css" rel="stylesheet" type="text/css" />
+<script src="https://cdn.paymentez.com/ccapi/sdk/payment_stable.min.js" charset="UTF-8"></script>
+
 <app-header></app-header>
 
 <ion-content>
   <ion-toolbar class="ion-no-padding">
     <ion-title color="dark" class="ion-text-start"><b>OPCIONES DE PAGO</b></ion-title>
+    <div class="panel">
+  <form id="add-card-form" class="payment-form" id="my-card" data-capture-name="true">
+    <button class="btn">Save</button>
+    <br/>
+    <div id="messages"></div>
+  </form>
+
+</div>
 </ion-toolbar>
 </ion-content>

@@ -1,0 +1,24 @@
+#header{
+    color: white;
+}
+#ol{
+    border-radius: 20px !important;
+    overflow: hidden;
+}
+#mas{
+    transform: scaleX(-1);
+}
+ion-button{
+    background-color: #631B70;
+    color: white;
+}
+ion-toolbar{
+    background-color: #631B70;
+    background-repeat: repeat;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-bottom: 5px solid #ffffff;
+}
+ion-text, ion-title{
+    font-size:  calc(1em + 1vw);
+}

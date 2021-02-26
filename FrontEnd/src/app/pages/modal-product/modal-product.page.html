@@ -1,34 +1,59 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-img src="https://acerimallas.herokuapp.com/{{img}}"></ion-img>
+  <ion-toolbar color="acerimalla">
+  <ion-buttons >
+      <ion-button (click)="goBack()">
+        <ion-icon id="header"name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-row>
+    <ion-col size="3">  </ion-col>
+    <ion-col size="6"> <ion-img id="ol" src="https://acerimallas.herokuapp.com/{{img}}"></ion-img> </ion-col>
+    <ion-col size="3">  </ion-col>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-grid fixed style="padding-top: 25px;">
-    <ion-row>
-      <ion-col size="9">
-        <ion-title><b>{{nombre}}</b></ion-title>
-      </ion-col>
-      <ion-col size="3" class="ion-text-center">
-        <ion-text color="acerimalla">
-          ${{precio}}
-        </ion-text>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
   <ion-grid fixed class="ion-padding">
+  <ion-row>
+  <ion-col size="8" class="ion-text-center">
+        <ion-title>{{nombre}}</ion-title>
+  </ion-col>
+  <ion-col size="4" class="ion-text-center">
+        <ion-text id= "valor" color="acerimalla"> ${{precio}} </ion-text>
+  </ion-col>
+  </ion-row>
     <ion-row>
       <ion-col size="12" class="ion-text-justify">
-        <ion-text color="medium">{{descripcion}}</ion-text>
+        <ion-text color="medium" >{{descripcion}}</ion-text>
       </ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>
 
 <ion-footer class="ion-no-border ion-padding">
-  <ion-button color="acerimalla" (click)="addCar()" expand="block">
-    AÑADIR AL CARRITO
-  </ion-button>
+  <ion-button color="acerimalla" (click)="disenio()" expand="block">
+        DISEÑE A SU MEDIDA
+      </ion-button>
+  <ion-row>
+  <ion-col size="12">
+  <ion-buttons >
+  <ion-col size="8">
+      <ion-button (click)="addCar()" expand="block">
+        AÑADIR AL CARRITO
+      </ion-button>
+  </ion-col>
+  <ion-col size="8">
+      <ion-button (click)="restar()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+      <ion-text  id="valor">{{cantidad}}</ion-text>
+      <ion-button id="mas" (click)="sumar()">
+        <ion-icon name="chevron-back-outline"></ion-icon>
+      </ion-button>
+      </ion-col>
+  </ion-buttons>
+  </ion-col>
+  </ion-row>
+  
 </ion-footer>

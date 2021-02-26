@@ -2,12 +2,12 @@
 
 <ion-content>
 
-    <ion-toolbar class="ion-no-padding">
-        <ion-title color="dark" class="ion-text-start"><b>PRODUCTOS</b></ion-title>
+    <ion-toolbar>
+        <ion-title text-left ><b>PRODUCTOS</b></ion-title>
     </ion-toolbar>
 
     <ion-toolbar>
-        <ion-searchbar mode="ios" 
+        <ion-searchbar  color="light"
             placeholder="Buscar producto"
             inputmode="text"
             (ionChange)="onSearchChange($event)"
@@ -17,7 +17,7 @@
         ></ion-searchbar>
     </ion-toolbar>
 
-    <ion-toolbar>
+    <ion-toolbar id="opciones">
         <ion-segment scrollable color="acerimalla" value="" (ionChange)="segmentChanged($event)">
             <ion-segment-button value="">
                 Todos
@@ -39,10 +39,9 @@
 
     <ion-grid *ngIf="!flag">
         <ion-row *ngIf="products != null">
-            <ion-col class="ion-no-padding" size="6" *ngFor="let product of products | filtro:textToFilter:'nombre'">
-                <ion-card mode="ios">
-                    <ion-img src="https://acerimallas.herokuapp.com/{{product.img}}" style="height: 100%; object-fit: contain;" (click)="showProduct(product)"></ion-img>
-                    <br/>
+            <ion-col class="imagenesProductos" size="12" *ngFor="let product of products | filtro:textToFilter:'nombre'">
+                <ion-card mode="ios" class="cards">
+                    <ion-img id="productos" src="https://acerimallas.herokuapp.com/{{product.img}}"  (click)="showProduct(product)"></ion-img>
                     <ion-card-content>
                         <ion-row class="ion-no-padding">
                             <ion-col size="8" class="ion-no-padding">
@@ -52,9 +51,10 @@
                                 $<ion-text color="acerimalla">{{product.precio}}</ion-text>
                             </ion-col>
                         </ion-row>
-                        <br/>
-                        <ion-text class="ion-text-justify">{{product.descripcion}}</ion-text>
-                    </ion-card-content>
+                        <ion-row>
+                        <ion-text id="descripcion"class="ion-text-justify">{{product.descripcion}}</ion-text>
+                        </ion-row>
+                        </ion-card-content>
                 </ion-card>
             </ion-col>
         </ion-row>
@@ -62,8 +62,8 @@
 
     <ion-grid *ngIf="flag">
         <ion-row *ngIf="products != null">
-            <ion-col class="ion-no-padding" size="6" *ngFor="let product of products | filtro:segment:'categoria'">
-                <ion-card mode="ios">
+            <ion-col class="imagenesProductos" size="12" *ngFor="let product of products | filtro:segment:'categoria'">
+                <ion-card mode="ios" class="cards">
                     <ion-img src="https://acerimallas.herokuapp.com/{{product.img}}" style="height: 100%; object-fit: contain;" (click)="showProduct(product)"></ion-img>
                     <br/>
                     <ion-card-content>
@@ -76,8 +76,10 @@
                             </ion-col>
                         </ion-row>
                         <br/>
-                        <ion-text class="ion-text-justify">{{product.descripcion}}</ion-text>
-                    </ion-card-content>
+                        <ion-row>
+                        <ion-text id="descripcion" class="ion-text-justify">{{product.descripcion}}</ion-text>
+                        </ion-row>
+                        </ion-card-content>
                 </ion-card>
             </ion-col>
         </ion-row>

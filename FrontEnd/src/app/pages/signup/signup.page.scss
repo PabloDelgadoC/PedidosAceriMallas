@@ -1,0 +1,24 @@
+ion-toolbar{
+  --background: linear-gradient(to bottom, #6A1C71, #6A1C71, #801E75);
+  border: none;
+}
+ion-title{
+    font-size: 1em;
+    color: white;
+  }
+  #user-photo{
+    opacity: 10%;
+  }
+  #atras{
+    color: white;
+  }
+  ion-toolbar{
+    background-color: #631B70;
+    border: none;
+    border-right: 5px solid transparent;
+    border-left: 5px solid transparent;
+    border-bottom: 5px solid #ffffff;
+  }
+  .header-md::after {
+    display: none;
+}

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-
+import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook/ngx';
+import { Platform } from '@ionic/angular';
 import { Services } from '../../services/services';
 import { Constanst } from '../../constants/constanst';
 import { UserLogin } from '../../auth/user';
@@ -17,11 +18,11 @@ export class LoginPage implements OnInit {
   public changeEye: boolean = true;
   public showPass: boolean = false;
   public authSubject = new BehaviorSubject(false);
-
+  
   constructor( 
     private _service: Services,
     public loadingController: LoadingController,
-    private router: Router,
+    private router: Router,private fb: Facebook,  private platform: Platform,
   ) { }
 
   ngOnInit() {
@@ -65,9 +66,15 @@ export class LoginPage implements OnInit {
   }
 
   public loginFacebook(): void {
+    this.fb.login(['public_profile', 'user_friends', 'email'])
+  .then((res: FacebookLoginResponse) => console.log('Logged into Facebook!', res))
+  .catch(e => console.log('Error logging into Facebook', e));
 
+
+this.fb.logEvent(this.fb.EVENTS.EVENT_NAME_ADDED_TO_CART);
   }
 
+  
   public noLogin() {
     localStorage.setItem('noLogin', 'true');
   }

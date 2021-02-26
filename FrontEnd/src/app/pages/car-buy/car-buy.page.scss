@@ -1,0 +1,30 @@
+
+img{
+    width: 100px;
+    height: 50px;
+    float: left;
+    margin-left: 0%;
+}
+#descripcion{
+    width:100%;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+}
+ion-card{
+    box-shadow: none !important;
+    width: 105%;
+    height: 112px;
+}
+#menos, #mas{
+    background-color: #631B70;
+    color: white;
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-top: 5%;
+}
+ion-grid{
+    border-bottom: solid;
+    border-bottom-width: 0.5px;
+    border-bottom-color: rgb(0, 0, 0);
+}

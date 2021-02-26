@@ -1,40 +1,51 @@
-<ion-header class="ion-no-border">
-  <img style="background-size: cover;" src="../../../assets/img/logo.png" alt="">
+<ion-header >
+<ion-toolbar no-border>
+<ion-buttons >
+      <ion-button [routerLink]="['/']">
+        <ion-icon style="display:none"color="acerimalla"name="chevron-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  <img class="imgLogoLogin2" src="../../../assets/img/logo2.png" alt="">
+</ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <div class="ion-padding">
+<ion-content padding class="vertical-center">
+  <div  class="ion-padding">
     <!-- Login form -->
     <ion-item color="light">
       <ion-input id="correo" placeholder="Correo Electrónico" type="email" required></ion-input>
     </ion-item>
     <br/>
+    <!-- Password - seePassword  -->
     <ion-item color="light">
       <!--type="{{type}}"-->
       <ion-input id="contrasena" placeholder="Contraseña" type="{{showPass ? 'text' : 'password'}}" required></ion-input>
       <ion-button type="button" clear color="light" item-right (click)="seePassword()">
-        <ion-icon style="zoom:1.5;" name="{{changeEye ? 'eye-outline' : 'eye-off-outline'}}"></ion-icon>
+        <ion-icon id="ver" name="{{changeEye ? 'eye-outline' : 'eye-off-outline'}}"></ion-icon>
       </ion-button>
     </ion-item>
-    <ion-text [routerLink]="['/forgot-password']" style="color: #D5158A;" (click)="forgotPass()">
+    <!-- Forgot password -->
+    <ion-text id= "recordar" [routerLink]="['/forgot-password']"  (click)="forgotPass()">
       ¿Olvidaste tu contraseña?
     </ion-text>
-    <br>
     <br/>
     <br/>
+    <br/>
+    <!-- LogIn -->
     <ion-button expand="block" color="acerimalla" tappable (click)="login()">
       <ion-text>INICIAR SESIÓN</ion-text>
     </ion-button>
-    <ion-button expand="block" color="light" tappable (click)="loginFacebook()">
+    <!-- Login fb -->
+    <ion-button expand="block" color="medium" tappable (click)="loginFacebook()">
       <ion-text text-center>
         Ingresar con &nbsp;
       </ion-text>
-      <ion-icon style="zoom:1.5;" name="logo-facebook"></ion-icon>
+      <ion-icon id="fb"  name="logo-facebook"></ion-icon>
     </ion-button>
     <br/>
     <br/>
     <div class="ion-padding ion-text-center">
-      <ion-text [routerLink]="['/tabs/home']" style="color: #D5158A;" (click)="noLogin()">
+      <ion-text id="noLog" [routerLink]="['/tabs/home']"  (click)="noLogin()">
         ¡Omitir Inicio de Sesión!
       </ion-text>
     </div>

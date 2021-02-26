@@ -1,30 +1,48 @@
-page-login {
-    /**ion-header {
-        background-image: url('../../../assets/img/fondo.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-    }**/
-    ion-input {
-        border-radius: 50px;
-        background: rgba(255, 255, 255, 0.1);
-        width: 200px;
-        margin-left: auto;
-        margin-right: auto;
-        float: none;
-    }
-    ion-img {
-        width: 140px;
-        height: 90px;
-        background-color: transparent;
-    }
-    ion-item {
-        border-radius: 5px;
-        height: 5px;
-        background: rgba(255, 255, 255, 0.1);
-        width: 200px;
-        margin-left: auto;
-        margin-right: auto;
-        float: none;
-    }
+
+ion-toolbar{
+    --background: url("../../../assets/img/fondo.png") 0 0/100% 410% repeat;
+    background-color: rgb(228, 226, 226);
+    object-fit: cover;
+    background-repeat: repeat;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid #ffffff;
+}
+.header-md::after {
+    display: none;
+}
+.imgLogoLogin2{
+    background-color: transparent;
+    display: block; 
+    padding-top: 5%;
+    width: 80% ; 
+    height: auto;
+    margin-left: auto;
+    margin-bottom: 8%;
+    margin-right: auto;    
+}
+#recordar, #noLog{
+    color: #D5158A;
+}
+#recordar{
+    font-size: 1.0rem;
+    float:right !important;
+}
+ion-item{
+    height: auto;
+}
+#ver, #fb{
+    zoom:1.5;
+}
+ion-text, #contrasena, #correo{
+    font-size:  calc(1em + 1vw);
+}
+div{
+    padding-top: 13%;
+    
+}
+ion-header{
+    
+    border-color: #D5158A;
+    border: white;
 }
